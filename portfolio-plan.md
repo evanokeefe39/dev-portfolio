@@ -56,7 +56,7 @@ Use LTTB (Largest Triangle Three Buckets) algorithm for downsampling — it pres
 | Sparklines | Raw SVG polylines | No charting library needed — paths generated from committed JSON |
 | Bar charts | CSS widths | Percentage of max value, rendered as divs |
 | Data | Committed JSON snapshots | `public/data/current.json` + `public/data/history/` — served statically, included in the static export |
-| Data process | Python + DuckDB, standalone `data_pipeline/` pkg | `uv run snapshot`; reads session JSONL + `git log`, prices via LiteLLM. Separate from the Next.js app |
+| Data process | Python + DuckDB, standalone `data_pipeline/` pkg | `uv run snapshot`; reads OMP/Claude/Pi/Codex JSONL + `git log`. Cost: OMP direct, others via LiteLLM. Separate from the Next.js app |
 | Deployment | Vercel | Static hosting, auto-deploy on push |
 
 ## Data process (local snapshot)
@@ -67,7 +67,7 @@ A standalone Python package at `data_pipeline/` (own `pyproject.toml`, `.venv` m
 
 ### Sources (mirror loc-dock)
 
-- **Session JSONL** — Claude `~/.claude/projects/**/*.jsonl`, Pi `~/.pi/agent/sessions/*.jsonl`, Codex `~/.codex/sessions/**/*.jsonl`. Ingested via DuckDB `read_ndjson_objects` (the robust path — `read_ndjson_auto` OOM-crashes on heterogeneous logs, per loc-dock's findings).
+- **Session JSONL** — Oh My Pi `~/.omp/agent/sessions/**/*.jsonl` (current harness, primary), Claude `~/.claude/projects/**/*.jsonl`, Pi `~/.pi/agent/sessions/*.jsonl`, Codex `~/.codex/sessions/**/*.jsonl`. Ingested via DuckDB `read_ndjson_objects` (the robust path — `read_ndjson_auto` OOM-crashes on heterogeneous logs, per loc-dock's findings).
 - **Git** — `git log --numstat` across `~/repos/*`, incremental by `MAX(ts)`.
 - **Pricing** — LiteLLM community pricing JSON (2,800+ models) for cost.
 - **PRs** — regex-extracted `#123` refs from commit messages (local, no GitHub API, no token).
@@ -86,7 +86,7 @@ A standalone Python package at `data_pipeline/` (own `pyproject.toml`, `.venv` m
 
 Per the Data Reality Check gate, the script is built against real data first:
 
-- Unzip `~/repos/loc-dock/usage_data_2026-08-01_2026-08-13.zip` as the fixture.
+- Smoke-test against a real JSONL file (e.g. `~/.claude/projects/C--Users-evano-repos-loc-dock/*.jsonl`), not synthetic data. The OpenRouter CSV in `loc-dock/usage_data_*.zip` is a diagnostic artifact and is NOT a data source.
 - Read one real JSONL file; print its schema and 3 sample rows.
 - Confirm `read_ndjson_objects` parses it; confirm `git log --numstat` output shape.
 - Reconcile a hand-computed total against the script's output before trusting it.

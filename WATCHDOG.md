@@ -23,10 +23,15 @@ the main executor's daily noise.
 
 ## Data pipeline
 
-- Weekly GitHub Action hits GitHub API. Enforce the external integration gate:
-  one real smoke-test request before batch logic; token only in Actions secrets.
-- `data/*.json` is generated. Never hand-edit; never commit a destructive
-  overwrite without a backup and a re-run path.
+- Sources: `~/.omp/agent/sessions/**/*.jsonl` (current harness, PRIMARY), plus
+  `~/.claude/projects`, `~/.pi/agent/sessions`, `~/.codex/sessions`, and
+  `git log --numstat`. If 7d/30d tokens read zero, suspect a MISSING SOURCE,
+  not "no data" — verify the source globs before accepting a snapshot.
+- OMP JSONL has two layouts (usage/model top-level vs nested under `message`);
+  the silver template must COALESCE both. OMP cost comes from `usage.cost.total`
+  directly — never LiteLLM-price OMP rows.
+- `public/data/` is generated. Never hand-edit; the snapshot script is the only
+  writer. Keep every history file.
 
 ## Git hygiene
 

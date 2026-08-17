@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --glass-bg: rgba(0, 0, 0, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-radius: 10px;
+}
+
+@layer components {
+  /* Shared glass treatment — see portfolio-plan.md layout section */
+  .glass {
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--glass-radius);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  /* Dark backdrop behind the overlays; the R3F scene replaces it later */
+  .page-backdrop {
+    background:
+      radial-gradient(1200px 600px at 75% -10%, rgba(56, 130, 246, 0.12), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(168, 85, 247, 0.1), transparent 55%),
+      linear-gradient(180deg, #0c1220 0%, #070a12 55%, #04060c 100%);
+  }
+}

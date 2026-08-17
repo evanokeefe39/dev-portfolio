@@ -1,0 +1,1126 @@
+{
+  "snapshotDate": "2026-08-17",
+  "generatedAt": "2026-08-17T18:59:20+02:00",
+  "ranges": {
+    "7d": {
+      "tokenBurn": {
+        "total": 2172197770,
+        "changePct": 4.8,
+        "sparkline": [
+          605521754,
+          237344002,
+          286764323,
+          395510303,
+          256623723,
+          203075070,
+          187358595
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 1487366524
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 678913366
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 3316663
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 2601217
+        }
+      ],
+      "cost": {
+        "total": 23.165099,
+        "breakdown": {
+          "input": 0.0,
+          "output": 0.0,
+          "cacheWrite": 0.0,
+          "cacheRead": 0.0
+        }
+      },
+      "sessions": {
+        "total": 182,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 21,
+        "activeRepos": 5,
+        "sparkline": [
+          4,
+          1,
+          5,
+          6,
+          5,
+          8,
+          2
+        ]
+      },
+      "locDelta": {
+        "net": 20748,
+        "added": 32844,
+        "removed": 12096,
+        "sparkline": [
+          [
+            10448.0,
+            7486.0
+          ],
+          [
+            5943.0,
+            462.0
+          ],
+          [
+            1784.0,
+            574.0
+          ],
+          [
+            6412.0,
+            1716.0
+          ],
+          [
+            3040.0,
+            498.0
+          ],
+          [
+            1626.0,
+            267.0
+          ],
+          [
+            3591.0,
+            1093.0
+          ]
+        ]
+      }
+    },
+    "30d": {
+      "tokenBurn": {
+        "total": 4700575270,
+        "changePct": 169.9,
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          174511270,
+          42559555,
+          0,
+          268840922,
+          64191547,
+          729927098,
+          237344002,
+          395510303,
+          256623723,
+          187358595
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 3212992291
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 1464476961
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 15259590
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 7846428
+        }
+      ],
+      "cost": {
+        "total": 54.344342,
+        "breakdown": {
+          "input": 0.0,
+          "output": 0.0,
+          "cacheWrite": 0.0,
+          "cacheRead": 0.0
+        }
+      },
+      "sessions": {
+        "total": 335,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 21,
+        "activeRepos": 5,
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          1,
+          8,
+          2
+        ]
+      },
+      "locDelta": {
+        "net": 66588,
+        "added": 167457,
+        "removed": 100869,
+        "sparkline": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            9939.0,
+            0.0
+          ],
+          [
+            1729.0,
+            640.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            8971.0,
+            11818.0
+          ],
+          [
+            76189.0,
+            4143.0
+          ],
+          [
+            257.0,
+            2.0
+          ],
+          [
+            10448.0,
+            7486.0
+          ],
+          [
+            5943.0,
+            462.0
+          ],
+          [
+            1626.0,
+            267.0
+          ],
+          [
+            3591.0,
+            1093.0
+          ]
+        ]
+      }
+    },
+    "90d": {
+      "tokenBurn": {
+        "total": 11499502618,
+        "changePct": null,
+        "sparkline": [
+          0,
+          390256108,
+          3656227,
+          553203731,
+          198636375,
+          0,
+          452750996,
+          0,
+          0,
+          0,
+          0,
+          729927098,
+          237344002,
+          187358595
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 4882825854
+        },
+        {
+          "model": "claude-opus-4-6",
+          "tokens": 4005304025
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 2151173447
+        },
+        {
+          "model": "claude-opus-4-8",
+          "tokens": 247372594
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": 156463879
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 28370791
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 15259590
+        },
+        {
+          "model": "claude-opus-4-7",
+          "tokens": 12547609
+        },
+        {
+          "model": "fuse-deep",
+          "tokens": 108068
+        },
+        {
+          "model": "fuse-fast",
+          "tokens": 34667
+        },
+        {
+          "model": "meta/llama-4-maverick-17b-128e-instruct",
+          "tokens": 33618
+        },
+        {
+          "model": "qwen/qwen3-32b",
+          "tokens": 8476
+        },
+        {
+          "model": "<synthetic>",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7-highspeed",
+          "tokens": 0
+        },
+        {
+          "model": "daily",
+          "tokens": 0
+        },
+        {
+          "model": "deepseek-r1-distill-llama-70b",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-deepseek-v4-flash",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-spread",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-unknown",
+          "tokens": 0
+        },
+        {
+          "model": "gemini-1.5-flash",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.1-8b-instant",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.3-70b-versatile",
+          "tokens": 0
+        },
+        {
+          "model": "llama3.1-8b",
+          "tokens": 0
+        },
+        {
+          "model": "minimax/minimax-m2.7",
+          "tokens": 0
+        },
+        {
+          "model": "zai-glm-4.7",
+          "tokens": 0
+        }
+      ],
+      "cost": {
+        "total": 3238.215578,
+        "breakdown": {
+          "input": 10.781694,
+          "output": 496.653447,
+          "cacheWrite": 531.020323,
+          "cacheRead": 2129.845005
+        }
+      },
+      "sessions": {
+        "total": 833,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 39,
+        "activeRepos": 14,
+        "sparkline": [
+          1,
+          8,
+          0,
+          0,
+          11,
+          1,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          2
+        ]
+      },
+      "locDelta": {
+        "net": 364200,
+        "added": 595599,
+        "removed": 231399,
+        "sparkline": [
+          [
+            9551.0,
+            6516.0
+          ],
+          [
+            39659.0,
+            5006.0
+          ],
+          [
+            13216.0,
+            650.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            12262.0,
+            57342.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            9270.0,
+            3731.0
+          ],
+          [
+            12058.0,
+            1605.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            9939.0,
+            0.0
+          ],
+          [
+            3537.0,
+            68138.0
+          ],
+          [
+            24836.0,
+            2193.0
+          ],
+          [
+            3591.0,
+            1093.0
+          ]
+        ]
+      }
+    },
+    "1y": {
+      "tokenBurn": {
+        "total": 11499502618,
+        "changePct": null,
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          553203731,
+          0,
+          729927098,
+          187358595
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 4882825854
+        },
+        {
+          "model": "claude-opus-4-6",
+          "tokens": 4005304025
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 2151173447
+        },
+        {
+          "model": "claude-opus-4-8",
+          "tokens": 247372594
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": 156463879
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 28370791
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 15259590
+        },
+        {
+          "model": "claude-opus-4-7",
+          "tokens": 12547609
+        },
+        {
+          "model": "fuse-deep",
+          "tokens": 108068
+        },
+        {
+          "model": "fuse-fast",
+          "tokens": 34667
+        },
+        {
+          "model": "meta/llama-4-maverick-17b-128e-instruct",
+          "tokens": 33618
+        },
+        {
+          "model": "qwen/qwen3-32b",
+          "tokens": 8476
+        },
+        {
+          "model": "<synthetic>",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7-highspeed",
+          "tokens": 0
+        },
+        {
+          "model": "daily",
+          "tokens": 0
+        },
+        {
+          "model": "deepseek-r1-distill-llama-70b",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-deepseek-v4-flash",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-spread",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-unknown",
+          "tokens": 0
+        },
+        {
+          "model": "gemini-1.5-flash",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.1-8b-instant",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.3-70b-versatile",
+          "tokens": 0
+        },
+        {
+          "model": "llama3.1-8b",
+          "tokens": 0
+        },
+        {
+          "model": "minimax/minimax-m2.7",
+          "tokens": 0
+        },
+        {
+          "model": "zai-glm-4.7",
+          "tokens": 0
+        }
+      ],
+      "cost": {
+        "total": 3238.215578,
+        "breakdown": {
+          "input": 10.781694,
+          "output": 496.653447,
+          "cacheWrite": 531.020323,
+          "cacheRead": 2129.845005
+        }
+      },
+      "sessions": {
+        "total": 833,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 1910,
+        "activeRepos": 23,
+        "sparkline": [
+          13,
+          1,
+          12,
+          0,
+          16,
+          0,
+          39,
+          53,
+          3,
+          19,
+          0,
+          5,
+          8,
+          2
+        ]
+      },
+      "locDelta": {
+        "net": 3041561,
+        "added": 4102987,
+        "removed": 1061426,
+        "sparkline": [
+          [
+            2190.0,
+            1257.0
+          ],
+          [
+            29849.0,
+            3608.0
+          ],
+          [
+            9657.0,
+            9242.0
+          ],
+          [
+            1838.0,
+            6174.0
+          ],
+          [
+            28492.0,
+            18544.0
+          ],
+          [
+            25236.0,
+            149745.0
+          ],
+          [
+            5.0,
+            3.0
+          ],
+          [
+            265973.0,
+            8250.0
+          ],
+          [
+            17316.0,
+            10839.0
+          ],
+          [
+            58483.0,
+            2744.0
+          ],
+          [
+            12262.0,
+            57342.0
+          ],
+          [
+            62596.0,
+            7015.0
+          ],
+          [
+            3537.0,
+            68138.0
+          ],
+          [
+            3591.0,
+            1093.0
+          ]
+        ]
+      }
+    },
+    "all": {
+      "tokenBurn": {
+        "total": 11499502618,
+        "changePct": null,
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          553203731,
+          0,
+          729927098,
+          187358595
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 4882825854
+        },
+        {
+          "model": "claude-opus-4-6",
+          "tokens": 4005304025
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 2151173447
+        },
+        {
+          "model": "claude-opus-4-8",
+          "tokens": 247372594
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": 156463879
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 28370791
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 15259590
+        },
+        {
+          "model": "claude-opus-4-7",
+          "tokens": 12547609
+        },
+        {
+          "model": "fuse-deep",
+          "tokens": 108068
+        },
+        {
+          "model": "fuse-fast",
+          "tokens": 34667
+        },
+        {
+          "model": "meta/llama-4-maverick-17b-128e-instruct",
+          "tokens": 33618
+        },
+        {
+          "model": "qwen/qwen3-32b",
+          "tokens": 8476
+        },
+        {
+          "model": "<synthetic>",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7-highspeed",
+          "tokens": 0
+        },
+        {
+          "model": "daily",
+          "tokens": 0
+        },
+        {
+          "model": "deepseek-r1-distill-llama-70b",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-deepseek-v4-flash",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-spread",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-unknown",
+          "tokens": 0
+        },
+        {
+          "model": "gemini-1.5-flash",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.1-8b-instant",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.3-70b-versatile",
+          "tokens": 0
+        },
+        {
+          "model": "llama3.1-8b",
+          "tokens": 0
+        },
+        {
+          "model": "minimax/minimax-m2.7",
+          "tokens": 0
+        },
+        {
+          "model": "zai-glm-4.7",
+          "tokens": 0
+        }
+      ],
+      "cost": {
+        "total": 3238.215578,
+        "breakdown": {
+          "input": 10.781694,
+          "output": 496.653447,
+          "cacheWrite": 531.020323,
+          "cacheRead": 2129.845005
+        }
+      },
+      "sessions": {
+        "total": 833,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 2027,
+        "activeRepos": 23,
+        "sparkline": [
+          4,
+          18,
+          1,
+          12,
+          16,
+          0,
+          22,
+          0,
+          53,
+          0,
+          14,
+          0,
+          8,
+          2
+        ]
+      },
+      "locDelta": {
+        "net": 3108127,
+        "added": 4222363,
+        "removed": 1114236,
+        "sparkline": [
+          [
+            1620.0,
+            988.0
+          ],
+          [
+            36996.0,
+            614.0
+          ],
+          [
+            9657.0,
+            9242.0
+          ],
+          [
+            14952.0,
+            1897.0
+          ],
+          [
+            1838.0,
+            6174.0
+          ],
+          [
+            28492.0,
+            18544.0
+          ],
+          [
+            142154.0,
+            739.0
+          ],
+          [
+            23053.0,
+            16740.0
+          ],
+          [
+            265973.0,
+            8250.0
+          ],
+          [
+            9910.0,
+            10101.0
+          ],
+          [
+            44469.0,
+            6676.0
+          ],
+          [
+            12262.0,
+            57342.0
+          ],
+          [
+            76189.0,
+            4143.0
+          ],
+          [
+            3591.0,
+            1093.0
+          ]
+        ]
+      }
+    }
+  },
+  "recentActivity": [
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: resolve open questions, split data_pipeline from frontend",
+      "prRefs": [],
+      "branch": "main",
+      "linesAdded": 30,
+      "linesRemoved": 16,
+      "ts": "2026-08-17T17:33:35+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: enhance plan with local snapshot data process",
+      "prRefs": [],
+      "branch": "main",
+      "linesAdded": 90,
+      "linesRemoved": 53,
+      "ts": "2026-08-17T17:23:48+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: record repo-init review and assumption log",
+      "prRefs": [],
+      "branch": "main",
+      "linesAdded": 28,
+      "linesRemoved": 9,
+      "ts": "2026-08-17T17:11:37+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: add 3D scene tech review and update plan",
+      "prRefs": [],
+      "branch": "main",
+      "linesAdded": 302,
+      "linesRemoved": 0,
+      "ts": "2026-08-17T17:11:11+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "chore: initialize repository infrastructure",
+      "prRefs": [],
+      "branch": "main",
+      "linesAdded": 523,
+      "linesRemoved": 0,
+      "ts": "2026-08-17T17:11:06+02:00"
+    },
+    {
+      "repo": "datalake",
+      "message": "feat: top/rising creators lists + creators-list quality columns (#17)",
+      "prRefs": [
+        17
+      ],
+      "branch": "main",
+      "linesAdded": 1322,
+      "linesRemoved": 502,
+      "ts": "2026-08-17T09:46:22+02:00"
+    },
+    {
+      "repo": "datalake",
+      "message": "feat: media e2e + catalog DDL + doc sync (#18)",
+      "prRefs": [
+        18
+      ],
+      "branch": "main",
+      "linesAdded": 1296,
+      "linesRemoved": 513,
+      "ts": "2026-08-17T09:43:09+02:00"
+    },
+    {
+      "repo": "loc-dock",
+      "message": "ci: auto-publish releases, notes from template, version guard (#30)",
+      "prRefs": [
+        30
+      ],
+      "branch": "master",
+      "linesAdded": 49,
+      "linesRemoved": 38,
+      "ts": "2026-08-16T19:28:39+02:00"
+    },
+    {
+      "repo": "loc-dock",
+      "message": "ci: run CI only on PRs, add cargo test, fix OMP silver tests (#29)",
+      "prRefs": [
+        29
+      ],
+      "branch": "master",
+      "linesAdded": 12,
+      "linesRemoved": 11,
+      "ts": "2026-08-16T19:28:34+02:00"
+    },
+    {
+      "repo": "loc-dock",
+      "message": "fix: release workflow downloads use step output for version",
+      "prRefs": [],
+      "branch": "master",
+      "linesAdded": 10,
+      "linesRemoved": 6,
+      "ts": "2026-08-16T17:25:51+02:00"
+    },
+    {
+      "repo": "loc-dock",
+      "message": "fix: release workflow version-strip expression",
+      "prRefs": [],
+      "branch": "master",
+      "linesAdded": 6,
+      "linesRemoved": 6,
+      "ts": "2026-08-16T17:14:57+02:00"
+    },
+    {
+      "repo": "loc-dock",
+      "message": "chore: bump version to 0.2.4 for release",
+      "prRefs": [],
+      "branch": "master",
+      "linesAdded": 10,
+      "linesRemoved": 7,
+      "ts": "2026-08-16T17:01:52+02:00"
+    },
+    {
+      "repo": "loc-dock",
+      "message": "fix: summary panel stuck on loading when LLM returns empty content (#28)",
+      "prRefs": [
+        28
+      ],
+      "branch": "master",
+      "linesAdded": 202,
+      "linesRemoved": 56,
+      "ts": "2026-08-16T16:35:17+02:00"
+    },
+    {
+      "repo": "dnd-education-sim",
+      "message": "feat(school): senior build — catalogue classes + per-pathway course selection (C5) (#8)",
+      "prRefs": [
+        8
+      ],
+      "branch": "main",
+      "linesAdded": 670,
+      "linesRemoved": 39,
+      "ts": "2026-08-16T16:23:24+02:00"
+    },
+    {
+      "repo": "dnd-education-sim",
+      "message": "feat(school): junior build — core + Religious Education + Italian Y8-9 (C4) (#7)",
+      "prRefs": [
+        7
+      ],
+      "branch": "main",
+      "linesAdded": 96,
+      "linesRemoved": 22,
+      "ts": "2026-08-16T14:25:35+02:00"
+    },
+    {
+      "repo": "dnd-education-sim",
+      "message": "feat(schema): class course_level + class_enrolments rename (C3) (#6)",
+      "prRefs": [
+        6
+      ],
+      "branch": "main",
+      "linesAdded": 89,
+      "linesRemoved": 37,
+      "ts": "2026-08-16T14:12:25+02:00"
+    },
+    {
+      "repo": "dnd-education-sim",
+      "message": "feat(curriculum): resolve affinities by learning area (CR10) (#5)",
+      "prRefs": [
+        5
+      ],
+      "branch": "main",
+      "linesAdded": 218,
+      "linesRemoved": 45,
+      "ts": "2026-08-16T14:02:46+02:00"
+    },
+    {
+      "repo": "dnd-education-sim",
+      "message": "feat(curriculum): add WA curriculum catalogue (CR1) (#4)",
+      "prRefs": [
+        4
+      ],
+      "branch": "main",
+      "linesAdded": 264,
+      "linesRemoved": 0,
+      "ts": "2026-08-16T13:32:57+02:00"
+    },
+    {
+      "repo": "dnd-education-sim",
+      "message": "docs: apply four-expert review fixes to lifecycle + curriculum plans (#3)",
+      "prRefs": [
+        3
+      ],
+      "branch": "main",
+      "linesAdded": 642,
+      "linesRemoved": 264,
+      "ts": "2026-08-15T20:05:23+02:00"
+    },
+    {
+      "repo": "job-search-toolkit",
+      "message": "feat(skills): route application funnel to Twenty CRM via crm-bridge (#13)",
+      "prRefs": [
+        13
+      ],
+      "branch": "main",
+      "linesAdded": 119,
+      "linesRemoved": 164,
+      "ts": "2026-08-15T19:40:29+02:00"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+---
+title: Warehouse scene v1
+date: 2026-08-14
+---
+
+The hero background is an isometric warehouse built with React Three Fiber,
+ported from the standalone 3d-scene-test project. These are the port notes.
+
+## What changed in the port
+
+- Upgraded `@react-three/fiber` from v8 to v9 and `drei` to v10
+- All 3D components are client components loaded with
+  `dynamic(..., { ssr: false })`
+- Static geometry merged with `BufferGeometryUtils` to cut draw calls
+
+## Performance checklist
+
+1. Merge static geometry — fewer draw calls
+2. `InstancedMesh` for repeated elements (desks, chairs, pillars)
+3. Power-of-two, compressed textures
+
+> The warehouse ships in v1; Cozy Office is dropped.

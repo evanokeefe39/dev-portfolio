@@ -36,7 +36,7 @@ rollups only.
 
 ### Prior decisions (confirmed with owner)
 
-- Day grain = one character per session; 7d/30d/90d/1y/all = one character per (repo × harness). To make the per-session view reachable, the range toggle gains a `1d` (Today) option. [assumption to confirm at review]
+- Per-session rendering is adaptive, NOT a dedicated "today" grain: when the selected window's session count fits the scene (≤ ~16, desk capacity), each session renders as one character; above that, collapse to one per (repo × harness). This avoids a near-empty "today" view on quiet days; an empty window renders an empty scene (honest).
 - Rollup = LLM, cached + immutable, committed in the snapshot.
 - All four harnesses render; OMP summaries used where present; everyone falls back to title + repo-day commit stats (no LLM).
 
@@ -56,9 +56,10 @@ rollups only.
 - GIVEN a `(repo, harness, grain, window-end)` rollup key already cached with an unchanged content hash THEN no LLM call is made.
 - GIVEN a new key with content THEN exactly one LLM call produces a ≤150-word paragraph, stored and committed.
 - GIVEN a window with no content THEN no rollup key is created.
-- GIVEN the scene at `1d` grain THEN one character per session, tooltip = that session's summary/fallback.
-- GIVEN the scene at a coarse grain THEN one character per (repo × harness) with activity in the window, tooltip = the rolled-up summary.
+- GIVEN the selected window has ≤ 16 sessions THEN one character per session, tooltip = that session's summary/fallback.
+- GIVEN the selected window has > 16 sessions THEN one character per (repo × harness) with activity in the window, tooltip = the rolled-up summary.
 - GIVEN a repo × harness with no sessions in the window THEN it does not appear.
+- GIVEN a window with zero sessions THEN the scene renders empty (no placeholder characters).
 
 ## Edge case inventory
 
@@ -70,6 +71,8 @@ rollups only.
 - Session spanning midnight → day = local start-of-session date.
 - Active entities exceed desk count → top-N by activity fill desks, overflow indicator (small counter, no fake characters).
 - Content hash unchanged on re-run → rollup skipped (zero cost re-runs).
+- Selected window has zero sessions → empty scene (honest, no placeholder characters).
+- Rollup LLM returns empty content / `finish_reason: "length"` → treat as failure (v4-flash burns budget on reasoning), record + retry next run.
 
 ## Data model (additive to `current.json`, same fields in history)
 
@@ -102,15 +105,21 @@ rollups only.
 1. Harvest session metadata across the four harness dirs (sessionId, harness, repo from `cwd`, startTs, day).
 2. Read OMP `rollout_summaries/*.md`, map by `thread_id` → `summary` + `summarySlug`.
 3. Build fallback text (title from session log where extractable; else repo-day commit stats from existing git data).
-4. Rollup (LLM, `deepseek-v4-flash` via the harness gateway, endpoint/key from env config): per (repo × harness × grain), input = window's summaries/fallbacks truncated to 8K tokens; output ≤150 words; cache immutably by `(repo, harness, grain, window-end)` + content-hash skip; failures recorded, never fatal.
+4. Rollup (LLM): per (repo × harness × grain), input = window's summaries/fallbacks truncated to 8K tokens; output ≤150 words; cache immutably by `(repo, harness, grain, window-end)` + content-hash skip; failures recorded, never fatal. LLM client mirrors loc-dock's `summary.rs` (below).
 5. Emit `sessions` + `rollups` into `current.json` and the dated history archive.
+
+### LLM config (mirrors loc-dock)
+
+- `.env` at repo root (gitignored) + committed `.env.example`: `LLM_BASE_URL=https://api.deepseek.com/v1`, `LLM_API_KEY=`, `LLM_MODEL=deepseek-v4-flash`. The owner pastes the key into `.env` at kickoff.
+- OpenAI-compatible call (loc-dock `summary.rs` pattern): POST `{LLM_BASE_URL}/chat/completions`, `Authorization: Bearer $LLM_API_KEY`, body `{model, messages, max_tokens}`.
+- Lessons carried from loc-dock: cap `max_tokens` (deepseek-v4-flash burns budget on `reasoning_content`); empty `content` or `finish_reason: "length"` is a FAILURE, not success; retry with exponential backoff; 30s timeout; circuit breaker (3 consecutive failures → cooldown) so a dead endpoint never burns tokens.
 
 ## Scene changes (extend `components/scene/`)
 
 - Four harness character archetypes (recolor + small distinct accessory over the existing voxel/krab system): omp, claude, pi, codex.
-- Render rule: `1d` → one character per session; coarse → one per (repo × harness); positioned at the repo's desk, top-N by activity capped to desk count.
-- Tooltip (drei `<Html>`): session summary at `1d`, rolled-up summary at coarse grains, fallback text where summary is null.
-- Range toggle gains `1d` (Today); scene + stat card share the toggle state.
+- Render rule: per-session when the window's session count ≤ desk capacity (~16); else one per (repo × harness); positioned at the repo's desk, top-N by activity.
+- Tooltip (drei `<Html>`): session summary/fallback when per-session; rolled-up summary when collapsed.
+- No toggle change: the existing 7d/30d/90d/1y/all toggle drives the window; per-session vs collapsed is derived from session count, not a grain option.
 
 ## Cost model
 
@@ -129,8 +138,8 @@ rollups only.
 - [ ] Pipeline harvests sessions across four harnesses with summary-or-fallback
 - [ ] Rollups computed, cached immutably (window-end + content-hash skip), committed
 - [ ] `current.json` carries `sessions` + `rollups`; schema validated
-- [ ] Scene renders per-session (1d) and per (repo × harness) (coarse) with harness-distinct characters and tooltips
-- [ ] Range toggle includes 1d/Today
+- [ ] Scene renders per-session when sparse and per (repo × harness) when dense, with harness-distinct characters and tooltips
+- [ ] No dedicated day/today toggle; collapse derived from session count
 - [ ] Tests added per above; lint/typecheck/build/test all green
 - [ ] Fresh `uv run snapshot` run verified against real data
 
@@ -140,5 +149,4 @@ rollups only.
 
 ## Open questions (must be empty before implementation)
 
-- LLM endpoint/key for rollups: pipeline reads OpenAI-compatible env config (`LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL` default `deepseek/deepseek-v4-flash`), user points it at the same gateway the harness uses. [resolve with owner at kickoff]
-- `1d` toggle addition confirmed as the way to reach the per-session view. [assumption flagged for review]
+- None open. LLM config resolved: `.env` (gitignored) + `.env.example` mirroring loc-dock (`https://api.deepseek.com/v1`, `deepseek-v4-flash`); owner pastes `LLM_API_KEY` at kickoff. Per-session view resolved: adaptive by session count, no dedicated day grain.

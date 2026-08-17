@@ -13,3 +13,17 @@ correction; reference the specific failure mode and the rule that prevents it.
   iframe "recommendation" was based on a wrong cost assumption. The real driver
   is the React 18→19 / R3F v8→v9 version gap, not the framework choice.
 - **Action:** corrected `portfolio-plan.md`; added `docs/3d-scene-tech-review.md`.
+
+## 2026-08-17 — data source assumption corrected
+
+- **Pattern:** the plan assumed a weekly GitHub Action calling the GitHub API
+  for PRs and an unknown token-usage source. The real sources are local
+  (`~/.claude` JSONL + `~/repos/*` git logs), already ingested by loc-dock via
+  DuckDB + LiteLLM pricing. GitHub Actions runners cannot see local files, so
+  the pipeline must run locally and commit snapshots.
+- **Rule:** before designing a data pipeline, identify where the source data
+  physically lives. A CI-based pipeline is wrong when sources are local-only.
+  Reuse existing ingestion logic (loc-dock) rather than re-deriving the schema.
+- **Action:** rewrote the "Data process" section of `portfolio-plan.md`;
+  PRs are local `#NNN` commit refs; AI summaries deferred to v2; snapshots
+  kept forever. Smoke-test fixture: `loc-dock/usage_data_*.zip`.

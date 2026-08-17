@@ -2,14 +2,14 @@
 
 ## Concept
 
-Single-page dev portfolio for a data engineer / analytics engineer. Full-viewport 3D isometric office cutaway as the hero, with transparent glass UI overlays floating on top. The scene shows voxel-style AI agent characters at desks, replaying real session data (PRs, branches, LOC diffs). Updated weekly — not realtime.
+Single-page dev portfolio for a data engineer / analytics engineer. Full-viewport 3D isometric office cutaway as the hero, with transparent glass UI overlays floating on top. The scene shows voxel-style AI agent characters at desks, replaying real session data (PRs, branches, LOC diffs). Data is refreshed by a local snapshot script run on the developer's machine; snapshots are committed to the repo and served statically. Not realtime.
 
 ## Layout (z-order, back to front)
 
 1. **3D scene** — full viewport, existing Vite project (warehouse / cozy office toggle, time-of-day slider)
 2. **Nav bar** — floating glass pill, top edge. Name (monospace) + links (Blog, About, GitHub)
 3. **Stat card** — single glass card, top-left below nav. Cycles through four metric faces on a 4s interval. Has a persistent time range toggle row (7d, 30d, 90d, 1y, all) that filters all faces
-4. **Session data labels** — floating glass pills anchored near agent characters in the 3D scene. Show branch name, PR title, LOC +/-. Cycle through recent activity on a timer
+4. **Session data labels** — floating glass pills anchored near agent characters in the 3D scene. Show repo, commit message + `#NNN` PR ref, LOC +/-. Branch is best-effort (via `git log --source`). Cycle through recent activity on a timer
 5. **Blog carousel** — floating glass card row, bottom edge. Auto-scrolls. Each card shows date + title, links to full MDX post
 
 All overlays use the same glass treatment: `rgba(0,0,0,0.3)` background, `1px solid rgba(255,255,255,0.1)` border, `border-radius: 10px`.
@@ -20,7 +20,7 @@ The card cycles through four faces with a fade-slide transition (300ms, vertical
 
 1. **Token burn** — sparkline + total count + % change vs prior period
 2. **Tokens by model** — horizontal bar chart, top models ranked by usage
-3. **PRs merged** — sparkline + count + active repo count
+3. **PRs referenced** — sparkline + count of `#NNN` commit refs + active repo count (local, no GitHub API)
 4. **LOC delta** — net lines changed + breakdown (added / removed)
 
 Behavior:
@@ -29,9 +29,11 @@ Behavior:
 - Dot indicators (top-right, beside time pills) show current position
 - Time range toggle is persistent across all faces — selecting "90d" updates every metric to its 90-day window
 
+> `cost` and `sessions` are also captured in the snapshot (from loc-dock's model) and are available for future faces or tooltips, even though v1 ships four faces.
+
 ## Sparkline downsampling
 
-Sparklines must look visually consistent across time ranges despite very different data point counts. The build script should normalize every sparkline to 12–15 rendered points regardless of the source range:
+Sparklines must look visually consistent across time ranges despite very different data point counts. The snapshot script normalizes every sparkline to 12–15 rendered points regardless of the source range:
 
 - **7d**: 7 raw points (daily) → use all 7, pad to 12 with interpolation if needed, or keep as-is since 7 points still reads fine
 - **30d**: 30 raw points → downsample to ~15 by taking every other day
@@ -51,73 +53,92 @@ Use LTTB (Largest Triangle Three Buckets) algorithm for downsampling — it pres
 | Blog content | MDX via `@next/mdx` | Posts in `/content/blog/*.mdx` with frontmatter |
 | Blog carousel | Embla Carousel | Lightweight (~3KB), auto-play, infinite loop |
 | Styling | Tailwind CSS | Purged in production |
-| Sparklines | Raw SVG polylines | No charting library needed — generate paths at build time |
+| Sparklines | Raw SVG polylines | No charting library needed — paths generated from committed JSON |
 | Bar charts | CSS widths | Percentage of max value, rendered as divs |
-| Data | Static JSON | `data/session.json`, `data/usage.json` — rebuilt weekly |
+| Data | Committed JSON snapshots | `data/current.json` + `data/history/` — produced by a local snapshot script, served statically |
+| Data process | TypeScript + DuckDB | Local script; reads session JSONL + `git log`, prices via LiteLLM. See "Data process" |
 | Deployment | Vercel | Static hosting, auto-deploy on push |
 
-## Data pipeline
+## Data process (local snapshot)
 
-Weekly GitHub Action (cron, Sunday night):
+A local script reads the same sources [loc-dock](../../loc-dock) uses and writes aggregate JSON snapshots into the repo. Vercel builds the static site from the committed JSON — no runtime data access, no tokens in CI.
 
-1. Call GitHub API → merged PRs from past 7/30/90/365 days + all time
-2. Read token usage log (source TBD — API response metadata, LiteLLM gateway, or manual CSV)
-3. Compute all metrics at each time scale
-4. Run LTTB downsampling on sparkline series
-5. Write `data/session.json` and `data/usage.json`
-6. Commit + push → Vercel rebuilds
+**Why local:** the sources (`~/.claude` JSONL, local git repos) live on the developer's machine; GitHub Actions runners cannot see them. The script runs on-demand (`npm run snapshot`) and commits the result. Cadence is manual for v1; a local cron can be added later.
 
-### session.json shape
+### Sources (mirror loc-dock)
+
+- **Session JSONL** — Claude `~/.claude/projects/**/*.jsonl`, Pi `~/.pi/agent/sessions/*.jsonl`, Codex `~/.codex/sessions/**/*.jsonl`. Ingested via DuckDB `read_ndjson_objects` (the robust path — `read_ndjson_auto` OOM-crashes on heterogeneous logs, per loc-dock's findings).
+- **Git** — `git log --numstat` across `~/repos/*`, incremental by `MAX(ts)`.
+- **Pricing** — LiteLLM community pricing JSON (2,800+ models) for cost.
+- **PRs** — regex-extracted `#123` refs from commit messages (local, no GitHub API, no token).
+
+### Pipeline
+
+1. Ingest changed JSONL → `entries` (bronze→silver, deduped by `(source, session_id, ts)`).
+2. Scan git incrementally → `commit_stats` (per-commit added/deleted/msg/repo).
+3. For each range (7d, 30d, 90d, 1y, all): aggregate tokens (by model), cost, sessions, LOC delta, PR-ref count, active repos.
+4. Compute `% change vs prior period` (e.g., this 7d vs the previous 7d).
+5. LTTB-downsample every sparkline to 12–15 points.
+6. Write `data/current.json` + archive `data/history/YYYY-MM-DD.json`.
+7. Commit (`npm run snapshot -- --commit`, or stage manually).
+
+### Smoke-test gate (before writing aggregation logic)
+
+Per the Data Reality Check gate, the script is built against real data first:
+
+- Unzip `~/repos/loc-dock/usage_data_2026-08-01_2026-08-13.zip` as the fixture.
+- Read one real JSONL file; print its schema and 3 sample rows.
+- Confirm `read_ndjson_objects` parses it; confirm `git log --numstat` output shape.
+- Reconcile a hand-computed total against the script's output before trusting it.
+
+### Snapshot schema (`data/current.json`)
 
 ```json
 {
-  "lastUpdated": "2026-08-17T00:00:00Z",
-  "prs": [
+  "snapshotDate": "2026-08-17",
+  "generatedAt": "2026-08-17T22:00:00Z",
+  "ranges": {
+    "7d": {
+      "tokenBurn":     { "total": 1200000, "changePct": 18, "sparkline": [80000, 95000, 120000, 110000, 150000, 180000, 200000] },
+      "tokensByModel": [{ "model": "sonnet", "tokens": 540000 }, { "model": "opus", "tokens": 380000 }],
+      "cost":          { "total": 4.21, "breakdown": { "input": 1.10, "output": 2.00, "cacheWrite": 0.60, "cacheRead": 0.51 } },
+      "sessions":      { "total": 42, "active": 3 },
+      "prsReferenced": { "count": 8, "activeRepos": 3, "sparkline": [1, 2, 3, 1, 2, 3, 2] },
+      "locDelta":      { "net": 2847, "added": 3412, "removed": 565, "sparkline": [[67, 12], [120, 30]] }
+    },
+    "30d": { "..." },
+    "90d": { "..." },
+    "1y":  { "..." },
+    "all": { "..." }
+  },
+  "recentActivity": [
     {
-      "title": "Refactor DB layer",
-      "number": 247,
+      "repo": "dev-portfolio",
+      "message": "Refactor DB layer (#247)",
+      "prRefs": [247],
       "branch": "fix/api-rate-limit",
-      "repo": "my-app",
       "linesAdded": 67,
       "linesRemoved": 12,
-      "mergedAt": "2026-08-15T14:30:00Z"
+      "ts": "2026-08-15T14:30:00Z"
     }
   ]
 }
 ```
 
-### usage.json shape
+- `prsReferenced` (not "merged") — counts `#NNN` refs in commit messages, local.
+- `branch` is best-effort via `git log --source`; nullable when ambiguous.
+- `locDelta.sparkline` is a `[added, removed][]` series (stacked bar), downsampled.
+- `cost` and `sessions` are bonus fields from loc-dock's model, available for future faces/tooltips.
 
-```json
-{
-  "7d": {
-    "tokenBurn": {
-      "total": 1200000,
-      "changePct": 18,
-      "sparkline": [80000, 95000, 120000, 110000, 150000, 180000, 200000]
-    },
-    "tokensByModel": [
-      { "model": "sonnet", "tokens": 540000 },
-      { "model": "opus", "tokens": 380000 },
-      { "model": "haiku", "tokens": 180000 }
-    ],
-    "prsMerged": {
-      "count": 14,
-      "activeRepos": 3,
-      "sparkline": [1, 2, 3, 1, 2, 3, 2]
-    },
-    "locDelta": {
-      "net": 2847,
-      "added": 3412,
-      "removed": 565
-    }
-  },
-  "30d": { ... },
-  "90d": { ... },
-  "1y": { ... },
-  "all": { ... }
-}
-```
+### History & retention
+
+- Each run archives a dated copy to `data/history/YYYY-MM-DD.json`.
+- **All snapshots are kept forever** (decided). Aggregate JSON is ~5–20 KB each; a year of daily snapshots is a few MB — the repo stays cloneable.
+- The site reads `data/current.json` only; history is an audit trail and a future "trend of trends" data source.
+
+### Deferred to v2
+
+- **AI summaries** — per-range period narratives (and/or per-repo SHA highlights, loc-dock style). Deferred for v1; the v1 snapshot reserves no field for them. When added, summaries are snapshotted per range and archived alongside the aggregates.
 
 ## 3D scene — performance notes
 
@@ -156,7 +177,9 @@ Existing scene is a React Three Fiber v8 app on Vite (React 18). Porting it into
 
 ## Open questions
 
-- Token usage data source — API logging, LiteLLM, manual CSV?
 - Scene toggle (Cozy Office / Warehouse) — keep both or ship one?
 - Time-of-day slider — manual or auto-track visitor's local time?
 - Blog post routing — `/blog/[slug]` as separate pages or inline expand?
+- Branch attribution — best-effort via `git log --source`; refine in v2 if it reads poorly.
+- Snapshot cadence — manual `npm run snapshot` for v1; add local cron if a daily refresh is wanted.
+- Data process language — TypeScript + `duckdb` node binding (default, for repo consistency) vs Python + duckdb (more mature, matches loc-dock's spikes). Decide at implementation; the SQL/logic ports either way.

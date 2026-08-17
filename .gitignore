@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# Next.js
+.next/
+out/
+build/
+
+# Vite (3D scene)
+vite.config.ts.timestamp-*
+dist/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build output
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Testing
+coverage/
+.nyc_output/
+
+# Playwright
+.playwright-mcp/
+test-results/
+playwright-report/
+
+# Misc
+.cache/
+.tmp/
+*.local

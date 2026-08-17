@@ -1,6 +1,5 @@
 import React from 'react'
 import { Voxel } from '../../Voxel'
-import { FiddleLeafFig } from '../../FiddleLeafFig'
 
 const PENDANT_POSITIONS: [number, number, number][] = [
   [-0.2, 0, -1.5],

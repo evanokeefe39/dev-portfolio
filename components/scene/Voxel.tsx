@@ -39,7 +39,8 @@ export interface VoxelProps {
 }
 
 export function Voxel({ position, size = [1, 1, 1], color, castShadow = true, transparent, opacity }: VoxelProps) {
-  const geometry = useMemo(() => getGeometry(size), [size[0], size[1], size[2]])
+  const [sx, sy, sz] = size
+  const geometry = useMemo(() => getGeometry([sx, sy, sz] as [number, number, number]), [sx, sy, sz])
   const material = useMemo(() => getMaterial(color, transparent, opacity), [color, transparent, opacity])
 
   return (

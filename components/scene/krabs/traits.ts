@@ -3,7 +3,7 @@ import {
   SpiralShell, SpikyShell, CoralShell, CrystalShell, MushroomShell,
   TreasureShell, SkullShell, BonsaiShell, DiscoShell, VolcanoShell,
   IceCastleShell, BeehiveShell, AquariumShell, UfoShell, CactusShell,
-  BoomboxShell, PumpkinShell, GlobeShell,
+  BoomboxShell, GlobeShell,
 } from './shells'
 
 /* ── Trait types ── */

@@ -462,12 +462,10 @@ export const MezzanineOffice = React.memo(function MezzanineOffice() {
   const platY = 2.5
   const deskH = 0.72
   const wood = '#5a3a20'
-  const woodLight = '#7a5a38'
   const woodDark = '#3a2410'
   const leather = '#2a1a10'
   const leatherLight = '#3a2a18'
   const metal = '#3a3a3a'
-  const metalLight = '#5a5a5a'
 
   return (
     <>

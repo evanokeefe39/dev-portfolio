@@ -175,8 +175,6 @@ const CrittallWindowRect = React.memo(function CrittallWindowRect({
   // Render openable section as a rotated group (pivots at top edge)
   if (openRows && openAngle > 0 && openPanes.length > 0) {
     const pivotY = y1 + openRows[1] * (paneH + bar) + bar
-    const openSectionH = (openRows[1] - openRows[0]) * (paneH + bar) + bar
-    const pivotMidY = pivotY - openSectionH / 2
 
     return (
       <>

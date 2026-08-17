@@ -3,7 +3,7 @@ import { EffectComposer, Noise, Vignette, Scanline, ChromaticAberration } from '
 import { BlendFunction } from 'postprocessing'
 import { Floor, Walls, Windows, SupportBeams, Mezzanine } from './Room'
 import { HotDesks, DeskChairs, LoungeArea, BackWallCabinets, MezzanineOffice, Kitchen } from './Furniture'
-import { PendantLights, Ductwork, Whiteboard, WarehousePlants, IndustrialShelf } from './Decor'
+import { PendantLights, Ductwork, Whiteboard, WarehousePlants } from './Decor'
 import { Daylight } from './Daylight'
 import { KrabGeneration } from '../../krabs/generator'
 

@@ -27,3 +27,14 @@ correction; reference the specific failure mode and the rule that prevents it.
 - **Action:** rewrote the "Data process" section of `portfolio-plan.md`;
   PRs are local `#NNN` commit refs; AI summaries deferred to v2; snapshots
   kept forever. Smoke-test fixture: `loc-dock/usage_data_*.zip`.
+
+## 2026-08-17 — data process separated from frontend
+
+- **Pattern:** the data process (Python + DuckDB, local sources) and the
+  Next.js static frontend have different runtimes and lifecycles. Coupling
+  them (e.g. importing generated JSON at build time, or mixing Python into
+  the JS build) couples the data refresh to the build and bloats the bundle.
+- **Rule:** keep the generator and the consumer as separate packages sharing
+  only an output path. Python writes to `public/data/`; Next.js fetches
+  `/data/current.json` at runtime. `public/` is the only dir served verbatim
+  at the site root and copied as-is into the static export.

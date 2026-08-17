@@ -6,7 +6,7 @@ Single-page dev portfolio for a data engineer / analytics engineer. Full-viewpor
 
 ## Layout (z-order, back to front)
 
-1. **3D scene** — full viewport, existing Vite project (warehouse / cozy office toggle, time-of-day slider)
+1. **3D scene** — full viewport, the warehouse environment from `3d-scene-test` (Cozy Office dropped for v1). Time-of-day auto-tracks the visitor's local time; no manual slider
 2. **Nav bar** — floating glass pill, top edge. Name (monospace) + links (Blog, About, GitHub)
 3. **Stat card** — single glass card, top-left below nav. Cycles through four metric faces on a 4s interval. Has a persistent time range toggle row (7d, 30d, 90d, 1y, all) that filters all faces
 4. **Session data labels** — floating glass pills anchored near agent characters in the 3D scene. Show repo, commit message + `#NNN` PR ref, LOC +/-. Branch is best-effort (via `git log --source`). Cycle through recent activity on a timer
@@ -55,15 +55,15 @@ Use LTTB (Largest Triangle Three Buckets) algorithm for downsampling — it pres
 | Styling | Tailwind CSS | Purged in production |
 | Sparklines | Raw SVG polylines | No charting library needed — paths generated from committed JSON |
 | Bar charts | CSS widths | Percentage of max value, rendered as divs |
-| Data | Committed JSON snapshots | `data/current.json` + `data/history/` — produced by a local snapshot script, served statically |
-| Data process | TypeScript + DuckDB | Local script; reads session JSONL + `git log`, prices via LiteLLM. See "Data process" |
+| Data | Committed JSON snapshots | `public/data/current.json` + `public/data/history/` — served statically, included in the static export |
+| Data process | Python + DuckDB, standalone `data_pipeline/` pkg | `uv run snapshot`; reads session JSONL + `git log`, prices via LiteLLM. Separate from the Next.js app |
 | Deployment | Vercel | Static hosting, auto-deploy on push |
 
 ## Data process (local snapshot)
 
-A local script reads the same sources [loc-dock](../../loc-dock) uses and writes aggregate JSON snapshots into the repo. Vercel builds the static site from the committed JSON — no runtime data access, no tokens in CI.
+A standalone Python package at `data_pipeline/` (own `pyproject.toml`, `.venv` managed by `uv`) reads the same sources [loc-dock](../../loc-dock) uses and writes aggregate JSON into the Next.js `public/data/` directory. The frontend fetches `/data/current.json` at runtime; the Python process and the Next.js app share no code. Vercel builds the static site from the committed JSON — no runtime data access, no tokens in CI.
 
-**Why local:** the sources (`~/.claude` JSONL, local git repos) live on the developer's machine; GitHub Actions runners cannot see them. The script runs on-demand (`npm run snapshot`) and commits the result. Cadence is manual for v1; a local cron can be added later.
+**Why local and Python:** the sources (`~/.claude` JSONL, local git repos) live on the developer's machine; GitHub Actions runners cannot see them. Python + DuckDB is the mature stack (matches loc-dock's spikes) and Python is guaranteed present locally. The process runs on-demand (`uv run snapshot`) and commits the result; cadence is manual for v1, with optional local cron later. `public/` is the only directory served verbatim at the site root and copied as-is into the static `out/` export.
 
 ### Sources (mirror loc-dock)
 
@@ -79,8 +79,8 @@ A local script reads the same sources [loc-dock](../../loc-dock) uses and writes
 3. For each range (7d, 30d, 90d, 1y, all): aggregate tokens (by model), cost, sessions, LOC delta, PR-ref count, active repos.
 4. Compute `% change vs prior period` (e.g., this 7d vs the previous 7d).
 5. LTTB-downsample every sparkline to 12–15 points.
-6. Write `data/current.json` + archive `data/history/YYYY-MM-DD.json`.
-7. Commit (`npm run snapshot -- --commit`, or stage manually).
+6. Write `public/data/current.json` + archive `public/data/history/YYYY-MM-DD.json`.
+7. Commit the updated `public/data/` (the `data_pipeline/` package is committed once; only its JSON output is regenerated).
 
 ### Smoke-test gate (before writing aggregation logic)
 
@@ -91,7 +91,7 @@ Per the Data Reality Check gate, the script is built against real data first:
 - Confirm `read_ndjson_objects` parses it; confirm `git log --numstat` output shape.
 - Reconcile a hand-computed total against the script's output before trusting it.
 
-### Snapshot schema (`data/current.json`)
+### Snapshot schema (`public/data/current.json`)
 
 ```json
 {
@@ -132,9 +132,9 @@ Per the Data Reality Check gate, the script is built against real data first:
 
 ### History & retention
 
-- Each run archives a dated copy to `data/history/YYYY-MM-DD.json`.
+- Each run archives a dated copy to `public/data/history/YYYY-MM-DD.json`.
 - **All snapshots are kept forever** (decided). Aggregate JSON is ~5–20 KB each; a year of daily snapshots is a few MB — the repo stays cloneable.
-- The site reads `data/current.json` only; history is an audit trail and a future "trend of trends" data source.
+- The site reads `public/data/current.json` only; history is an audit trail and a future "trend of trends" data source.
 
 ### Deferred to v2
 
@@ -173,13 +173,16 @@ Existing scene is a React Three Fiber v8 app on Vite (React 18). Porting it into
 - Blog carousel: reduce visible cards, same Embla config with responsive breakpoints
 - 3D scene: consider a static fallback image on very small screens or low-power devices
 - Nav: collapse links behind a menu icon below ~640px
-- Time-of-day slider: hide on mobile or move to a settings gear
+- Time-of-day: auto-tracks visitor local time on all viewports (no manual slider)
+
+## Decided
+
+- **3D scene:** ship the warehouse environment only; Cozy Office dropped for v1.
+- **Time-of-day:** auto-tracks the visitor's local time (no manual slider).
+- **Blog routing:** `/blog/[slug]` as separate pages.
+- **Data process:** Python + DuckDB in a standalone `data_pipeline/` package, `.venv` via `uv`, output to `public/data/`. Separate from the Next.js frontend.
 
 ## Open questions
 
-- Scene toggle (Cozy Office / Warehouse) — keep both or ship one?
-- Time-of-day slider — manual or auto-track visitor's local time?
-- Blog post routing — `/blog/[slug]` as separate pages or inline expand?
 - Branch attribution — best-effort via `git log --source`; refine in v2 if it reads poorly.
-- Snapshot cadence — manual `npm run snapshot` for v1; add local cron if a daily refresh is wanted.
-- Data process language — TypeScript + `duckdb` node binding (default, for repo consistency) vs Python + duckdb (more mature, matches loc-dock's spikes). Decide at implementation; the SQL/logic ports either way.
+- Snapshot cadence — manual `uv run snapshot` for v1; add local cron if a daily refresh is wanted.

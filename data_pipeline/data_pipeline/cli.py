@@ -4,19 +4,24 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+from datetime import datetime
 from pathlib import Path
 
 from . import __version__
-from .config import default_roots
+from .config import DEFAULT_LLM_BASE_URL, DEFAULT_LLM_MODEL, default_roots
 from .gitlog import scan_all_repos, scan_repo_branches
+from .llm import LlmClient, load_env_file
 from .pricing import Pricing
+from .rollup import compute_rollups
+from .sessions import harvest_counts, harvest_sessions
 from .snapshot import build_snapshot, write_outputs
 from .sources import extract_entries, finalize_costs, ingest_all, ingest_source, open_entries_connection
-
 # data_pipeline/ is at <repo>/data_pipeline; public/ lives next to it.
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_PUBLIC_DATA = _REPO_ROOT / "public" / "data"
+ROLLUP_CACHE_PATH = _REPO_ROOT / "data_pipeline" / "rollup_cache.json"
 
 SCHEMA_COLUMNS = (
     "source",
@@ -135,10 +140,8 @@ def _smoke(args: argparse.Namespace, pricing: Pricing) -> int:
 def main(argv: list[str] | None = None) -> int:
     args = _parse_args(argv if argv is not None else sys.argv[1:])
     pricing = Pricing(args.pricing) if args.pricing is not None else Pricing.discover()
-
     if args.smoke:
         return _smoke(args, pricing)
-
     roots = default_roots()
     con = open_entries_connection()
     inserted = ingest_all(con, roots)
@@ -153,16 +156,49 @@ def main(argv: list[str] | None = None) -> int:
             if repo_dir.is_dir() and (repo_dir / ".git").exists():
                 branches[repo_dir.name] = scan_repo_branches(repo_dir)
 
+    local_now = datetime.now().astimezone()
+    env = load_env_file(_REPO_ROOT / ".env")
+    api_key = env.get("LLM_API_KEY") or os.environ.get("DEEPSEEK_API_KEY", "")
+    base_url = env.get("LLM_BASE_URL") or os.environ.get("LLM_BASE_URL") or DEFAULT_LLM_BASE_URL
+    model = env.get("LLM_MODEL") or os.environ.get("LLM_MODEL") or DEFAULT_LLM_MODEL
+    client = LlmClient(base_url=base_url, api_key=api_key, model=model) if api_key else None
+
+    sessions = harvest_sessions(roots, commits, now=local_now)
+    rollups, rollup_errors = compute_rollups(
+        sessions,
+        window_end=local_now.date(),
+        cache_path=ROLLUP_CACHE_PATH,
+        client=client,
+        now=local_now,
+    )
+
     snapshot = build_snapshot(
         entries,
         commits,
         pricing_available=pricing.available,
         branches=branches,
+        now=local_now,
+        sessions=sessions,
+        rollups=rollups,
+        rollup_errors=rollup_errors,
     )
     current_path, archive_path = write_outputs(snapshot, args.public_dir)
 
     print(f"entries ingested: {inserted} (rows: {len(entries)})")
     print(f"commits scanned:  {len(commits)} across {len(branches)} repos")
+    session_counts = harvest_counts(sessions)
+    print(
+        "sessions harvested: "
+        + " ".join(f"{h}={session_counts[h]}" for h in ("omp", "claude", "pi", "codex"))
+        + f" (total {len(sessions)})"
+    )
+    rollup_total = sum(len(v) for v in rollups.values())
+    error_total = sum(len(v) for v in rollup_errors.values())
+    print(f"rollups computed:  {rollup_total} keys across {len(rollups)} grains (errors: {error_total})")
+    if error_total:
+        for grain, errs in rollup_errors.items():
+            for rh, message in errs.items():
+                print(f"  rollup error [{grain} {rh}]: {message}")
     for name, stats in snapshot["ranges"].items():
         burn = stats["tokenBurn"]
         print(

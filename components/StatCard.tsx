@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import type { RangeKey, RangeStats, Snapshot } from '@/lib/types'
+import type { RangeStats, Snapshot } from '@/lib/types'
 import { RANGE_KEYS } from '@/lib/types'
 import { emptySnapshot, loadSnapshot } from '@/lib/data'
+import { setRange, useRange } from '@/lib/range-store'
 import { barPercent, formatInt, formatPct, formatSignedInt, formatTokens } from '@/lib/format'
 import Sparkline from '@/components/Sparkline'
 
@@ -20,7 +21,7 @@ const FACES = ['Token burn', 'Tokens by model', 'PRs referenced', 'LOC delta'] a
 export default function StatCard() {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
   const [loaded, setLoaded] = useState(false)
-  const [range, setRange] = useState<RangeKey>('7d')
+  const range = useRange()
   const [face, setFace] = useState(0)
   const [paused, setPaused] = useState(false)
 

@@ -23,8 +23,15 @@ def build_snapshot(
     branches: dict[str, dict[str, str]] | None = None,
     tz=None,
     now: datetime | None = None,
+    sessions: list[dict] | None = None,
+    rollups: dict | None = None,
+    rollup_errors: dict | None = None,
 ) -> dict:
-    """Locked snapshot dict: snapshotDate, generatedAt, ranges, recentActivity."""
+    """Locked snapshot dict: snapshotDate, generatedAt, ranges, recentActivity.
+
+    ``sessions``/``rollups``/``rollupErrors`` are additive: existing fields are
+    untouched, and the new keys default to empty so the schema stays stable.
+    """
     if now is None:
         now = datetime.now().astimezone()
     local_now = now.astimezone(tz) if tz else now
@@ -37,6 +44,9 @@ def build_snapshot(
         "generatedAt": local_now.isoformat(timespec="seconds"),
         "ranges": ranges,
         "recentActivity": activity[:MAX_ACTIVITY_ITEMS],
+        "sessions": sessions or [],
+        "rollups": rollups or {},
+        "rollupErrors": rollup_errors or {},
     }
 
 

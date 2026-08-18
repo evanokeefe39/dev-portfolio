@@ -72,3 +72,24 @@ SKIP_SUBDIRS: dict[str, tuple[str, ...]] = {
     "codex": (),
     "omp": (),  # sibling subagent/advisor logs are real usage — keep all files
 }
+
+# ── LLM rollup config (mirror loc-dock summary.rs; stdlib urllib only). ─────
+DEFAULT_LLM_BASE_URL = "https://api.deepseek.com/v1"
+DEFAULT_LLM_MODEL = "deepseek-v4-flash"
+# deepseek-v4-flash burns output budget on `reasoning_content` before writing
+# content — an empty-content / finish_reason="length" response is a FAILURE.
+# Measured on 2026-08-17 with the real API: 2-item rollup probe consumed 161
+# reasoning + 245 content tokens (~406 total). The request also sends
+# `thinking: {type: disabled}` (harness `:off` semantics), but the cap stays
+# above typical reasoning spend so a provider that ignores the param still
+# completes within budget. 2000 is still a hard bound on per-call spend.
+LLM_MAX_TOKENS = 2000
+LLM_TIMEOUT_SECONDS = 30.0
+LLM_RETRIES = 3
+LLM_BACKOFF_SECONDS = (1.0, 2.0, 4.0)
+LLM_BREAKER_THRESHOLD = 3
+
+# Rollup input budget: 8K tokens at ~4 chars/token heuristic.
+ROLLUP_MAX_INPUT_TOKENS = 8_000
+ROLLUP_CHARS_PER_TOKEN = 4
+ROLLUP_MAX_WORDS = 150

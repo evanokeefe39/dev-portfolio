@@ -1,0 +1,6899 @@
+{
+  "snapshotDate": "2026-08-18",
+  "generatedAt": "2026-08-18T13:13:19+02:00",
+  "range": "all",
+  "sessions": [
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01450-a1dc-7000-9d57-4e64387cc396",
+      "day": "2026-08-18",
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a0143a-ee52-7000-be13-23b8cad0dc11",
+      "day": "2026-08-18",
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01403-0450-7000-812f-0a7c49c2921e",
+      "day": "2026-08-18",
+      "assistantMessages": 93,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a0118e-becf-7000-9b57-e3a2cd3cc129",
+      "day": "2026-08-17",
+      "assistantMessages": 9,
+      "locDelta": {
+        "added": 2622,
+        "removed": 1015
+      },
+      "prRefs": [
+        17,
+        18
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01127-c894-7000-b88e-fddb9694f503",
+      "day": "2026-08-17",
+      "assistantMessages": 147,
+      "locDelta": {
+        "added": 20908,
+        "removed": 108
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01037-f3b8-7000-8480-a87e884de7e3",
+      "day": "2026-08-17",
+      "assistantMessages": 143,
+      "locDelta": {
+        "added": 20908,
+        "removed": 108
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "repos",
+      "sessionId": "01a00ff8-23e8-7000-bd5d-a623357966aa",
+      "day": "2026-08-17",
+      "assistantMessages": 21,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "01a00fe5-cf54-7000-8f63-f221f16ec55e",
+      "day": "2026-08-17",
+      "assistantMessages": 105,
+      "locDelta": {
+        "added": 2488,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00fdc-a129-7000-9b9f-de4cc543d3a0",
+      "day": "2026-08-17",
+      "assistantMessages": 51,
+      "locDelta": {
+        "added": 2622,
+        "removed": 1015
+      },
+      "prRefs": [
+        17,
+        18
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00ea9-e9d9-7000-a0ae-d0dacebc4ecd",
+      "day": "2026-08-17",
+      "assistantMessages": 80,
+      "locDelta": {
+        "added": 2622,
+        "removed": 1015
+      },
+      "prRefs": [
+        17,
+        18
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "01a00e91-609e-7000-aca0-07a17d56be9f",
+      "day": "2026-08-17",
+      "assistantMessages": 83,
+      "locDelta": {
+        "added": 2488,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00b46-47d8-7000-8993-e281d104a7c2",
+      "day": "2026-08-16",
+      "assistantMessages": 106,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a00b31-82e9-7000-b113-8e565a346dec",
+      "day": "2026-08-16",
+      "assistantMessages": 120,
+      "locDelta": {
+        "added": 289,
+        "removed": 124
+      },
+      "prRefs": [
+        30,
+        29,
+        28
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "monet",
+      "sessionId": "01a00b2e-4a4b-7000-a51a-0a921774138c",
+      "day": "2026-08-16",
+      "assistantMessages": 18,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "monet-saas",
+      "sessionId": "01a00ab1-f8f1-7000-b912-8963ebff0252",
+      "day": "2026-08-16",
+      "assistantMessages": 40,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "monet",
+      "sessionId": "01a00a9e-7427-7000-8032-711502331d72",
+      "day": "2026-08-16",
+      "assistantMessages": 50,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "01a00a91-285b-7000-8dcf-64c31402a3fc",
+      "day": "2026-08-16",
+      "assistantMessages": 88,
+      "locDelta": {
+        "added": 1337,
+        "removed": 143
+      },
+      "prRefs": [
+        8,
+        7,
+        6,
+        5,
+        4
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a00a7d-2a60-7000-8b8b-6ece2052f69d",
+      "day": "2026-08-16",
+      "assistantMessages": 106,
+      "locDelta": {
+        "added": 289,
+        "removed": 124
+      },
+      "prRefs": [
+        30,
+        29,
+        28
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a00a3e-47c8-7000-9ba1-efa7d240e0f3",
+      "day": "2026-08-16",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 289,
+        "removed": 124
+      },
+      "prRefs": [
+        30,
+        29,
+        28
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "01a006a2-d03f-7000-b1fe-79595105f710",
+      "day": "2026-08-15",
+      "assistantMessages": 118,
+      "locDelta": {
+        "added": 1357,
+        "removed": 298
+      },
+      "prRefs": [
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00658-0a4f-7000-ab9e-8f1d82a95757",
+      "day": "2026-08-15",
+      "assistantMessages": 242,
+      "locDelta": {
+        "added": 404,
+        "removed": 36
+      },
+      "prRefs": [
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a001ee-3b16-7000-a64f-8092ef4023cc",
+      "day": "2026-08-14",
+      "assistantMessages": 101,
+      "locDelta": {
+        "added": 4686,
+        "removed": 1545
+      },
+      "prRefs": [
+        14,
+        13,
+        11,
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a001e1-9e55-7000-8f01-56aa435ed756",
+      "day": "2026-08-14",
+      "assistantMessages": 148,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "01a001dd-7e1a-7000-937a-5c2a3304bff5",
+      "day": "2026-08-14",
+      "assistantMessages": 82,
+      "locDelta": {
+        "added": 349,
+        "removed": 0
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "crm",
+      "sessionId": "01a001c2-866b-7000-a2a1-de1fc129e660",
+      "day": "2026-08-14",
+      "assistantMessages": 205,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a0013e-ac5d-7000-a3df-f0d8bdf66ab1",
+      "day": "2026-08-14",
+      "assistantMessages": 191,
+      "locDelta": {
+        "added": 4686,
+        "removed": 1545
+      },
+      "prRefs": [
+        14,
+        13,
+        11,
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "01a0011f-45d2-7000-bfc6-b262e5b78fe3",
+      "day": "2026-08-14",
+      "assistantMessages": 90,
+      "locDelta": {
+        "added": 1377,
+        "removed": 171
+      },
+      "prRefs": [
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a000a6-c1ca-7000-93d0-4a28e385ed00",
+      "day": "2026-08-14",
+      "assistantMessages": 132,
+      "locDelta": {
+        "added": 4686,
+        "removed": 1545
+      },
+      "prRefs": [
+        14,
+        13,
+        11,
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "01a00074-4c25-7000-bc6c-41e9d5368c4c",
+      "day": "2026-08-14",
+      "assistantMessages": 69,
+      "locDelta": {
+        "added": 1377,
+        "removed": 171
+      },
+      "prRefs": [
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fff9d-79e9-7000-95cc-9376ce721133",
+      "day": "2026-08-14",
+      "assistantMessages": 38,
+      "locDelta": {
+        "added": 1377,
+        "removed": 171
+      },
+      "prRefs": [
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ffc59-5c2b-7000-9de2-761c3bc0d18e",
+      "day": "2026-08-13",
+      "assistantMessages": 269,
+      "locDelta": {
+        "added": 1784,
+        "removed": 574
+      },
+      "prRefs": [
+        12,
+        13,
+        11,
+        10,
+        9
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ffb37-b843-7000-a0cf-92d427ce584c",
+      "day": "2026-08-13",
+      "assistantMessages": 64,
+      "locDelta": {
+        "added": 1784,
+        "removed": 574
+      },
+      "prRefs": [
+        12,
+        13,
+        11,
+        10,
+        9
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "019ffae9-7d1a-7000-a21c-6461eb9720c5",
+      "day": "2026-08-13",
+      "assistantMessages": 77,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "model-research",
+      "sessionId": "019ffac6-88c5-7000-8167-33a041c0e05e",
+      "day": "2026-08-13",
+      "assistantMessages": 22,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ffa98-dc25-7000-8b20-082666dd20a3",
+      "day": "2026-08-13",
+      "assistantMessages": 296,
+      "locDelta": {
+        "added": 1784,
+        "removed": 574
+      },
+      "prRefs": [
+        12,
+        13,
+        11,
+        10,
+        9
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ffa26-0d0f-7000-8662-c89ffc32df80",
+      "day": "2026-08-13",
+      "assistantMessages": 123,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff659-5dd1-7000-861e-8aac24d6863f",
+      "day": "2026-08-12",
+      "assistantMessages": 125,
+      "locDelta": {
+        "added": 1671,
+        "removed": 320
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff64e-1fe6-7000-af51-eddc47c2c31e",
+      "day": "2026-08-12",
+      "assistantMessages": 39,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff60b-1028-7000-ba52-da3a6df7d6fa",
+      "day": "2026-08-12",
+      "assistantMessages": 4,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff5d9-04bc-7000-9cee-2a2eccd138f8",
+      "day": "2026-08-12",
+      "assistantMessages": 5,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff5ca-5e5f-7000-b963-127beafc6e52",
+      "day": "2026-08-12",
+      "assistantMessages": 134,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff4fc-5a71-7000-bf4e-03d48ab0de09",
+      "day": "2026-08-12",
+      "assistantMessages": 166,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff4fa-7574-7000-8977-9337b03d7d95",
+      "day": "2026-08-12",
+      "assistantMessages": 123,
+      "locDelta": {
+        "added": 1671,
+        "removed": 320
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff4f7-d8c9-7000-ac2f-5c05f7d1b0fb",
+      "day": "2026-08-12",
+      "assistantMessages": 27,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ff4ec-6aa7-7000-89fb-52524f9aa2ca",
+      "day": "2026-08-12",
+      "assistantMessages": 221,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "019ff166-0864-7000-a2c0-bfc7c25c984d",
+      "day": "2026-08-11",
+      "assistantMessages": 65,
+      "locDelta": {
+        "added": 718,
+        "removed": 666
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff14a-6c84-7000-8f44-8b0a7819da8a",
+      "day": "2026-08-11",
+      "assistantMessages": 116,
+      "locDelta": {
+        "added": 8060,
+        "removed": 6403
+      },
+      "prRefs": [
+        4,
+        5
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "019ff0b6-b327-7000-b1c7-6c738a61f18c",
+      "day": "2026-08-11",
+      "assistantMessages": 132,
+      "locDelta": {
+        "added": 718,
+        "removed": 666
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff0b5-8d00-7000-b5b9-676f00ec9b4a",
+      "day": "2026-08-11",
+      "assistantMessages": 240,
+      "locDelta": {
+        "added": 1670,
+        "removed": 417
+      },
+      "prRefs": [
+        4,
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff0a2-627c-7000-9bcb-df0f7d58cd37",
+      "day": "2026-08-11",
+      "assistantMessages": 328,
+      "locDelta": {
+        "added": 8060,
+        "removed": 6403
+      },
+      "prRefs": [
+        4,
+        5
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff02d-0689-7000-a908-33b25f351043",
+      "day": "2026-08-11",
+      "assistantMessages": 181,
+      "locDelta": {
+        "added": 8060,
+        "removed": 6403
+      },
+      "prRefs": [
+        4,
+        5
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff022-2833-7000-809a-4ddf2e95d8ba",
+      "day": "2026-08-11",
+      "assistantMessages": 107,
+      "locDelta": {
+        "added": 1670,
+        "removed": 417
+      },
+      "prRefs": [
+        4,
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019fed4d-b218-7000-a01e-4eb22252fbaf",
+      "day": "2026-08-10",
+      "assistantMessages": 147,
+      "locDelta": {
+        "added": 5936,
+        "removed": 1274
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fed29-b69c-7000-89fa-17b081f878f7",
+      "day": "2026-08-10",
+      "assistantMessages": 12,
+      "locDelta": {
+        "added": 1979,
+        "removed": 234
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019fecd1-f114-7000-89ba-88ea19f20d0c",
+      "day": "2026-08-10",
+      "assistantMessages": 65,
+      "locDelta": {
+        "added": 5936,
+        "removed": 1274
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019fecac-583f-7000-a919-52ce735baf6f",
+      "day": "2026-08-10",
+      "assistantMessages": 89,
+      "locDelta": {
+        "added": 5936,
+        "removed": 1274
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fec9e-e8cf-7000-b005-98278e255933",
+      "day": "2026-08-10",
+      "assistantMessages": 126,
+      "locDelta": {
+        "added": 8772,
+        "removed": 685
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fec63-c841-7000-8ea3-1355f3666f51",
+      "day": "2026-08-10",
+      "assistantMessages": 252,
+      "locDelta": {
+        "added": 8772,
+        "removed": 685
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019fec62-a661-7000-a258-11b627a46b28",
+      "day": "2026-08-10",
+      "assistantMessages": 79,
+      "locDelta": {
+        "added": 5936,
+        "removed": 1274
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fec4e-5e62-7000-9c8a-a4444166e83e",
+      "day": "2026-08-10",
+      "assistantMessages": 554,
+      "locDelta": {
+        "added": 1979,
+        "removed": 234
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fec1c-5283-7000-86b3-47c66953f676",
+      "day": "2026-08-10",
+      "assistantMessages": 71,
+      "locDelta": {
+        "added": 8772,
+        "removed": 685
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019febfa-94d9-7000-aa0f-381a56e236a5",
+      "day": "2026-08-10",
+      "assistantMessages": 233,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019febb2-5701-7000-9037-968462d41b9b",
+      "day": "2026-08-10",
+      "assistantMessages": 255,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019febb0-3374-7000-bea0-a9c51ff11819",
+      "day": "2026-08-10",
+      "assistantMessages": 132,
+      "locDelta": {
+        "added": 8772,
+        "removed": 685
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "jeff-website-enhance",
+      "sessionId": "019feb62-b877-7000-887b-01ae65b437d1",
+      "day": "2026-08-10",
+      "assistantMessages": 108,
+      "locDelta": {
+        "added": 8149,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019feb59-28fb-7000-8fde-2af40b077354",
+      "day": "2026-08-10",
+      "assistantMessages": 141,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fe72a-5db7-7000-aa58-1a514bf79ab4",
+      "day": "2026-08-09",
+      "assistantMessages": 56,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fe723-42eb-7000-96da-508bb7f1fb34",
+      "day": "2026-08-09",
+      "assistantMessages": 385,
+      "locDelta": {
+        "added": 2459,
+        "removed": 1047
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fe6dd-7799-7000-868e-d30c861519c7",
+      "day": "2026-08-09",
+      "assistantMessages": 100,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fe657-1387-7000-ae92-8eca44220007",
+      "day": "2026-08-09",
+      "assistantMessages": 171,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fe654-0f13-7000-b038-b65b34e5f55d",
+      "day": "2026-08-09",
+      "assistantMessages": 87,
+      "locDelta": {
+        "added": 2459,
+        "removed": 1047
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fe255-c629-7000-bc97-5bb8df822170",
+      "day": "2026-08-08",
+      "assistantMessages": 208,
+      "locDelta": {
+        "added": 96,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fe244-a89f-7000-b14a-228804e74394",
+      "day": "2026-08-08",
+      "assistantMessages": 253,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fdcb2-c71e-7000-839b-2b616befcc55",
+      "day": "2026-08-07",
+      "assistantMessages": 146,
+      "locDelta": {
+        "added": 2083,
+        "removed": 89
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fdc49-4158-7000-b52e-f6c7e577b41b",
+      "day": "2026-08-07",
+      "assistantMessages": 34,
+      "locDelta": {
+        "added": 2083,
+        "removed": 89
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fdb80-222c-7000-8406-798f92e31b23",
+      "day": "2026-08-07",
+      "assistantMessages": 159,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fdb6c-db39-7000-871d-9b5d6fc65916",
+      "day": "2026-08-07",
+      "assistantMessages": 31,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd7d5-5ca8-7000-a5b9-64b601e86599",
+      "day": "2026-08-06",
+      "assistantMessages": 145,
+      "locDelta": {
+        "added": 1836,
+        "removed": 1331
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd7d0-2c07-7000-a219-77724814da08",
+      "day": "2026-08-06",
+      "assistantMessages": 162,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd703-353a-7000-9a28-b324ef57b553",
+      "day": "2026-08-06",
+      "assistantMessages": 68,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd606-ebe9-7000-8cd9-62dfdbbf4bbc",
+      "day": "2026-08-06",
+      "assistantMessages": 220,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd5d1-641c-7000-a686-49f1a7b52881",
+      "day": "2026-08-06",
+      "assistantMessages": 169,
+      "locDelta": {
+        "added": 1836,
+        "removed": 1331
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd5b8-51c5-7000-b7c5-a006388c55be",
+      "day": "2026-08-06",
+      "assistantMessages": 142,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd35a-6862-7000-b59c-c146ed511532",
+      "day": "2026-08-05",
+      "assistantMessages": 250,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "scrape-ig-saved-list",
+      "sessionId": "019fd353-ba1b-7000-be46-f029bd1c9a0f",
+      "day": "2026-08-05",
+      "assistantMessages": 30,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd330-2a64-7000-b98c-3ad5d8901d43",
+      "day": "2026-08-05",
+      "assistantMessages": 132,
+      "locDelta": {
+        "added": 5824,
+        "removed": 11806
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd323-daea-7000-946b-66d09246cea7",
+      "day": "2026-08-05",
+      "assistantMessages": 170,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd307-d07e-7000-a8ca-7a211f3e7166",
+      "day": "2026-08-05",
+      "assistantMessages": 150,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd2c8-bb0e-7000-a4e9-79895e09e0f0",
+      "day": "2026-08-05",
+      "assistantMessages": 109,
+      "locDelta": {
+        "added": 5824,
+        "removed": 11806
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd287-8b98-7000-ae2d-547f39b65040",
+      "day": "2026-08-05",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd287-3395-7000-befa-8718d844ae88",
+      "day": "2026-08-05",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd286-4da3-7000-8f05-1bacbe2477ca",
+      "day": "2026-08-05",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd285-685a-7000-aa7a-870d177c80c9",
+      "day": "2026-08-05",
+      "assistantMessages": 2,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd281-b626-7000-842c-931b395ecfdb",
+      "day": "2026-08-05",
+      "assistantMessages": 23,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd229-225a-7000-a19d-0e4e1644ba36",
+      "day": "2026-08-05",
+      "assistantMessages": 142,
+      "locDelta": {
+        "added": 5824,
+        "removed": 11806
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fcd34-357a-7000-a6d0-abbc55eee453",
+      "day": "2026-08-04",
+      "assistantMessages": 321,
+      "locDelta": {
+        "added": 1720,
+        "removed": 415
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fccb6-8bc1-7000-b1b7-69c972c03bca",
+      "day": "2026-08-04",
+      "assistantMessages": 183,
+      "locDelta": {
+        "added": 1720,
+        "removed": 415
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fbdc2-67d4-7000-aaff-b005596917e6",
+      "day": "2026-08-01",
+      "assistantMessages": 239,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fbdb8-855e-7000-b27e-0c47a64404f5",
+      "day": "2026-08-01",
+      "assistantMessages": 72,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fbd5c-8b44-7000-8b89-159321320376",
+      "day": "2026-08-01",
+      "assistantMessages": 23,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb490-5558-7000-a1d9-01e45ff63f91",
+      "day": "2026-07-30",
+      "assistantMessages": 219,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb252-2367-7000-94b7-9d9f1f359203",
+      "day": "2026-07-30",
+      "assistantMessages": 151,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb235-28d9-7000-9f3f-4a42807684f5",
+      "day": "2026-07-30",
+      "assistantMessages": 39,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb22d-e10b-7000-b5ab-e845a1623397",
+      "day": "2026-07-30",
+      "assistantMessages": 112,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb225-7898-7000-89d3-b87dd5fad926",
+      "day": "2026-07-30",
+      "assistantMessages": 22,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019faee9-d8b5-7000-aeba-3b2a0b6bd9ab",
+      "day": "2026-07-29",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 9939,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019faecb-e038-7000-b8fe-c839d760698c",
+      "day": "2026-07-29",
+      "assistantMessages": 61,
+      "locDelta": {
+        "added": 9939,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019faeb8-3aec-7000-9266-6842b6e6af7a",
+      "day": "2026-07-29",
+      "assistantMessages": 253,
+      "locDelta": {
+        "added": 9939,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fae37-8f7c-7000-a9da-c1887f706b08",
+      "day": "2026-07-29",
+      "assistantMessages": 91,
+      "locDelta": {
+        "added": 9939,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fa9b3-6971-7000-95a1-77fa02dc9f58",
+      "day": "2026-07-28",
+      "assistantMessages": 227,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fa9a8-3bb5-7000-aa80-1d9790a59655",
+      "day": "2026-07-28",
+      "assistantMessages": 115,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fa950-9925-7000-8b50-b67a3dc48f11",
+      "day": "2026-07-28",
+      "assistantMessages": 237,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f36ce-4e9d-7000-8630-d7e72c9e64c2",
+      "day": "2026-07-06",
+      "assistantMessages": 63,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f36c7-86e4-7000-a34b-0bdec5cd73b1",
+      "day": "2026-07-06",
+      "assistantMessages": 28,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f2ba8-331a-7000-8762-689e064c64d1",
+      "day": "2026-07-04",
+      "assistantMessages": 296,
+      "locDelta": {
+        "added": 12058,
+        "removed": 1605
+      },
+      "prRefs": [
+        8,
+        7
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f289e-b716-7000-8089-5a64fe2af16e",
+      "day": "2026-07-03",
+      "assistantMessages": 57,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f2865-fb72-7000-9634-4d0e5a4827c1",
+      "day": "2026-07-03",
+      "assistantMessages": 277,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f277e-9fa3-7000-8b38-7ef7e3462ea3",
+      "day": "2026-07-03",
+      "assistantMessages": 195,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f2730-7faa-7000-aa57-5c81af053034",
+      "day": "2026-07-03",
+      "assistantMessages": 268,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f2708-19ac-7000-82e5-b63233f41304",
+      "day": "2026-07-03",
+      "assistantMessages": 49,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f2706-d769-7000-99c3-1cd05be541b3",
+      "day": "2026-07-03",
+      "assistantMessages": 5,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f24c3-ca52-7000-a90e-6f3595d03a4a",
+      "day": "2026-07-02",
+      "assistantMessages": 113,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f23a7-768b-7000-a534-d9e4131b0e7e",
+      "day": "2026-07-02",
+      "assistantMessages": 146,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f2376-2471-7000-ac3e-c46df07f4fc7",
+      "day": "2026-07-02",
+      "assistantMessages": 142,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f2346-ec71-7000-beba-556670aa877b",
+      "day": "2026-07-02",
+      "assistantMessages": 18,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f228d-227a-7000-b938-1ad3deadbe08",
+      "day": "2026-07-02",
+      "assistantMessages": 276,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f226c-4da7-7000-8f4b-aca63cb23ca8",
+      "day": "2026-07-02",
+      "assistantMessages": 178,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f2240-ed59-7000-8366-710ce73d5027",
+      "day": "2026-07-02",
+      "assistantMessages": 46,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f2208-b475-7000-8dc6-5d2298905121",
+      "day": "2026-07-02",
+      "assistantMessages": 40,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1e52-6544-7000-8d39-56293e69e757",
+      "day": "2026-07-01",
+      "assistantMessages": 193,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1e11-f038-7000-b7ae-f55cfdf1bace",
+      "day": "2026-07-01",
+      "assistantMessages": 102,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1dcd-d3d5-7000-9aef-c0f2184698cc",
+      "day": "2026-07-01",
+      "assistantMessages": 85,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1dad-dcd1-7000-9abf-ab989a559ccf",
+      "day": "2026-07-01",
+      "assistantMessages": 108,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1d93-b73d-7000-ab57-1df614e3c3a5",
+      "day": "2026-07-01",
+      "assistantMessages": 76,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1d73-e860-7000-b1be-fe7f83d1081e",
+      "day": "2026-07-01",
+      "assistantMessages": 100,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1d5b-6424-7000-bd11-ced97fc324f5",
+      "day": "2026-07-01",
+      "assistantMessages": 68,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1d49-583c-7000-94bb-9e410dbd6fda",
+      "day": "2026-07-01",
+      "assistantMessages": 35,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1d3e-e0cc-7000-af66-1c950378186c",
+      "day": "2026-07-01",
+      "assistantMessages": 155,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1d27-dc02-7000-8815-eb91c5f68af1",
+      "day": "2026-07-01",
+      "assistantMessages": 28,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1ce8-15c3-7000-a296-72ca455d6b9d",
+      "day": "2026-07-01",
+      "assistantMessages": 187,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1cab-d31d-7000-8067-3aadd82997d6",
+      "day": "2026-07-01",
+      "assistantMessages": 72,
+      "locDelta": {
+        "added": 18238,
+        "removed": 141
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f19c9-8d28-7000-aa57-2c8c2068445e",
+      "day": "2026-06-30",
+      "assistantMessages": 13,
+      "locDelta": {
+        "added": 672,
+        "removed": 71
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f19a7-c04b-7000-8841-26ffcea4b196",
+      "day": "2026-06-30",
+      "assistantMessages": 337,
+      "locDelta": {
+        "added": 672,
+        "removed": 71
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f1965-26e6-7000-a793-28b30efe78cf",
+      "day": "2026-06-30",
+      "assistantMessages": 151,
+      "locDelta": {
+        "added": 672,
+        "removed": 71
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f18de-83b2-7000-b056-edbe9cad6170",
+      "day": "2026-06-30",
+      "assistantMessages": 148,
+      "locDelta": {
+        "added": 672,
+        "removed": 71
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019f18cd-e966-7000-a4da-83bc8b6cc459",
+      "day": "2026-06-30",
+      "assistantMessages": 80,
+      "locDelta": {
+        "added": 672,
+        "removed": 71
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "ig-pipeline",
+      "sessionId": "019f188f-a855-7000-8d30-41b07c3082a7",
+      "day": "2026-06-30",
+      "assistantMessages": 252,
+      "locDelta": {
+        "added": 4190,
+        "removed": 261
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "ig-pipeline",
+      "sessionId": "019f17a3-bf7f-7000-9751-aa5ca7517352",
+      "day": "2026-06-30",
+      "assistantMessages": 229,
+      "locDelta": {
+        "added": 4190,
+        "removed": 261
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "ig-pipeline",
+      "sessionId": "019f159d-2589-7000-9b05-2fbbec260fae",
+      "day": "2026-06-30",
+      "assistantMessages": 142,
+      "locDelta": {
+        "added": 4190,
+        "removed": 261
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "ig-pipeline",
+      "sessionId": "019f1568-88e1-7000-9f2d-6a695c5aa19e",
+      "day": "2026-06-30",
+      "assistantMessages": 162,
+      "locDelta": {
+        "added": 4190,
+        "removed": 261
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "scrape-ig-saved-list",
+      "sessionId": "019f14d9-25a8-7000-8ff2-5bb8b854de21",
+      "day": "2026-06-29",
+      "assistantMessages": 229,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "scrape-ig-saved-list",
+      "sessionId": "019f1457-0fa6-7000-a513-5c008025e2f6",
+      "day": "2026-06-29",
+      "assistantMessages": 138,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f141f-64ed-76fa-88ef-48962d2e9a2d",
+      "day": "2026-06-29",
+      "assistantMessages": 74,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "scrape-ig-saved-list",
+      "sessionId": "019f141b-f529-7000-a8a4-bbda09bc2055",
+      "day": "2026-06-29",
+      "assistantMessages": 151,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f1317-1071-7000-b19f-6bff9cf2c63d",
+      "day": "2026-06-29",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f1302-bc4a-7000-9b1e-51fd25611d01",
+      "day": "2026-06-29",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f1302-99f9-7000-b8e6-7ce5a1af1f92",
+      "day": "2026-06-29",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f1302-8b05-7000-8157-7150a330b39f",
+      "day": "2026-06-29",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f1302-58b4-7000-b733-e3fd73ba090a",
+      "day": "2026-06-29",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f1302-4152-7000-bcab-b448be7fb885",
+      "day": "2026-06-29",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f1302-2bd2-7000-8278-9ec5b42b5691",
+      "day": "2026-06-29",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f1300-fdf1-7000-b7cd-8080fd5c9835",
+      "day": "2026-06-29",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f1300-cee8-7000-867f-b27e67faddf0",
+      "day": "2026-06-29",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-config-mgmt",
+      "sessionId": "019f12dc-36cb-765a-b4bf-cf2c1d41dc30",
+      "day": "2026-06-29",
+      "assistantMessages": 204,
+      "locDelta": {
+        "added": 1075,
+        "removed": 9
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": ".pi",
+      "sessionId": "019f12d6-1f9c-7717-948a-082e5ef0d947",
+      "day": "2026-06-29",
+      "assistantMessages": 9,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "unified-search",
+      "sessionId": "019f101d-4e40-7717-9a1c-d78a8ff9e4dd",
+      "day": "2026-06-28",
+      "assistantMessages": 69,
+      "locDelta": {
+        "added": 9168,
+        "removed": 2950
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "unified-search",
+      "sessionId": "019f101c-bf63-7d73-b081-137f7ee24645",
+      "day": "2026-06-28",
+      "assistantMessages": 69,
+      "locDelta": {
+        "added": 9168,
+        "removed": 2950
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "unified-search",
+      "sessionId": "019f0fed-3d99-7fe0-bc60-762f5cdad8e6",
+      "day": "2026-06-28",
+      "assistantMessages": 123,
+      "locDelta": {
+        "added": 9168,
+        "removed": 2950
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "unified-search",
+      "sessionId": "019f0f9f-3951-71d2-9f70-a36b71379cd2",
+      "day": "2026-06-28",
+      "assistantMessages": 151,
+      "locDelta": {
+        "added": 9168,
+        "removed": 2950
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "unified-search",
+      "sessionId": "019f0f30-cc1b-7b9c-996f-a6bcc1a4101a",
+      "day": "2026-06-28",
+      "assistantMessages": 176,
+      "locDelta": {
+        "added": 9168,
+        "removed": 2950
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "unified-search",
+      "sessionId": "019f0ee2-578a-732f-b9f6-0b5de7523ecc",
+      "day": "2026-06-28",
+      "assistantMessages": 179,
+      "locDelta": {
+        "added": 9168,
+        "removed": 2950
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019f0e85-228a-70fd-b7e7-c40d41d82bc0",
+      "day": "2026-06-28",
+      "assistantMessages": 66,
+      "locDelta": {
+        "added": 102,
+        "removed": 781
+      },
+      "prRefs": [
+        25,
+        24
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019f0e81-3dbb-7a2f-a7c7-16ed72ff406a",
+      "day": "2026-06-28",
+      "assistantMessages": 103,
+      "locDelta": {
+        "added": 102,
+        "removed": 781
+      },
+      "prRefs": [
+        25,
+        24
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "scrape-ig-saved-list",
+      "sessionId": "019eff22-bac1-7ff7-a02a-67985f09a0e3",
+      "day": "2026-06-25",
+      "assistantMessages": 60,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-designer",
+      "sessionId": "019eff22-25ce-7a3f-9708-da30f84a4c7c",
+      "day": "2026-06-25",
+      "assistantMessages": 9,
+      "locDelta": {
+        "added": 5650,
+        "removed": 4975
+      },
+      "prRefs": [
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019efe7f-b674-7e56-ae14-ade720f134a6",
+      "day": "2026-06-25",
+      "assistantMessages": 137,
+      "locDelta": {
+        "added": 2382,
+        "removed": 315
+      },
+      "prRefs": [
+        23
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-designer",
+      "sessionId": "019efe6e-a882-74eb-94a4-7aaad9c95025",
+      "day": "2026-06-25",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 5650,
+        "removed": 4975
+      },
+      "prRefs": [
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "design-system-001",
+      "sessionId": "019efe6e-84ed-7384-9e19-1463870e3c03",
+      "day": "2026-06-25",
+      "assistantMessages": 31,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019efe6e-563c-76d8-b8dd-567f3ec5c01e",
+      "day": "2026-06-25",
+      "assistantMessages": 23,
+      "locDelta": {
+        "added": 2382,
+        "removed": 315
+      },
+      "prRefs": [
+        23
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-designer",
+      "sessionId": "019efe3c-de9b-7132-9e3d-db181c1396d8",
+      "day": "2026-06-25",
+      "assistantMessages": 38,
+      "locDelta": {
+        "added": 5650,
+        "removed": 4975
+      },
+      "prRefs": [
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "design-system-001",
+      "sessionId": "019efe35-adeb-7b1c-88de-26bc2b9e8641",
+      "day": "2026-06-25",
+      "assistantMessages": 18,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-designer",
+      "sessionId": "019efb3f-f090-78a2-895e-36a4cce93cc7",
+      "day": "2026-06-24",
+      "assistantMessages": 166,
+      "locDelta": {
+        "added": 9413,
+        "removed": 4
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019efb3d-b3e1-784f-9800-98757f4c9179",
+      "day": "2026-06-24",
+      "assistantMessages": 79,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-designer",
+      "sessionId": "019efb03-12e6-70b5-80ab-dcbfc0c7346b",
+      "day": "2026-06-24",
+      "assistantMessages": 105,
+      "locDelta": {
+        "added": 9413,
+        "removed": 4
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019efb02-25ef-7d69-8a1e-e295b89438db",
+      "day": "2026-06-24",
+      "assistantMessages": 3,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019efaed-dbcb-7393-87e3-23beb6b17620",
+      "day": "2026-06-24",
+      "assistantMessages": 9,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "repos",
+      "sessionId": "019efa68-b843-7164-9644-e1758657a891",
+      "day": "2026-06-24",
+      "assistantMessages": 184,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "repos",
+      "sessionId": "019efa4e-b77d-77a1-903f-cd30d026619f",
+      "day": "2026-06-24",
+      "assistantMessages": 40,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019efa4d-3d3a-7243-9863-6fbb384824d3",
+      "day": "2026-06-24",
+      "assistantMessages": 7,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-strategy",
+      "sessionId": "f3b05c6b-9d25-4091-9c29-dbb6522313bd",
+      "day": "2026-06-24",
+      "assistantMessages": 0,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-designer",
+      "sessionId": "a2f11e62-41ed-4b1e-911d-5de33213fcb5",
+      "day": "2026-06-24",
+      "assistantMessages": 153,
+      "locDelta": {
+        "added": 9413,
+        "removed": 4
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "scrape-ig-saved-list",
+      "sessionId": "13713dfe-0767-42b2-bf46-3322ef4336e1",
+      "day": "2026-06-24",
+      "assistantMessages": 356,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-content-strategy-research",
+      "sessionId": "00f9db17-7690-4c70-942e-bdce645a0d55",
+      "day": "2026-06-24",
+      "assistantMessages": 159,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-strategy",
+      "sessionId": "a549d5fa-ff99-45bc-83b7-0606a843582c",
+      "day": "2026-06-24",
+      "assistantMessages": 146,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ee46f-d46a-746f-906f-ea649e058079",
+      "day": "2026-06-20",
+      "assistantMessages": 31,
+      "locDelta": {
+        "added": 66,
+        "removed": 8
+      },
+      "prRefs": [
+        22,
+        21
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ee43b-4a58-7a31-8cf4-6d0c32682ead",
+      "day": "2026-06-20",
+      "assistantMessages": 13,
+      "locDelta": {
+        "added": 66,
+        "removed": 8
+      },
+      "prRefs": [
+        22,
+        21
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ee435-985d-7d2b-8223-d068be0329c9",
+      "day": "2026-06-20",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 66,
+        "removed": 8
+      },
+      "prRefs": [
+        22,
+        21
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ee42e-efbc-7c2f-a75b-d13be8c2546b",
+      "day": "2026-06-20",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 66,
+        "removed": 8
+      },
+      "prRefs": [
+        22,
+        21
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "9d94379d-6d3d-426a-b522-8ba778893fb3",
+      "day": "2026-06-20",
+      "assistantMessages": 103,
+      "locDelta": {
+        "added": 66,
+        "removed": 8
+      },
+      "prRefs": [
+        22,
+        21
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ee402-f9da-7e8e-bc45-ffab35849c2c",
+      "day": "2026-06-20",
+      "assistantMessages": 23,
+      "locDelta": {
+        "added": 66,
+        "removed": 8
+      },
+      "prRefs": [
+        22,
+        21
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "42c9c807-2c18-44c9-808e-f28e3c8d5ab5",
+      "day": "2026-06-20",
+      "assistantMessages": 26,
+      "locDelta": {
+        "added": 66,
+        "removed": 8
+      },
+      "prRefs": [
+        22,
+        21
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ee027-4757-7566-b454-70d3ee218e07",
+      "day": "2026-06-19",
+      "assistantMessages": 252,
+      "locDelta": {
+        "added": 31,
+        "removed": 69
+      },
+      "prRefs": [
+        20
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019edb4b-db0a-733e-9046-71c546348f2c",
+      "day": "2026-06-18",
+      "assistantMessages": 105,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019edb3f-176d-7c13-ac77-7aef0b063c88",
+      "day": "2026-06-18",
+      "assistantMessages": 171,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019edb36-fd88-78df-88f8-4c607d1b1f53",
+      "day": "2026-06-18",
+      "assistantMessages": 120,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019edb1d-f8f3-7664-a078-6da487d63f92",
+      "day": "2026-06-18",
+      "assistantMessages": 213,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019edb1d-f92b-7c73-bffe-c4aa28ded12f",
+      "day": "2026-06-18",
+      "assistantMessages": 209,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019edb1d-f967-74b5-be58-95f5a644980d",
+      "day": "2026-06-18",
+      "assistantMessages": 204,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019edb1d-f997-754e-9684-15eb9404a535",
+      "day": "2026-06-18",
+      "assistantMessages": 210,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019edadd-2cbd-7822-b913-b7a8aca8515e",
+      "day": "2026-06-18",
+      "assistantMessages": 245,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019edad3-fe91-77c8-ad43-0b05e8bd8473",
+      "day": "2026-06-18",
+      "assistantMessages": 366,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019eda98-6d9a-7fc4-88db-e43890649171",
+      "day": "2026-06-18",
+      "assistantMessages": 87,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019eda74-e0cc-7927-a097-0f02fdef0f91",
+      "day": "2026-06-18",
+      "assistantMessages": 79,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "repos",
+      "sessionId": "019ed9e8-bb57-786c-8aea-467a45449230",
+      "day": "2026-06-18",
+      "assistantMessages": 204,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ed9e7-0bce-7cdc-93ae-0f9096ea0934",
+      "day": "2026-06-18",
+      "assistantMessages": 294,
+      "locDelta": {
+        "added": 46950,
+        "removed": 3126
+      },
+      "prRefs": [
+        18,
+        17,
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ed58d-8b73-7b71-9218-63694576c1a6",
+      "day": "2026-06-17",
+      "assistantMessages": 261,
+      "locDelta": {
+        "added": 304,
+        "removed": 148
+      },
+      "prRefs": [
+        14
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-rts-alerts",
+      "sessionId": "019ed2b8-5381-7185-8976-8709aa7f3233",
+      "day": "2026-06-17",
+      "assistantMessages": 42,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ed272-6539-7f18-98aa-a2c3b4141aab",
+      "day": "2026-06-16",
+      "assistantMessages": 97,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed23c-efc2-7a73-97c4-0ebfa75db1b7",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed23c-47dd-7385-9ce9-3f1aee90e432",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed20b-11f9-755b-8503-173108a1227f",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed20a-cd17-7429-b122-1e3c91147a73",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed209-c757-7cae-9be6-f0072911f775",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed209-4236-7ee7-90b8-432c93eab8e2",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed1d1-c817-7026-b550-b8cb17feee48",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed1c1-6371-7b92-af9c-aea79d1c8769",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ed1bc-965f-7033-a96c-ed1a97643c9e",
+      "day": "2026-06-16",
+      "assistantMessages": 124,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0c8-363c-7a21-9d2d-73b96e4da76f",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0c2-e965-7753-b3c7-420cabf24c47",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0bb-ed8f-7697-b3e2-2b573a5151d5",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0b9-027b-7050-9cff-40f5073e54bd",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0b8-d912-7512-92fa-39cd1aecac73",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0b7-f0d1-7e19-91f2-f44a50884165",
+      "day": "2026-06-16",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0b7-a39e-7a64-a23c-4df9c8ead558",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0b7-66bf-7ae8-bc73-10c7e996bb39",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-rts-alerts",
+      "sessionId": "019ed0b7-3429-761f-9a58-c202f3b08143",
+      "day": "2026-06-16",
+      "assistantMessages": 56,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0b7-0b3e-75af-b8f3-30a9f4fc4fb5",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0b6-61fe-725a-8ea5-14d4d956fbcf",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed0b5-9ef3-7bc1-b236-ebe7ce5d8104",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed08a-0726-7922-8105-16f9a36cbed4",
+      "day": "2026-06-16",
+      "assistantMessages": 324,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed070-af1b-7d74-b91e-57d6bad0db3e",
+      "day": "2026-06-16",
+      "assistantMessages": 54,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ed06f-dcf1-77b7-8585-774ece184e0c",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ed06d-8326-7224-9b0c-dc9afbc0354b",
+      "day": "2026-06-16",
+      "assistantMessages": 16,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed063-772f-7828-937c-b929d6dd1402",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed063-10d2-76b3-8364-2101fe04ea72",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed061-9ce8-720c-a66e-cd1a18f2b65c",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "84c3597e-61ce-40c3-8fb7-24a23bcf550f",
+      "day": "2026-06-16",
+      "assistantMessages": 334,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed02e-482d-785e-94a3-3e66bdc7c522",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed02c-f26f-79c1-ad85-009dcdf5a4c6",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed02c-a051-7ccf-ae47-d6c1b9748dac",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed02b-b416-7dfe-9878-1490451f06fa",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed02a-a45c-7fb3-adcd-5a7e5f55aab5",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed029-f279-7a30-a024-3f66d7bc9bb2",
+      "day": "2026-06-16",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ed023-3c36-7b01-b180-aec2d21d7bff",
+      "day": "2026-06-16",
+      "assistantMessages": 121,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "e72768ef-db51-4c47-bbaa-53cd0231cfe6",
+      "day": "2026-06-16",
+      "assistantMessages": 365,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "0986b831-51bc-4010-90cb-ea324789c76a",
+      "day": "2026-06-16",
+      "assistantMessages": 4,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "4f122c0a-a183-4636-8d7a-17848d7d5245",
+      "day": "2026-06-16",
+      "assistantMessages": 15,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ecfcc-cfc3-7f68-ab35-9ceb1ad4ef72",
+      "day": "2026-06-16",
+      "assistantMessages": 13,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ecfc5-12b5-7738-a1b3-60dd9c6feadf",
+      "day": "2026-06-16",
+      "assistantMessages": 57,
+      "locDelta": {
+        "added": 245,
+        "removed": 525
+      },
+      "prRefs": [
+        5,
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "3b650fcc-58a0-4d09-899f-5d588cb08dbb",
+      "day": "2026-06-16",
+      "assistantMessages": 174,
+      "locDelta": {
+        "added": 4618,
+        "removed": 2891
+      },
+      "prRefs": [
+        6,
+        13,
+        11
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "repos",
+      "sessionId": "019ecfa7-52f6-7429-a969-c6b5d20497ce",
+      "day": "2026-06-16",
+      "assistantMessages": 23,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ecd48-27a6-7051-85ba-fe80b232b76e",
+      "day": "2026-06-15",
+      "assistantMessages": 86,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "4bd70112-48ac-42dc-8f7c-2a6459137174",
+      "day": "2026-06-15",
+      "assistantMessages": 57,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ecd1a-ff5b-7ff1-a9ca-be9abce78cb9",
+      "day": "2026-06-15",
+      "assistantMessages": 7,
+      "locDelta": {
+        "added": 879,
+        "removed": 187
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ecd13-dc08-7798-8dcf-6e75991a254b",
+      "day": "2026-06-15",
+      "assistantMessages": 164,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "repos",
+      "sessionId": "019ecd02-6094-7d98-b573-e2b9a3e8e580",
+      "day": "2026-06-15",
+      "assistantMessages": 84,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019eccf6-799f-7d5e-956c-7e27f4e05b0f",
+      "day": "2026-06-15",
+      "assistantMessages": 71,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019eccf0-c5b1-7898-90e3-5a5b16a0a1d5",
+      "day": "2026-06-15",
+      "assistantMessages": 106,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019eccd9-e314-75ee-bff5-1a4855991f9a",
+      "day": "2026-06-15",
+      "assistantMessages": 110,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019eccd9-35cb-7012-8cbe-7d715646f215",
+      "day": "2026-06-15",
+      "assistantMessages": 2,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecc93-8a9c-7800-9037-233d654218e1",
+      "day": "2026-06-15",
+      "assistantMessages": 66,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecc4b-62ea-7a2b-a270-21cb0239b973",
+      "day": "2026-06-15",
+      "assistantMessages": 129,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecc49-e8af-71d5-958c-f66cda0586f2",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "repos",
+      "sessionId": "019ecc19-7d61-7f88-9441-3426b71121af",
+      "day": "2026-06-15",
+      "assistantMessages": 87,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ecc12-f831-781a-ad5f-f619f44284cc",
+      "day": "2026-06-15",
+      "assistantMessages": 44,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "repos",
+      "sessionId": "019ecbfb-cec6-7c98-a94c-4aa923693bc7",
+      "day": "2026-06-15",
+      "assistantMessages": 126,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbe4-cd3a-72bc-8398-0b3245fb67de",
+      "day": "2026-06-15",
+      "assistantMessages": 40,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ecbde-bd1d-747a-8962-2c49733741e2",
+      "day": "2026-06-15",
+      "assistantMessages": 97,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbdd-20a4-7750-8333-5a2ded895592",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbdc-2bd2-732f-a696-ffdd759a4e17",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbdb-d786-7dee-8101-683e5a7af80c",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbb9-2d3e-7e73-a9ee-6679b438459c",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbb8-e513-71c8-91bf-5e18376cd958",
+      "day": "2026-06-15",
+      "assistantMessages": 3,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbb4-f967-7e89-adfc-b9953ca748de",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbb4-c52f-7464-b0a1-b4b93d1b89ed",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbb4-7e3e-7549-8c4e-663c1790ccc0",
+      "day": "2026-06-15",
+      "assistantMessages": 7,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbb4-47a1-7958-a919-8597313f0673",
+      "day": "2026-06-15",
+      "assistantMessages": 6,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbb4-2d14-7b35-9c98-38577871873d",
+      "day": "2026-06-15",
+      "assistantMessages": 6,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecbab-bb56-7cfe-bddc-abb6cd6abe82",
+      "day": "2026-06-15",
+      "assistantMessages": 99,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecba9-661d-7b46-8827-1255efd0c4de",
+      "day": "2026-06-15",
+      "assistantMessages": 19,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ecb88-1cb1-7191-862c-9b86095dec57",
+      "day": "2026-06-15",
+      "assistantMessages": 69,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "0d8c33d5-71d2-4d4c-97b4-4c53faeebfd8",
+      "day": "2026-06-15",
+      "assistantMessages": 27,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ecab4-789e-7356-9054-7219b7207bd0",
+      "day": "2026-06-15",
+      "assistantMessages": 14,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019eca76-8dea-75d5-b28a-07b966ecb016",
+      "day": "2026-06-15",
+      "assistantMessages": 109,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "b33fcb74-d6ce-4969-9953-579ac68a1e3e",
+      "day": "2026-06-15",
+      "assistantMessages": 116,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019eca18-6663-7c57-837f-db44c7bbd30d",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019eca14-8fc1-796a-a8e8-c7cde06faf19",
+      "day": "2026-06-15",
+      "assistantMessages": 13,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec9ff-a7db-729f-a4f4-456cd64663c9",
+      "day": "2026-06-15",
+      "assistantMessages": 42,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec9ea-d293-7cb9-a80f-37cd09defcf9",
+      "day": "2026-06-15",
+      "assistantMessages": 39,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ec9e7-763e-7f56-92d9-f76c76f6cdb7",
+      "day": "2026-06-15",
+      "assistantMessages": 28,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ec9e2-a611-72a9-bf46-5b0f2bba0311",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "evano",
+      "sessionId": "019ec9df-27d4-7021-94bc-e0abffcd2393",
+      "day": "2026-06-15",
+      "assistantMessages": 3,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec9dc-d6ed-707a-86ed-2ffde92ed28a",
+      "day": "2026-06-15",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-fuse",
+      "sessionId": "019ec7e9-f442-730e-9890-b3a7a9d2975c",
+      "day": "2026-06-14",
+      "assistantMessages": 62,
+      "locDelta": {
+        "added": 877,
+        "removed": 0
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec7e8-0775-70cd-9b03-bdd2ea343e29",
+      "day": "2026-06-14",
+      "assistantMessages": 19,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec7e5-519a-7af8-affb-bf091ec61c89",
+      "day": "2026-06-14",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec7d3-6bcb-7ee6-89e3-3245481239bd",
+      "day": "2026-06-14",
+      "assistantMessages": 85,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec7ac-67f8-79b1-aa0f-b70b0749997b",
+      "day": "2026-06-14",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec7a9-a4bf-7705-8a0a-7c5287588eec",
+      "day": "2026-06-14",
+      "assistantMessages": 57,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec7a8-0e35-7473-8275-09717964d797",
+      "day": "2026-06-14",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec7a5-47a8-75e4-813f-cf8a44f5b7a5",
+      "day": "2026-06-14",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec786-9740-74e6-9f72-e086e6f1c614",
+      "day": "2026-06-14",
+      "assistantMessages": 60,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "loc-dock",
+      "sessionId": "019ec763-54fb-7161-bab2-da72e1f5bb57",
+      "day": "2026-06-14",
+      "assistantMessages": 378,
+      "locDelta": {
+        "added": 3703,
+        "removed": 390
+      },
+      "prRefs": [
+        9,
+        8,
+        7,
+        6
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec74a-dc0b-7f25-985d-2be8006098d8",
+      "day": "2026-06-14",
+      "assistantMessages": 130,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "pi",
+      "repo": "pi-agent-workforce",
+      "sessionId": "019ec741-bd28-76c6-be4a-98d813d1f4a0",
+      "day": "2026-06-14",
+      "assistantMessages": 169,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "049e50ba-cf14-4293-b73e-227cf2b7a378",
+      "day": "2026-06-14",
+      "assistantMessages": 22,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "97f63755-394d-48d6-b3b3-66c9ec17dabb",
+      "day": "2026-06-14",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "91122910-98c3-441e-bbb8-bef820df00c6",
+      "day": "2026-06-14",
+      "assistantMessages": 220,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "src-tauri",
+      "sessionId": "f47861b1-4b94-41b0-b74d-5ab55635d4e5",
+      "day": "2026-06-14",
+      "assistantMessages": 60,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "5a7f47c8-d8ed-484a-8dc1-832e48db36b6",
+      "day": "2026-06-14",
+      "assistantMessages": 301,
+      "locDelta": {
+        "added": 3703,
+        "removed": 390
+      },
+      "prRefs": [
+        9,
+        8,
+        7,
+        6
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "87a84469-1fa5-4b63-a0ad-3230966a1eed",
+      "day": "2026-06-14",
+      "assistantMessages": 293,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "026b8e99-e832-4403-bf38-d5ced2cc4c6b",
+      "day": "2026-06-14",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "db517ef0-328c-4a81-b1ff-068166a231e4",
+      "day": "2026-06-14",
+      "assistantMessages": 387,
+      "locDelta": {
+        "added": 3703,
+        "removed": 390
+      },
+      "prRefs": [
+        9,
+        8,
+        7,
+        6
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "14cdf57f-fba5-4569-831a-b7770621ca14",
+      "day": "2026-06-14",
+      "assistantMessages": 51,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "f767d307-df36-4280-bfdc-d8dab8897be3",
+      "day": "2026-06-14",
+      "assistantMessages": 801,
+      "locDelta": {
+        "added": 3703,
+        "removed": 390
+      },
+      "prRefs": [
+        9,
+        8,
+        7,
+        6
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "03eafcad-2e05-4819-85e9-7c7207bfea11",
+      "day": "2026-06-14",
+      "assistantMessages": 256,
+      "locDelta": {
+        "added": 3924,
+        "removed": 4827
+      },
+      "prRefs": [
+        4,
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "6347e261-25bc-49c9-9c94-b46881e4e1e9",
+      "day": "2026-06-13",
+      "assistantMessages": 187,
+      "locDelta": {
+        "added": 1916,
+        "removed": 3160
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "1521ee36-8574-479d-9b45-9ff785ef47af",
+      "day": "2026-06-13",
+      "assistantMessages": 296,
+      "locDelta": {
+        "added": 1192,
+        "removed": 554
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "2e6db6c4-2057-4471-a834-7d9e6d1691be",
+      "day": "2026-06-13",
+      "assistantMessages": 223,
+      "locDelta": {
+        "added": 1916,
+        "removed": 3160
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "1583946b-60aa-4233-acaf-de5f9286dfea",
+      "day": "2026-06-13",
+      "assistantMessages": 112,
+      "locDelta": {
+        "added": 1916,
+        "removed": 3160
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "c2d8bf88-4f34-424a-afbc-a5f08c7928b9",
+      "day": "2026-06-13",
+      "assistantMessages": 68,
+      "locDelta": {
+        "added": 1916,
+        "removed": 3160
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "772f848d-478e-4be6-9297-922121176f22",
+      "day": "2026-06-13",
+      "assistantMessages": 356,
+      "locDelta": {
+        "added": 1192,
+        "removed": 554
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "314c53d9-7570-4c99-91d4-9aaa92564669",
+      "day": "2026-06-12",
+      "assistantMessages": 201,
+      "locDelta": {
+        "added": 3250,
+        "removed": 524
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "c08d41f5-9902-4ae8-ab35-2734de22d494",
+      "day": "2026-06-12",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 383,
+        "removed": 450
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "242761a8-86b1-43eb-82c5-376c04156993",
+      "day": "2026-06-12",
+      "assistantMessages": 433,
+      "locDelta": {
+        "added": 383,
+        "removed": 450
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "b8d46aed-fac1-4507-b176-a3f291806b3a",
+      "day": "2026-06-12",
+      "assistantMessages": 202,
+      "locDelta": {
+        "added": 3250,
+        "removed": 524
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "e74f9939-93a6-4749-b214-b5e069e6a2c8",
+      "day": "2026-06-12",
+      "assistantMessages": 9,
+      "locDelta": {
+        "added": 383,
+        "removed": 450
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "89477a36-3122-49b4-9eb7-2a120d94139c",
+      "day": "2026-06-12",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 3250,
+        "removed": 524
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "1d5139a3-7e98-4a95-92f4-8ffba316f5b1",
+      "day": "2026-06-12",
+      "assistantMessages": 22,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "4ada1915-ef62-474b-bc04-a9a8b20a0d20",
+      "day": "2026-06-12",
+      "assistantMessages": 15,
+      "locDelta": {
+        "added": 3250,
+        "removed": 524
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "e6a7cfaa-3f34-4bed-bb9c-408de9ca0913",
+      "day": "2026-06-12",
+      "assistantMessages": 323,
+      "locDelta": {
+        "added": 3250,
+        "removed": 524
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "66433bcf-5600-48e8-bc03-112b28d7a6a6",
+      "day": "2026-06-12",
+      "assistantMessages": 91,
+      "locDelta": {
+        "added": 3250,
+        "removed": 524
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "a629393c-f53b-490e-b9cd-87f5f037b0ae",
+      "day": "2026-06-12",
+      "assistantMessages": 38,
+      "locDelta": {
+        "added": 383,
+        "removed": 450
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "732df62a-029a-4be6-be3c-280e88bf4e19",
+      "day": "2026-06-12",
+      "assistantMessages": 611,
+      "locDelta": {
+        "added": 383,
+        "removed": 450
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "9c5a3632-7ea1-4969-a4c6-917df7aedbe2",
+      "day": "2026-06-12",
+      "assistantMessages": 74,
+      "locDelta": {
+        "added": 3250,
+        "removed": 524
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "9d505b52-5d70-41cc-8cad-318a1180b9d4",
+      "day": "2026-06-12",
+      "assistantMessages": 209,
+      "locDelta": {
+        "added": 383,
+        "removed": 450
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "110dd78e-7210-4d4b-9d0e-bc2296adcc78",
+      "day": "2026-06-12",
+      "assistantMessages": 2,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "e7e86155-dfb6-45d5-8648-cf3b1507f5c9",
+      "day": "2026-06-12",
+      "assistantMessages": 328,
+      "locDelta": {
+        "added": 3250,
+        "removed": 524
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "5b4e9c6c-1615-4998-9530-d971b3a15e58",
+      "day": "2026-06-12",
+      "assistantMessages": 164,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "c0b6b9e5-3f4e-4152-910b-73cd59f6d3e5",
+      "day": "2026-06-12",
+      "assistantMessages": 230,
+      "locDelta": {
+        "added": 383,
+        "removed": 450
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "2d55555c-b26c-47c5-9191-5e9d76a30c14",
+      "day": "2026-06-11",
+      "assistantMessages": 55,
+      "locDelta": {
+        "added": 3745,
+        "removed": 483
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "a7d97c0c-0d96-4a4e-8d30-b770016323dc",
+      "day": "2026-06-11",
+      "assistantMessages": 257,
+      "locDelta": {
+        "added": 2859,
+        "removed": 2766
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "d4a81fe6-f59d-4cc7-8ce3-cb591933871d",
+      "day": "2026-06-11",
+      "assistantMessages": 166,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "b4e2caf8-a70c-4198-8861-3a115057e65f",
+      "day": "2026-06-11",
+      "assistantMessages": 224,
+      "locDelta": {
+        "added": 3745,
+        "removed": 483
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "7728ba6f-c9bb-453f-8c8d-a20a0125fed6",
+      "day": "2026-06-11",
+      "assistantMessages": 248,
+      "locDelta": {
+        "added": 3745,
+        "removed": 483
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock-tauri",
+      "sessionId": "977cc88b-8b90-4e00-a4fe-8d69b41ff62e",
+      "day": "2026-06-11",
+      "assistantMessages": 83,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "ddc17694-c882-42c4-b0a9-b59d1672da6b",
+      "day": "2026-06-11",
+      "assistantMessages": 237,
+      "locDelta": {
+        "added": 2859,
+        "removed": 2766
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "dolomites-plan",
+      "sessionId": "f48923e8-5f05-4dd6-a47c-411d13e61645",
+      "day": "2026-06-11",
+      "assistantMessages": 421,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "src-tauri",
+      "sessionId": "de37ef04-a3c5-4103-89cf-a042a7854a60",
+      "day": "2026-06-11",
+      "assistantMessages": 638,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "bd4b5b30-d20d-4a41-a659-8bcdf1ea3a43",
+      "day": "2026-06-11",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 2859,
+        "removed": 2766
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock-tauri",
+      "sessionId": "7c5b70fd-511e-4389-b713-959f5ca99ce4",
+      "day": "2026-06-11",
+      "assistantMessages": 53,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "f7a24800-01c8-4114-bf19-9901c91f5a3b",
+      "day": "2026-06-10",
+      "assistantMessages": 150,
+      "locDelta": {
+        "added": 7228,
+        "removed": 201
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "dcd555e5-ce40-4f77-8ac3-49604904152b",
+      "day": "2026-06-10",
+      "assistantMessages": 11,
+      "locDelta": {
+        "added": 13306,
+        "removed": 1744
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "4ebb6a74-da97-40cc-911e-25f7b01c8b81",
+      "day": "2026-06-10",
+      "assistantMessages": 164,
+      "locDelta": {
+        "added": 1044,
+        "removed": 243
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "7b5b134a-e150-4ba0-9304-d27f1c7a3947",
+      "day": "2026-06-10",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 1044,
+        "removed": 243
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "src-tauri",
+      "sessionId": "025fbc7f-5b2b-4729-a634-8058c19e91bd",
+      "day": "2026-06-10",
+      "assistantMessages": 180,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "f645f93a-53df-45fd-8f7b-f0b1e4a187e1",
+      "day": "2026-06-10",
+      "assistantMessages": 110,
+      "locDelta": {
+        "added": 7228,
+        "removed": 201
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "43b108e2-f8a0-45e6-8659-750e5165569a",
+      "day": "2026-06-10",
+      "assistantMessages": 23,
+      "locDelta": {
+        "added": 7228,
+        "removed": 201
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-strategy",
+      "sessionId": "8762103e-f1a9-4db0-b3f3-1d834284ce4a",
+      "day": "2026-06-10",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "dc43baf3-7edd-463b-a06b-acf51580b72e",
+      "day": "2026-06-10",
+      "assistantMessages": 71,
+      "locDelta": {
+        "added": 7228,
+        "removed": 201
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "e10fd07d-49d6-420f-8591-ebc0001745c2",
+      "day": "2026-06-10",
+      "assistantMessages": 248,
+      "locDelta": {
+        "added": 1044,
+        "removed": 243
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "13e2eb59-058b-4421-984f-d51c4a01f9dd",
+      "day": "2026-06-10",
+      "assistantMessages": 50,
+      "locDelta": {
+        "added": 7228,
+        "removed": 201
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-strategy",
+      "sessionId": "3b4fec0d-cf93-4960-aeec-64474bf71709",
+      "day": "2026-06-10",
+      "assistantMessages": 28,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "a2e29a31-ab83-4b4e-b597-7c952bf2d288",
+      "day": "2026-06-10",
+      "assistantMessages": 49,
+      "locDelta": {
+        "added": 7228,
+        "removed": 201
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "e2e",
+      "sessionId": "79fdd238-8b99-4ad5-8620-2a0df7a392c4",
+      "day": "2026-06-10",
+      "assistantMessages": 276,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "dd6b1b81-3a94-4eed-947b-3748523b987e",
+      "day": "2026-06-10",
+      "assistantMessages": 84,
+      "locDelta": {
+        "added": 7228,
+        "removed": 201
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-strategy",
+      "sessionId": "b7afe06e-a2fd-43fd-9565-ec8c2c5cc7c8",
+      "day": "2026-06-10",
+      "assistantMessages": 17,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "2707acf8-c8f0-4fcc-99c8-32210b78c423",
+      "day": "2026-06-10",
+      "assistantMessages": 450,
+      "locDelta": {
+        "added": 7228,
+        "removed": 201
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "c3e8e8e0-df74-4116-8bf6-4b139d71dc30",
+      "day": "2026-06-10",
+      "assistantMessages": 1002,
+      "locDelta": {
+        "added": 13306,
+        "removed": 1744
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "74c00193-b814-4942-bded-9faec78535ad",
+      "day": "2026-06-10",
+      "assistantMessages": 184,
+      "locDelta": {
+        "added": 13306,
+        "removed": 1744
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "011415cc-09a2-4b15-872b-9aa8cee8d75c",
+      "day": "2026-06-10",
+      "assistantMessages": 9,
+      "locDelta": {
+        "added": 13306,
+        "removed": 1744
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "eb32e973-83db-474d-92a4-e7c295de4ffa",
+      "day": "2026-06-10",
+      "assistantMessages": 80,
+      "locDelta": {
+        "added": 7228,
+        "removed": 201
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "abd2516a-2b78-4f9a-b3b7-93527ef94bd9",
+      "day": "2026-06-09",
+      "assistantMessages": 401,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "loc-dock",
+      "sessionId": "b861d8bd-e970-4e0d-a117-23f9ff98f38a",
+      "day": "2026-06-09",
+      "assistantMessages": 38,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "339983f3-4a31-46df-b411-205027aab7e7",
+      "day": "2026-06-09",
+      "assistantMessages": 39,
+      "locDelta": {
+        "added": 10983,
+        "removed": 479
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "501efd38-79a1-49e8-9490-e80042ca25e4",
+      "day": "2026-06-09",
+      "assistantMessages": 102,
+      "locDelta": {
+        "added": 10983,
+        "removed": 479
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "b0c01511-2028-4408-b8ea-0015d63ed376",
+      "day": "2026-06-09",
+      "assistantMessages": 301,
+      "locDelta": {
+        "added": 2068,
+        "removed": 340
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "6bbe5597-fd76-47c9-87eb-c393af696e2e",
+      "day": "2026-06-09",
+      "assistantMessages": 54,
+      "locDelta": {
+        "added": 10983,
+        "removed": 479
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "485235d1-0a14-428d-a8d3-44b0321ba35a",
+      "day": "2026-06-09",
+      "assistantMessages": 528,
+      "locDelta": {
+        "added": 10983,
+        "removed": 479
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "10abe279-45ca-4673-98e5-8e07e02c4c5c",
+      "day": "2026-06-09",
+      "assistantMessages": 449,
+      "locDelta": {
+        "added": 2068,
+        "removed": 340
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "27378296-b211-43e7-8085-d60914d9ce3c",
+      "day": "2026-06-09",
+      "assistantMessages": 46,
+      "locDelta": {
+        "added": 2068,
+        "removed": 340
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "36625370-19b4-487a-ae8d-23e3f4881d0b",
+      "day": "2026-06-09",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 2068,
+        "removed": 340
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "acd792d3-1ff2-49c7-99c3-9609bd818a89",
+      "day": "2026-06-09",
+      "assistantMessages": 321,
+      "locDelta": {
+        "added": 10983,
+        "removed": 479
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-strategy",
+      "sessionId": "d316db51-9710-412d-9449-55a6bd7eb739",
+      "day": "2026-06-09",
+      "assistantMessages": 7,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "waypoint",
+      "sessionId": "8ed5bc58-2822-45a3-805d-041c247363df",
+      "day": "2026-06-09",
+      "assistantMessages": 334,
+      "locDelta": {
+        "added": 7834,
+        "removed": 85
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "a3d73c6b-0fd4-4819-ac3f-88ff7dfaec63",
+      "day": "2026-06-09",
+      "assistantMessages": 150,
+      "locDelta": {
+        "added": 10983,
+        "removed": 479
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "dd9ca882-c54e-4001-b626-0775ee8daa2d",
+      "day": "2026-06-09",
+      "assistantMessages": 30,
+      "locDelta": {
+        "added": 10983,
+        "removed": 479
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-strategy",
+      "sessionId": "f01cf3e1-377e-4b3b-8954-595ac6b30519",
+      "day": "2026-06-09",
+      "assistantMessages": 19,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "6815cf89-7a34-4486-9517-3665cf0c0919",
+      "day": "2026-06-09",
+      "assistantMessages": 210,
+      "locDelta": {
+        "added": 2068,
+        "removed": 340
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "waypoint",
+      "sessionId": "1031247d-c0b1-4b5f-9703-d1dace9ec4d4",
+      "day": "2026-06-09",
+      "assistantMessages": 243,
+      "locDelta": {
+        "added": 7834,
+        "removed": 85
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "f43035a4-1abc-4a80-b8ba-6042ff1c3b45",
+      "day": "2026-06-09",
+      "assistantMessages": 230,
+      "locDelta": {
+        "added": 10983,
+        "removed": 479
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "waypoint",
+      "sessionId": "58aa1ad7-8ea8-4f4c-b6e5-82c63ada3a6a",
+      "day": "2026-06-09",
+      "assistantMessages": 14,
+      "locDelta": {
+        "added": 7834,
+        "removed": 85
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paris-apartment-scout",
+      "sessionId": "aefb5226-3647-4810-8274-c5dec552c81d",
+      "day": "2026-06-09",
+      "assistantMessages": 337,
+      "locDelta": {
+        "added": 2068,
+        "removed": 340
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "f5a9691e-820c-4276-9427-36baf0cbc49b",
+      "day": "2026-06-09",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 10983,
+        "removed": 479
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-strategy",
+      "sessionId": "28dbc49c-bac8-4c26-a6b1-8a153da12320",
+      "day": "2026-06-08",
+      "assistantMessages": 99,
+      "locDelta": {
+        "added": 3791,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "lineage-ui",
+      "sessionId": "0d78981c-5209-4d7a-a9ce-957389b65841",
+      "day": "2026-06-08",
+      "assistantMessages": 121,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "97e48c3e-6c48-4458-83d2-d8ec71a94f4b",
+      "day": "2026-06-08",
+      "assistantMessages": 542,
+      "locDelta": {
+        "added": 8594,
+        "removed": 2747
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "5578c29e-6c7a-4b44-beba-9b23203067f1",
+      "day": "2026-06-08",
+      "assistantMessages": 55,
+      "locDelta": {
+        "added": 8594,
+        "removed": 2747
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "9fedadd4-4a7d-4137-a7aa-23fb00d61c2f",
+      "day": "2026-06-08",
+      "assistantMessages": 500,
+      "locDelta": {
+        "added": 8594,
+        "removed": 2747
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "social-media-strategy",
+      "sessionId": "a6ac2a13-074f-437e-bb74-b9e88d58c695",
+      "day": "2026-06-08",
+      "assistantMessages": 462,
+      "locDelta": {
+        "added": 3791,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "369c6c2c-aaa1-4983-9281-0bfcdb2975e4",
+      "day": "2026-06-08",
+      "assistantMessages": 144,
+      "locDelta": {
+        "added": 8594,
+        "removed": 2747
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "planner",
+      "sessionId": "019ea76c-6482-7ac1-bd00-f8ca72dd8ce5",
+      "day": "2026-06-08",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "writer",
+      "sessionId": "019ea76c-1d7e-7c2f-b942-4c3b2b0e4043",
+      "day": "2026-06-08",
+      "assistantMessages": 2,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "writer",
+      "sessionId": "019ea76b-ddf2-7841-81cf-0c226aeba4b5",
+      "day": "2026-06-08",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "writer",
+      "sessionId": "019ea75c-0c19-774a-aae4-e2d270c5ca3c",
+      "day": "2026-06-08",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "Temp",
+      "sessionId": "019ea75b-c814-728f-a427-709f7b8c5888",
+      "day": "2026-06-08",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "writer",
+      "sessionId": "019ea75a-a1fc-7372-bab6-5389f8968564",
+      "day": "2026-06-08",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "writer",
+      "sessionId": "019ea75a-6529-72c7-9d15-05eb251adb19",
+      "day": "2026-06-08",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "writer",
+      "sessionId": "019ea75a-2c98-7f83-af14-0c7475b1fec0",
+      "day": "2026-06-08",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "writer",
+      "sessionId": "019ea759-e881-71e0-89ea-8a06ac99f19e",
+      "day": "2026-06-08",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "0f877933-a0ff-41d4-bbd1-b7d64a8762b1",
+      "day": "2026-06-08",
+      "assistantMessages": 480,
+      "locDelta": {
+        "added": 8594,
+        "removed": 2747
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "generative-ableton-atmospheric",
+      "sessionId": "68980022-4bb9-4d93-890b-e9178668ae45",
+      "day": "2026-06-08",
+      "assistantMessages": 343,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "conways-atmos-audio",
+      "sessionId": "e99b2a9c-bb91-4f0e-97b4-b73edb06d5e2",
+      "day": "2026-06-07",
+      "assistantMessages": 148,
+      "locDelta": {
+        "added": 2987,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "pi-agent-workforce",
+      "sessionId": "d97a7e9c-0ebe-433d-95d1-b91e756f84da",
+      "day": "2026-06-07",
+      "assistantMessages": 930,
+      "locDelta": {
+        "added": 16017,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "e2cf9b14-38e1-4d55-b8fa-a137494d75d1",
+      "day": "2026-05-29",
+      "assistantMessages": 5,
+      "locDelta": {
+        "added": 4133,
+        "removed": 990
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "4aee37cc-057f-4686-b4e4-d39845633c2f",
+      "day": "2026-05-29",
+      "assistantMessages": 199,
+      "locDelta": {
+        "added": 4133,
+        "removed": 990
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "123d81b4-9ac6-45a9-8e43-629b8c17e85b",
+      "day": "2026-05-29",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 4133,
+        "removed": 990
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "037f9bff-8031-4e54-b8b6-716b44b3ee08",
+      "day": "2026-05-29",
+      "assistantMessages": 233,
+      "locDelta": {
+        "added": 4133,
+        "removed": 990
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "985f3ab3-4e66-4875-94f0-228eb793d66d",
+      "day": "2026-05-28",
+      "assistantMessages": 400,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "d38c0561-b343-4c18-9799-1887a53c3b31",
+      "day": "2026-05-28",
+      "assistantMessages": 179,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "59218174-1291-4027-b776-58f21a0c722b",
+      "day": "2026-05-28",
+      "assistantMessages": 836,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "0556d6c9-f41e-479c-8b10-1f75b15017bd",
+      "day": "2026-05-28",
+      "assistantMessages": 14,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "b5de359a-74f9-496d-8176-c9642de788fa",
+      "day": "2026-05-28",
+      "assistantMessages": 91,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "e2b64292-ecd8-4ca9-a2af-a8a1c1dab852",
+      "day": "2026-05-28",
+      "assistantMessages": 254,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "80a3433a-f2cb-439d-9e87-385a4431d346",
+      "day": "2026-05-28",
+      "assistantMessages": 4,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "performance-diagnosis",
+      "sessionId": "af0ad553-9800-4902-b20d-9bd5b935ccb1",
+      "day": "2026-05-28",
+      "assistantMessages": 37,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "design-system-playground",
+      "sessionId": "79f92405-3b69-4c85-b149-b52302fa42a6",
+      "day": "2026-05-28",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 8856,
+        "removed": 105
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "3ac2bbdc-19bf-4ada-839b-9c82686efd98",
+      "day": "2026-05-28",
+      "assistantMessages": 214,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "design-system-playground",
+      "sessionId": "6f6618af-fc4b-4588-a3c8-1cfb5c2933d4",
+      "day": "2026-05-28",
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 8856,
+        "removed": 105
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "7ba11525-4013-45f4-a06d-131ae693c4b6",
+      "day": "2026-05-28",
+      "assistantMessages": 22,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "design-system-playground",
+      "sessionId": "b16f537f-b496-4097-bcf6-29ef9d0b4160",
+      "day": "2026-05-28",
+      "assistantMessages": 19,
+      "locDelta": {
+        "added": 8856,
+        "removed": 105
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "design-system-playground",
+      "sessionId": "e9fd2169-51c7-4727-9785-6c00b7326d64",
+      "day": "2026-05-28",
+      "assistantMessages": 19,
+      "locDelta": {
+        "added": 8856,
+        "removed": 105
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "performance-diagnosis",
+      "sessionId": "1196be44-d126-4917-9cd7-cfb08ef2c52f",
+      "day": "2026-05-28",
+      "assistantMessages": 35,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "performance-diagnosis",
+      "sessionId": "7f442c7c-1032-4e83-906a-633839ae1855",
+      "day": "2026-05-28",
+      "assistantMessages": 130,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "design-system-playground",
+      "sessionId": "9adb639f-5f39-41c4-8cd1-fefe90e9f671",
+      "day": "2026-05-28",
+      "assistantMessages": 190,
+      "locDelta": {
+        "added": 8856,
+        "removed": 105
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "ca8c65f6-c51f-46ee-9424-30f3aab1823e",
+      "day": "2026-05-28",
+      "assistantMessages": 16,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "edc048aa-f47a-49d8-8868-02a1d7f1ea7b",
+      "day": "2026-05-28",
+      "assistantMessages": 565,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "62957696-e257-4b85-b977-f357da78ea57",
+      "day": "2026-05-28",
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "968e1ff8-4468-4b92-a0b8-afaf9d451b48",
+      "day": "2026-05-28",
+      "assistantMessages": 57,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "30671327-895f-4b91-80aa-bd21b6d5e645",
+      "day": "2026-05-28",
+      "assistantMessages": 192,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "performance-diagnosis",
+      "sessionId": "badc064c-6a5f-412f-be38-4435a6a833a6",
+      "day": "2026-05-28",
+      "assistantMessages": 0,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "scripts",
+      "sessionId": "4d94c939-de1e-4180-80de-6cfa335bc783",
+      "day": "2026-05-28",
+      "assistantMessages": 209,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "b1620b43-7472-4369-a105-0fa8c09173f0",
+      "day": "2026-05-28",
+      "assistantMessages": 108,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "e02427dd-1d9f-4669-aafb-b8579adbacad",
+      "day": "2026-05-28",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "44d0ed00-c9ef-4f24-97fe-f03163d92711",
+      "day": "2026-05-28",
+      "assistantMessages": 231,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "f0daaf6f-a17d-4411-9a13-2257bb18e307",
+      "day": "2026-05-28",
+      "assistantMessages": 28,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "8559cb2e-3174-44eb-a390-8c4e5bdf4d73",
+      "day": "2026-05-28",
+      "assistantMessages": 117,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "47c5513d-a682-4d7b-a590-8d1f6e406246",
+      "day": "2026-05-28",
+      "assistantMessages": 78,
+      "locDelta": {
+        "added": 12653,
+        "removed": 3083
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "b4630e21-a165-4818-b85f-6ef98980033f",
+      "day": "2026-05-27",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "fca07de1-3f0d-4fb8-8a34-1282817d5451",
+      "day": "2026-05-27",
+      "assistantMessages": 16,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e6b5f-dce2-74f2-ab44-dc2b07ed3e94",
+      "day": "2026-05-27",
+      "assistantMessages": 12,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "4d32f8ac-fcb2-4143-94c0-314d38296df6",
+      "day": "2026-05-27",
+      "assistantMessages": 257,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e6b0b-f195-7185-a9de-2719205d42cb",
+      "day": "2026-05-27",
+      "assistantMessages": 25,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "e8840e83-9bee-4889-8127-351bd8889733",
+      "day": "2026-05-27",
+      "assistantMessages": 187,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "d4c10ceb-f4f6-45f6-95b3-a8e83f29ef93",
+      "day": "2026-05-27",
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "a371d2ab-f066-4f6f-86ce-b4f94d87d753",
+      "day": "2026-05-27",
+      "assistantMessages": 40,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e699e-5ff9-7cae-9211-d32263bd17e3",
+      "day": "2026-05-27",
+      "assistantMessages": 39,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "1b314e92-bac5-4e38-8b07-61b4deb07ae2",
+      "day": "2026-05-27",
+      "assistantMessages": 38,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "5c8a00c0-ddbb-44f4-8542-306e160fb4b3",
+      "day": "2026-05-27",
+      "assistantMessages": 17,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "ea3701db-b1d3-42e7-bb24-e1a4c70645cf",
+      "day": "2026-05-27",
+      "assistantMessages": 66,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "f097a571-7220-4123-9a93-23f824d6d6ed",
+      "day": "2026-05-27",
+      "assistantMessages": 47,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "5c079e7a-1baf-42ea-a0c6-7584db82db07",
+      "day": "2026-05-27",
+      "assistantMessages": 24,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "f525af8c-4487-4c1f-a486-a8b6a221b7cd",
+      "day": "2026-05-27",
+      "assistantMessages": 87,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "32727349-02f4-4ad9-9416-04ad169b0b7c",
+      "day": "2026-05-27",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e685a-4a01-7e32-bf55-27ac40055d25",
+      "day": "2026-05-27",
+      "assistantMessages": 18,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "agents",
+      "sessionId": "5f125bc5-0e19-40ce-ade1-923d30117712",
+      "day": "2026-05-27",
+      "assistantMessages": 565,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "47090151-66a9-4caa-8216-52cfcbbe2141",
+      "day": "2026-05-27",
+      "assistantMessages": 137,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e6827-538c-7d11-b353-2be0e09ce954",
+      "day": "2026-05-27",
+      "assistantMessages": 32,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "992de349-518f-4471-b40c-01f25873813c",
+      "day": "2026-05-27",
+      "assistantMessages": 109,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "f16c5169-9fc5-43cd-a966-d8deb94eae73",
+      "day": "2026-05-27",
+      "assistantMessages": 134,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "8ac3de67-36bc-40e9-bf52-07f43bd4d4f6",
+      "day": "2026-05-27",
+      "assistantMessages": 199,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "eb4d7d82-999a-4e25-a27d-c3556268c721",
+      "day": "2026-05-27",
+      "assistantMessages": 33,
+      "locDelta": {
+        "added": 22905,
+        "removed": 8808
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "98fe1f90-462b-47f7-95b0-fa1b3d80518b",
+      "day": "2026-05-26",
+      "assistantMessages": 203,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "490e4f15-1150-49bf-9c11-1cbd1b798623",
+      "day": "2026-05-26",
+      "assistantMessages": 68,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "7e45a957-52f3-41e6-977d-30e1c6c1d5f5",
+      "day": "2026-05-26",
+      "assistantMessages": 67,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "ab1e9803-56a5-43c0-a46a-47479d56b69b",
+      "day": "2026-05-26",
+      "assistantMessages": 43,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "3cf9f96f-3840-48d7-ab4e-f142abadb473",
+      "day": "2026-05-26",
+      "assistantMessages": 109,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "933742f7-ed80-43bf-b49b-ece6605da828",
+      "day": "2026-05-26",
+      "assistantMessages": 18,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "1d44218e-8327-4f0e-a481-f57726795ead",
+      "day": "2026-05-26",
+      "assistantMessages": 146,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "9281df58-6bc0-4177-b190-49d40cb5cc52",
+      "day": "2026-05-26",
+      "assistantMessages": 36,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "3527c31d-1272-4e53-9af3-aee0d763191c",
+      "day": "2026-05-26",
+      "assistantMessages": 10,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "7494c5c7-8344-4154-952c-fca9b2b93156",
+      "day": "2026-05-26",
+      "assistantMessages": 522,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "b7f13233-66df-43cc-9456-dae397b5e468",
+      "day": "2026-05-26",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "13205808-17f6-49ed-8124-d526941b5ba0",
+      "day": "2026-05-26",
+      "assistantMessages": 46,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "79f8dd15-0d0e-4b36-b3ad-ff5b7976ec48",
+      "day": "2026-05-26",
+      "assistantMessages": 97,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "vibe-coding-dock",
+      "sessionId": "019e650e-0914-7f3e-83a2-e5392099abb7",
+      "day": "2026-05-26",
+      "assistantMessages": 75,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "agents",
+      "sessionId": "72fb1b9f-bd72-4ab0-8a96-f8799878a955",
+      "day": "2026-05-26",
+      "assistantMessages": 153,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "vibe-coding-dock",
+      "sessionId": "019e64a9-444d-7b88-ae36-931880fc0581",
+      "day": "2026-05-26",
+      "assistantMessages": 53,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "8369e901-a0b3-4b8e-b2e6-bf0de21379c8",
+      "day": "2026-05-26",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "c0151e6c-5393-48b8-bee2-7bfa31988b95",
+      "day": "2026-05-26",
+      "assistantMessages": 147,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "1ab1ab93-35c5-4197-b5c9-8dd2439c7605",
+      "day": "2026-05-26",
+      "assistantMessages": 429,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "b8dbf232-b993-4dfa-ba88-864aa3de28a7",
+      "day": "2026-05-26",
+      "assistantMessages": 87,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "3b4238e1-851a-4e58-8e1d-6eac67092522",
+      "day": "2026-05-26",
+      "assistantMessages": 15,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "a2335eb4-d67b-418e-b1be-d9afae78a3b6",
+      "day": "2026-05-26",
+      "assistantMessages": 117,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e6431-7173-736c-84ac-235b8791cad0",
+      "day": "2026-05-26",
+      "assistantMessages": 5,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e6430-3820-7dc8-8e12-a3b36eb216e4",
+      "day": "2026-05-26",
+      "assistantMessages": 11,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "d6237e34-808f-46d9-9f4d-9170bd51b17a",
+      "day": "2026-05-26",
+      "assistantMessages": 148,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "e00492f2-23cc-4db4-b6ad-accfb2f65011",
+      "day": "2026-05-26",
+      "assistantMessages": 55,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "2afa8b99-ffdb-4c0d-9560-6e975338a2cc",
+      "day": "2026-05-26",
+      "assistantMessages": 54,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "ee66af95-06ff-419f-ae0f-d24577d5af9c",
+      "day": "2026-05-26",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "631d1ff6-09fb-4161-8e73-c7bccc9c1a5a",
+      "day": "2026-05-26",
+      "assistantMessages": 291,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "10a18ce3-c04e-407e-9942-eb4b6320428f",
+      "day": "2026-05-26",
+      "assistantMessages": 37,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "a5697468-1fb1-419a-a2c8-eecc10b3172a",
+      "day": "2026-05-26",
+      "assistantMessages": 64,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "157bec08-02b9-4e70-9e00-e0a79e902168",
+      "day": "2026-05-26",
+      "assistantMessages": 42,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "082b2314-e966-44cc-ba7f-f68fa43f2852",
+      "day": "2026-05-26",
+      "assistantMessages": 121,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "d5481821-f897-4d62-8839-9fbd71bc473d",
+      "day": "2026-05-26",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "b9a5efc8-9eb5-4706-a12b-4b8e6c57e8cd",
+      "day": "2026-05-26",
+      "assistantMessages": 9,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "3a2fa5f0-f403-480e-a9ef-fcd6f37e4f5f",
+      "day": "2026-05-26",
+      "assistantMessages": 293,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "0872fde8-9f65-4425-b0e6-31f2b2702eae",
+      "day": "2026-05-26",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "6686e6ce-b429-42eb-afee-dd2a7edf4446",
+      "day": "2026-05-26",
+      "assistantMessages": 87,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "55111d71-b138-4409-8c95-e1123d2c6080",
+      "day": "2026-05-26",
+      "assistantMessages": 39,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "f4a15663-0ff8-400d-863b-53b804bfd15b",
+      "day": "2026-05-26",
+      "assistantMessages": 122,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "c31ce01a-8656-4815-b96c-9246d3187468",
+      "day": "2026-05-26",
+      "assistantMessages": 76,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "b4ab1c4e-b9b6-4b08-bfea-6e393e9b45d8",
+      "day": "2026-05-26",
+      "assistantMessages": 156,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "cbbdf12e-ecfd-47ed-9f4a-869fea5e7d3d",
+      "day": "2026-05-26",
+      "assistantMessages": 10,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "843f43dc-984c-4c78-a825-e6ff57398d71",
+      "day": "2026-05-26",
+      "assistantMessages": 180,
+      "locDelta": {
+        "added": 39659,
+        "removed": 5006
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "80fe705f-ff0b-4d7c-a8ff-1efed28650d4",
+      "day": "2026-05-25",
+      "assistantMessages": 40,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "7527a323-15dd-4800-8cbf-deebcac4df4b",
+      "day": "2026-05-25",
+      "assistantMessages": 89,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "a1340a9f-63d3-4462-81bc-7cde81ae2489",
+      "day": "2026-05-25",
+      "assistantMessages": 7,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "1909fac0-8ea4-454e-a802-8fe7ae4620de",
+      "day": "2026-05-25",
+      "assistantMessages": 176,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "13960369-6640-4651-b10e-0b9e8098cee3",
+      "day": "2026-05-25",
+      "assistantMessages": 62,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "bb22a736-7e7b-4815-878b-04e25c3b92d4",
+      "day": "2026-05-25",
+      "assistantMessages": 119,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "a6849afd-7c76-473a-9ce8-0fd58d134927",
+      "day": "2026-05-25",
+      "assistantMessages": 102,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "34847633-57e9-47cf-9b0f-2d0d412891ea",
+      "day": "2026-05-25",
+      "assistantMessages": 105,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "c947e04f-2601-4871-9b5c-8558b0eeae2c",
+      "day": "2026-05-25",
+      "assistantMessages": 11,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "8ba78142-d4c7-453d-b6f4-757c10fe7e7a",
+      "day": "2026-05-25",
+      "assistantMessages": 26,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "claude",
+      "repo": "paperclip-eval",
+      "sessionId": "956e9f5f-dd17-403e-be98-b9b181192603",
+      "day": "2026-05-25",
+      "assistantMessages": 423,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e5eb7-420f-708a-a7c1-9991b7a19236",
+      "day": "2026-05-25",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e5e88-06c5-7f58-8ecb-913711b1de46",
+      "day": "2026-05-25",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e5e82-8d5e-755e-bab2-5baa72cc2916",
+      "day": "2026-05-25",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e5e7a-fa0a-7bc3-8187-0aefa5619c51",
+      "day": "2026-05-25",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e5e78-5d0c-7857-92d3-93f0fb247c71",
+      "day": "2026-05-25",
+      "assistantMessages": 18,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e5e74-ab7b-704e-b272-a8cba316d935",
+      "day": "2026-05-25",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e5e6b-53d6-72b9-bb94-7a09dcb8bb34",
+      "day": "2026-05-25",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 6503,
+        "removed": 424
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e5ab3-ef95-7aeb-9d36-618d1856dedf",
+      "day": "2026-05-24",
+      "assistantMessages": 21,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "paperclip-eval",
+      "sessionId": "019e5aae-0ea3-77dd-98f0-e78a8018fb9f",
+      "day": "2026-05-24",
+      "assistantMessages": 3,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5a88-453e-7f32-ae31-51c873d34919",
+      "day": "2026-05-24",
+      "assistantMessages": 12,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "code-roomba",
+      "sessionId": "019e59db-8999-7c5c-a988-43e0d78ac81c",
+      "day": "2026-05-24",
+      "assistantMessages": 19,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e595a-cebc-757c-b529-f937ab91bf81",
+      "day": "2026-05-24",
+      "assistantMessages": 37,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5949-a08a-775c-a45b-43fdae9a3fee",
+      "day": "2026-05-24",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5948-e2d8-7045-aa07-56b268706065",
+      "day": "2026-05-24",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5948-5689-7c91-9cbd-7788c17452fb",
+      "day": "2026-05-24",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5946-c1f1-7fe7-839c-db235ed7c070",
+      "day": "2026-05-24",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5942-4b30-7a44-912d-0940de831dbc",
+      "day": "2026-05-24",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5940-d4e7-77c1-a625-de5a7f54fd36",
+      "day": "2026-05-24",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5938-af84-7e6a-a723-123e87208c27",
+      "day": "2026-05-24",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5934-8c92-7f9e-9239-134e12ac3ad2",
+      "day": "2026-05-24",
+      "assistantMessages": 25,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5932-fc83-76a1-8cd1-ce795c51033e",
+      "day": "2026-05-24",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e592f-2e23-7c44-9e8d-6b2b2639f327",
+      "day": "2026-05-24",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e592e-ab5c-77e3-b8dc-96e7e93e9b49",
+      "day": "2026-05-24",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "spectr",
+      "sessionId": "019e5925-8202-726b-b876-13d3084930be",
+      "day": "2026-05-24",
+      "assistantMessages": 6,
+      "locDelta": {
+        "added": 2467,
+        "removed": 149
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "code-roomba",
+      "sessionId": "019e56b2-9fd3-79c8-8b1b-f0366d6ac831",
+      "day": "2026-05-23",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 8348,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "code-roomba",
+      "sessionId": "019e568e-43ca-7b93-b071-dab52c45e809",
+      "day": "2026-05-23",
+      "assistantMessages": 58,
+      "locDelta": {
+        "added": 8348,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "code-roomba",
+      "sessionId": "019e567f-4600-7fb8-bf3a-785e7621f765",
+      "day": "2026-05-23",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 8348,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "code-roomba",
+      "sessionId": "019e566e-9030-749a-91da-544f290a3833",
+      "day": "2026-05-23",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 8348,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "code-roomba",
+      "sessionId": "019e5668-d714-732c-95b5-b21212e24b40",
+      "day": "2026-05-23",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 8348,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "pi",
+      "repo": "code-roomba",
+      "sessionId": "019e5591-d69f-720f-9d4a-9b3306775bfe",
+      "day": "2026-05-23",
+      "assistantMessages": 1,
+      "locDelta": {
+        "added": 8348,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "codex",
+      "repo": "dataplatform-mini",
+      "sessionId": "019967e4-8702-7e71-8d65-0ee1ce207ff4",
+      "day": "2025-09-20",
+      "assistantMessages": 0,
+      "locDelta": {
+        "added": 1943,
+        "removed": 0
+      },
+      "prRefs": []
+    }
+  ]
+}

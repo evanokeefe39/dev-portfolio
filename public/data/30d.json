@@ -1,0 +1,1343 @@
+{
+  "snapshotDate": "2026-08-18",
+  "generatedAt": "2026-08-18T13:13:19+02:00",
+  "range": "30d",
+  "sessions": [
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01450-a1dc-7000-9d57-4e64387cc396",
+      "day": "2026-08-18",
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a0143a-ee52-7000-be13-23b8cad0dc11",
+      "day": "2026-08-18",
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01403-0450-7000-812f-0a7c49c2921e",
+      "day": "2026-08-18",
+      "assistantMessages": 93,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a0118e-becf-7000-9b57-e3a2cd3cc129",
+      "day": "2026-08-17",
+      "assistantMessages": 9,
+      "locDelta": {
+        "added": 2622,
+        "removed": 1015
+      },
+      "prRefs": [
+        17,
+        18
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01127-c894-7000-b88e-fddb9694f503",
+      "day": "2026-08-17",
+      "assistantMessages": 147,
+      "locDelta": {
+        "added": 20908,
+        "removed": 108
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01037-f3b8-7000-8480-a87e884de7e3",
+      "day": "2026-08-17",
+      "assistantMessages": 143,
+      "locDelta": {
+        "added": 20908,
+        "removed": 108
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "repos",
+      "sessionId": "01a00ff8-23e8-7000-bd5d-a623357966aa",
+      "day": "2026-08-17",
+      "assistantMessages": 21,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "01a00fe5-cf54-7000-8f63-f221f16ec55e",
+      "day": "2026-08-17",
+      "assistantMessages": 105,
+      "locDelta": {
+        "added": 2488,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00fdc-a129-7000-9b9f-de4cc543d3a0",
+      "day": "2026-08-17",
+      "assistantMessages": 51,
+      "locDelta": {
+        "added": 2622,
+        "removed": 1015
+      },
+      "prRefs": [
+        17,
+        18
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00ea9-e9d9-7000-a0ae-d0dacebc4ecd",
+      "day": "2026-08-17",
+      "assistantMessages": 80,
+      "locDelta": {
+        "added": 2622,
+        "removed": 1015
+      },
+      "prRefs": [
+        17,
+        18
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "01a00e91-609e-7000-aca0-07a17d56be9f",
+      "day": "2026-08-17",
+      "assistantMessages": 83,
+      "locDelta": {
+        "added": 2488,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00b46-47d8-7000-8993-e281d104a7c2",
+      "day": "2026-08-16",
+      "assistantMessages": 106,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a00b31-82e9-7000-b113-8e565a346dec",
+      "day": "2026-08-16",
+      "assistantMessages": 120,
+      "locDelta": {
+        "added": 289,
+        "removed": 124
+      },
+      "prRefs": [
+        30,
+        29,
+        28
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "monet",
+      "sessionId": "01a00b2e-4a4b-7000-a51a-0a921774138c",
+      "day": "2026-08-16",
+      "assistantMessages": 18,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "monet-saas",
+      "sessionId": "01a00ab1-f8f1-7000-b912-8963ebff0252",
+      "day": "2026-08-16",
+      "assistantMessages": 40,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "monet",
+      "sessionId": "01a00a9e-7427-7000-8032-711502331d72",
+      "day": "2026-08-16",
+      "assistantMessages": 50,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "01a00a91-285b-7000-8dcf-64c31402a3fc",
+      "day": "2026-08-16",
+      "assistantMessages": 88,
+      "locDelta": {
+        "added": 1337,
+        "removed": 143
+      },
+      "prRefs": [
+        8,
+        7,
+        6,
+        5,
+        4
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a00a7d-2a60-7000-8b8b-6ece2052f69d",
+      "day": "2026-08-16",
+      "assistantMessages": 106,
+      "locDelta": {
+        "added": 289,
+        "removed": 124
+      },
+      "prRefs": [
+        30,
+        29,
+        28
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a00a3e-47c8-7000-9ba1-efa7d240e0f3",
+      "day": "2026-08-16",
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 289,
+        "removed": 124
+      },
+      "prRefs": [
+        30,
+        29,
+        28
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "01a006a2-d03f-7000-b1fe-79595105f710",
+      "day": "2026-08-15",
+      "assistantMessages": 118,
+      "locDelta": {
+        "added": 1357,
+        "removed": 298
+      },
+      "prRefs": [
+        3,
+        2
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00658-0a4f-7000-ab9e-8f1d82a95757",
+      "day": "2026-08-15",
+      "assistantMessages": 242,
+      "locDelta": {
+        "added": 404,
+        "removed": 36
+      },
+      "prRefs": [
+        16,
+        15
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a001ee-3b16-7000-a64f-8092ef4023cc",
+      "day": "2026-08-14",
+      "assistantMessages": 101,
+      "locDelta": {
+        "added": 4686,
+        "removed": 1545
+      },
+      "prRefs": [
+        14,
+        13,
+        11,
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a001e1-9e55-7000-8f01-56aa435ed756",
+      "day": "2026-08-14",
+      "assistantMessages": 148,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "01a001dd-7e1a-7000-937a-5c2a3304bff5",
+      "day": "2026-08-14",
+      "assistantMessages": 82,
+      "locDelta": {
+        "added": 349,
+        "removed": 0
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "crm",
+      "sessionId": "01a001c2-866b-7000-a2a1-de1fc129e660",
+      "day": "2026-08-14",
+      "assistantMessages": 205,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a0013e-ac5d-7000-a3df-f0d8bdf66ab1",
+      "day": "2026-08-14",
+      "assistantMessages": 191,
+      "locDelta": {
+        "added": 4686,
+        "removed": 1545
+      },
+      "prRefs": [
+        14,
+        13,
+        11,
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "01a0011f-45d2-7000-bfc6-b262e5b78fe3",
+      "day": "2026-08-14",
+      "assistantMessages": 90,
+      "locDelta": {
+        "added": 1377,
+        "removed": 171
+      },
+      "prRefs": [
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a000a6-c1ca-7000-93d0-4a28e385ed00",
+      "day": "2026-08-14",
+      "assistantMessages": 132,
+      "locDelta": {
+        "added": 4686,
+        "removed": 1545
+      },
+      "prRefs": [
+        14,
+        13,
+        11,
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "01a00074-4c25-7000-bc6c-41e9d5368c4c",
+      "day": "2026-08-14",
+      "assistantMessages": 69,
+      "locDelta": {
+        "added": 1377,
+        "removed": 171
+      },
+      "prRefs": [
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fff9d-79e9-7000-95cc-9376ce721133",
+      "day": "2026-08-14",
+      "assistantMessages": 38,
+      "locDelta": {
+        "added": 1377,
+        "removed": 171
+      },
+      "prRefs": [
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ffc59-5c2b-7000-9de2-761c3bc0d18e",
+      "day": "2026-08-13",
+      "assistantMessages": 269,
+      "locDelta": {
+        "added": 1784,
+        "removed": 574
+      },
+      "prRefs": [
+        12,
+        13,
+        11,
+        10,
+        9
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ffb37-b843-7000-a0cf-92d427ce584c",
+      "day": "2026-08-13",
+      "assistantMessages": 64,
+      "locDelta": {
+        "added": 1784,
+        "removed": 574
+      },
+      "prRefs": [
+        12,
+        13,
+        11,
+        10,
+        9
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "019ffae9-7d1a-7000-a21c-6461eb9720c5",
+      "day": "2026-08-13",
+      "assistantMessages": 77,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "model-research",
+      "sessionId": "019ffac6-88c5-7000-8167-33a041c0e05e",
+      "day": "2026-08-13",
+      "assistantMessages": 22,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ffa98-dc25-7000-8b20-082666dd20a3",
+      "day": "2026-08-13",
+      "assistantMessages": 296,
+      "locDelta": {
+        "added": 1784,
+        "removed": 574
+      },
+      "prRefs": [
+        12,
+        13,
+        11,
+        10,
+        9
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ffa26-0d0f-7000-8662-c89ffc32df80",
+      "day": "2026-08-13",
+      "assistantMessages": 123,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff659-5dd1-7000-861e-8aac24d6863f",
+      "day": "2026-08-12",
+      "assistantMessages": 125,
+      "locDelta": {
+        "added": 1671,
+        "removed": 320
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff64e-1fe6-7000-af51-eddc47c2c31e",
+      "day": "2026-08-12",
+      "assistantMessages": 39,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff60b-1028-7000-ba52-da3a6df7d6fa",
+      "day": "2026-08-12",
+      "assistantMessages": 4,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff5d9-04bc-7000-9cee-2a2eccd138f8",
+      "day": "2026-08-12",
+      "assistantMessages": 5,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff5ca-5e5f-7000-b963-127beafc6e52",
+      "day": "2026-08-12",
+      "assistantMessages": 134,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff4fc-5a71-7000-bf4e-03d48ab0de09",
+      "day": "2026-08-12",
+      "assistantMessages": 166,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff4fa-7574-7000-8977-9337b03d7d95",
+      "day": "2026-08-12",
+      "assistantMessages": 123,
+      "locDelta": {
+        "added": 1671,
+        "removed": 320
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff4f7-d8c9-7000-ac2f-5c05f7d1b0fb",
+      "day": "2026-08-12",
+      "assistantMessages": 27,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142
+      },
+      "prRefs": [
+        12
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ff4ec-6aa7-7000-89fb-52524f9aa2ca",
+      "day": "2026-08-12",
+      "assistantMessages": 221,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "019ff166-0864-7000-a2c0-bfc7c25c984d",
+      "day": "2026-08-11",
+      "assistantMessages": 65,
+      "locDelta": {
+        "added": 718,
+        "removed": 666
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff14a-6c84-7000-8f44-8b0a7819da8a",
+      "day": "2026-08-11",
+      "assistantMessages": 116,
+      "locDelta": {
+        "added": 8060,
+        "removed": 6403
+      },
+      "prRefs": [
+        4,
+        5
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "019ff0b6-b327-7000-b1c7-6c738a61f18c",
+      "day": "2026-08-11",
+      "assistantMessages": 132,
+      "locDelta": {
+        "added": 718,
+        "removed": 666
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff0b5-8d00-7000-b5b9-676f00ec9b4a",
+      "day": "2026-08-11",
+      "assistantMessages": 240,
+      "locDelta": {
+        "added": 1670,
+        "removed": 417
+      },
+      "prRefs": [
+        4,
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff0a2-627c-7000-9bcb-df0f7d58cd37",
+      "day": "2026-08-11",
+      "assistantMessages": 328,
+      "locDelta": {
+        "added": 8060,
+        "removed": 6403
+      },
+      "prRefs": [
+        4,
+        5
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff02d-0689-7000-a908-33b25f351043",
+      "day": "2026-08-11",
+      "assistantMessages": 181,
+      "locDelta": {
+        "added": 8060,
+        "removed": 6403
+      },
+      "prRefs": [
+        4,
+        5
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff022-2833-7000-809a-4ddf2e95d8ba",
+      "day": "2026-08-11",
+      "assistantMessages": 107,
+      "locDelta": {
+        "added": 1670,
+        "removed": 417
+      },
+      "prRefs": [
+        4,
+        3
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019fed4d-b218-7000-a01e-4eb22252fbaf",
+      "day": "2026-08-10",
+      "assistantMessages": 147,
+      "locDelta": {
+        "added": 5936,
+        "removed": 1274
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fed29-b69c-7000-89fa-17b081f878f7",
+      "day": "2026-08-10",
+      "assistantMessages": 12,
+      "locDelta": {
+        "added": 1979,
+        "removed": 234
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019fecd1-f114-7000-89ba-88ea19f20d0c",
+      "day": "2026-08-10",
+      "assistantMessages": 65,
+      "locDelta": {
+        "added": 5936,
+        "removed": 1274
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019fecac-583f-7000-a919-52ce735baf6f",
+      "day": "2026-08-10",
+      "assistantMessages": 89,
+      "locDelta": {
+        "added": 5936,
+        "removed": 1274
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fec9e-e8cf-7000-b005-98278e255933",
+      "day": "2026-08-10",
+      "assistantMessages": 126,
+      "locDelta": {
+        "added": 8772,
+        "removed": 685
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fec63-c841-7000-8ea3-1355f3666f51",
+      "day": "2026-08-10",
+      "assistantMessages": 252,
+      "locDelta": {
+        "added": 8772,
+        "removed": 685
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019fec62-a661-7000-a258-11b627a46b28",
+      "day": "2026-08-10",
+      "assistantMessages": 79,
+      "locDelta": {
+        "added": 5936,
+        "removed": 1274
+      },
+      "prRefs": [
+        1
+      ]
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fec4e-5e62-7000-9c8a-a4444166e83e",
+      "day": "2026-08-10",
+      "assistantMessages": 554,
+      "locDelta": {
+        "added": 1979,
+        "removed": 234
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fec1c-5283-7000-86b3-47c66953f676",
+      "day": "2026-08-10",
+      "assistantMessages": 71,
+      "locDelta": {
+        "added": 8772,
+        "removed": 685
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019febfa-94d9-7000-aa0f-381a56e236a5",
+      "day": "2026-08-10",
+      "assistantMessages": 233,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019febb2-5701-7000-9037-968462d41b9b",
+      "day": "2026-08-10",
+      "assistantMessages": 255,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019febb0-3374-7000-bea0-a9c51ff11819",
+      "day": "2026-08-10",
+      "assistantMessages": 132,
+      "locDelta": {
+        "added": 8772,
+        "removed": 685
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "jeff-website-enhance",
+      "sessionId": "019feb62-b877-7000-887b-01ae65b437d1",
+      "day": "2026-08-10",
+      "assistantMessages": 108,
+      "locDelta": {
+        "added": 8149,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019feb59-28fb-7000-8fde-2af40b077354",
+      "day": "2026-08-10",
+      "assistantMessages": 141,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fe72a-5db7-7000-aa58-1a514bf79ab4",
+      "day": "2026-08-09",
+      "assistantMessages": 56,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fe723-42eb-7000-96da-508bb7f1fb34",
+      "day": "2026-08-09",
+      "assistantMessages": 385,
+      "locDelta": {
+        "added": 2459,
+        "removed": 1047
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fe6dd-7799-7000-868e-d30c861519c7",
+      "day": "2026-08-09",
+      "assistantMessages": 100,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fe657-1387-7000-ae92-8eca44220007",
+      "day": "2026-08-09",
+      "assistantMessages": 171,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fe654-0f13-7000-b038-b65b34e5f55d",
+      "day": "2026-08-09",
+      "assistantMessages": 87,
+      "locDelta": {
+        "added": 2459,
+        "removed": 1047
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fe255-c629-7000-bc97-5bb8df822170",
+      "day": "2026-08-08",
+      "assistantMessages": 208,
+      "locDelta": {
+        "added": 96,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fe244-a89f-7000-b14a-228804e74394",
+      "day": "2026-08-08",
+      "assistantMessages": 253,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fdcb2-c71e-7000-839b-2b616befcc55",
+      "day": "2026-08-07",
+      "assistantMessages": 146,
+      "locDelta": {
+        "added": 2083,
+        "removed": 89
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "019fdc49-4158-7000-b52e-f6c7e577b41b",
+      "day": "2026-08-07",
+      "assistantMessages": 34,
+      "locDelta": {
+        "added": 2083,
+        "removed": 89
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fdb80-222c-7000-8406-798f92e31b23",
+      "day": "2026-08-07",
+      "assistantMessages": 159,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fdb6c-db39-7000-871d-9b5d6fc65916",
+      "day": "2026-08-07",
+      "assistantMessages": 31,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd7d5-5ca8-7000-a5b9-64b601e86599",
+      "day": "2026-08-06",
+      "assistantMessages": 145,
+      "locDelta": {
+        "added": 1836,
+        "removed": 1331
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd7d0-2c07-7000-a219-77724814da08",
+      "day": "2026-08-06",
+      "assistantMessages": 162,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd703-353a-7000-9a28-b324ef57b553",
+      "day": "2026-08-06",
+      "assistantMessages": 68,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd606-ebe9-7000-8cd9-62dfdbbf4bbc",
+      "day": "2026-08-06",
+      "assistantMessages": 220,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd5d1-641c-7000-a686-49f1a7b52881",
+      "day": "2026-08-06",
+      "assistantMessages": 169,
+      "locDelta": {
+        "added": 1836,
+        "removed": 1331
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd5b8-51c5-7000-b7c5-a006388c55be",
+      "day": "2026-08-06",
+      "assistantMessages": 142,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd35a-6862-7000-b59c-c146ed511532",
+      "day": "2026-08-05",
+      "assistantMessages": 250,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "scrape-ig-saved-list",
+      "sessionId": "019fd353-ba1b-7000-be46-f029bd1c9a0f",
+      "day": "2026-08-05",
+      "assistantMessages": 30,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd330-2a64-7000-b98c-3ad5d8901d43",
+      "day": "2026-08-05",
+      "assistantMessages": 132,
+      "locDelta": {
+        "added": 5824,
+        "removed": 11806
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd323-daea-7000-946b-66d09246cea7",
+      "day": "2026-08-05",
+      "assistantMessages": 170,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "job_search_scraping",
+      "sessionId": "019fd307-d07e-7000-a8ca-7a211f3e7166",
+      "day": "2026-08-05",
+      "assistantMessages": 150,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd2c8-bb0e-7000-a4e9-79895e09e0f0",
+      "day": "2026-08-05",
+      "assistantMessages": 109,
+      "locDelta": {
+        "added": 5824,
+        "removed": 11806
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd287-8b98-7000-ae2d-547f39b65040",
+      "day": "2026-08-05",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd287-3395-7000-befa-8718d844ae88",
+      "day": "2026-08-05",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd286-4da3-7000-8f05-1bacbe2477ca",
+      "day": "2026-08-05",
+      "assistantMessages": 1,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd285-685a-7000-aa7a-870d177c80c9",
+      "day": "2026-08-05",
+      "assistantMessages": 2,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "education_dw_simulator",
+      "sessionId": "019fd281-b626-7000-842c-931b395ecfdb",
+      "day": "2026-08-05",
+      "assistantMessages": 23,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fd229-225a-7000-a19d-0e4e1644ba36",
+      "day": "2026-08-05",
+      "assistantMessages": 142,
+      "locDelta": {
+        "added": 5824,
+        "removed": 11806
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fcd34-357a-7000-a6d0-abbc55eee453",
+      "day": "2026-08-04",
+      "assistantMessages": 321,
+      "locDelta": {
+        "added": 1720,
+        "removed": 415
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fccb6-8bc1-7000-b1b7-69c972c03bca",
+      "day": "2026-08-04",
+      "assistantMessages": 183,
+      "locDelta": {
+        "added": 1720,
+        "removed": 415
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fbdc2-67d4-7000-aaff-b005596917e6",
+      "day": "2026-08-01",
+      "assistantMessages": 239,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fbdb8-855e-7000-b27e-0c47a64404f5",
+      "day": "2026-08-01",
+      "assistantMessages": 72,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fbd5c-8b44-7000-8b89-159321320376",
+      "day": "2026-08-01",
+      "assistantMessages": 23,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb490-5558-7000-a1d9-01e45ff63f91",
+      "day": "2026-07-30",
+      "assistantMessages": 219,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb252-2367-7000-94b7-9d9f1f359203",
+      "day": "2026-07-30",
+      "assistantMessages": 151,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb235-28d9-7000-9f3f-4a42807684f5",
+      "day": "2026-07-30",
+      "assistantMessages": 39,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb22d-e10b-7000-b5ab-e845a1623397",
+      "day": "2026-07-30",
+      "assistantMessages": 112,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fb225-7898-7000-89d3-b87dd5fad926",
+      "day": "2026-07-30",
+      "assistantMessages": 22,
+      "locDelta": {
+        "added": 3472,
+        "removed": 260
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019faee9-d8b5-7000-aeba-3b2a0b6bd9ab",
+      "day": "2026-07-29",
+      "assistantMessages": 3,
+      "locDelta": {
+        "added": 9939,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019faecb-e038-7000-b8fe-c839d760698c",
+      "day": "2026-07-29",
+      "assistantMessages": 61,
+      "locDelta": {
+        "added": 9939,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019faeb8-3aec-7000-9266-6842b6e6af7a",
+      "day": "2026-07-29",
+      "assistantMessages": 253,
+      "locDelta": {
+        "added": 9939,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fae37-8f7c-7000-a9da-c1887f706b08",
+      "day": "2026-07-29",
+      "assistantMessages": 91,
+      "locDelta": {
+        "added": 9939,
+        "removed": 0
+      },
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fa9b3-6971-7000-95a1-77fa02dc9f58",
+      "day": "2026-07-28",
+      "assistantMessages": 227,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fa9a8-3bb5-7000-aa80-1d9790a59655",
+      "day": "2026-07-28",
+      "assistantMessages": 115,
+      "locDelta": null,
+      "prRefs": []
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fa950-9925-7000-8b50-b67a3dc48f11",
+      "day": "2026-07-28",
+      "assistantMessages": 237,
+      "locDelta": null,
+      "prRefs": []
+    }
+  ]
+}

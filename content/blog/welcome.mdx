@@ -1,0 +1,33 @@
+---
+title: Welcome to the worklog
+date: 2026-08-10
+---
+
+This portfolio replays real session telemetry from my daily work as a data
+engineer. Every number on the home page — token burn, model usage, PRs
+referenced, LOC delta — comes from a committed JSON snapshot, not a live API.
+
+## What the snapshot captures
+
+- **Token burn** — total tokens and how the rate is trending
+- **Tokens by model** — which models do the heavy lifting
+- **PRs referenced** — `#NNN` refs pulled out of commit messages, locally
+- **LOC delta** — net lines changed across repos
+
+The snapshot script reads the same local sources as loc-dock:
+
+```json
+{
+  "repo": "dev-portfolio",
+  "message": "Refactor DB layer (#247)",
+  "linesAdded": 67,
+  "linesRemoved": 12
+}
+```
+
+## Why static
+
+The sources live on my machine — `~/.claude` session logs and local git repos —
+so nothing can run in CI. The pipeline runs locally, commits
+`public/data/current.json`, and the site is a static export: no tokens, no
+server.

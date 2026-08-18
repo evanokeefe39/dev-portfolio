@@ -31,7 +31,10 @@ import { ensureRangeSessions, useSnapshot } from '@/lib/snapshot-store'
  * when the slice lands.
  *
  * The scene is explorable: drei <CameraControls> gives drag-to-pan, wheel /
- * pinch zoom (15-90) and clamped rotation. Selecting a repo from the stat
+ * pinch zoom (15-90) and clamped rotation. Mouse-only visitors get the full
+ * range without a trackpad: plain drag pans, Ctrl- or Alt+drag rotates, and
+ * Shift+drag zooms (mappings swapped on the live instance from key state).
+ * Selecting a repo from the stat
  * card flies the camera to its krab — a desk krab, or the couch spotlight
  * for an out-of-list repo — with a highlight ring + session panel above it;
  * deselecting returns to the home view. Card hover highlights the matching
@@ -60,6 +63,30 @@ const ROOM_BOUNDARY = new THREE.Box3(
   new THREE.Vector3(-12, 0, -10),
   new THREE.Vector3(12, 10, 10),
 )
+
+/**
+ * Mouse-button mappings for the explorable camera, swapped on the live
+ * CameraControls instance from keyboard state (see the mount-only modifier
+ * effect in Scene). Keep these MODULE-LEVEL constants — camera-controls has
+ * no native modifier support, and R3F only re-applies a prop when its
+ * reference changes: an inline object literal would revert a runtime swap
+ * on every re-render. Right stays ROTATE in every mapping; wheel and
+ * touches are set directly in the JSX and never modified here.
+ *
+ * Shift maps left to ZOOM, not DOLLY: DOLLY only changes the camera's
+ * orbital distance, which is invisible on this orthographic camera —
+ * camera-controls applies dolly-driven radius changes only for perspective
+ * cameras, while the ortho path reacts solely to zoom changes. ZOOM drives
+ * camera.zoom, the same path the wheel uses.
+ */
+const MOUSE_BUTTONS_BASE = {
+  left: CameraControlsImpl.ACTION.TRUCK,
+  right: CameraControlsImpl.ACTION.ROTATE,
+  middle: CameraControlsImpl.ACTION.DOLLY,
+  wheel: CameraControlsImpl.ACTION.ZOOM,
+}
+const MOUSE_BUTTONS_ROTATE = { ...MOUSE_BUTTONS_BASE, left: CameraControlsImpl.ACTION.ROTATE }
+const MOUSE_BUTTONS_ZOOM = { ...MOUSE_BUTTONS_BASE, left: CameraControlsImpl.ACTION.ZOOM }
 
 interface CameraRigProps {
   focus: FocusTarget
@@ -181,6 +208,48 @@ export default function Scene() {
     setControlsReady(true)
   }, [])
 
+  // Mouse-only camera controls: plain drag pans, Ctrl- or Alt+drag rotates,
+  // Shift+drag zooms. camera-controls has no modifier-key support, so the
+  // mapping is swapped on the live instance from keyboard state. Mount-only:
+  // the mappings are module-level constants (stable identity), so the JSX
+  // prop never re-applies over a runtime swap. The blur listener is the
+  // stuck-modifier guard — a keyup lost to a focus change cannot leave a
+  // stale modifier. Modifiers are never hijacked while typing in an input.
+  useEffect(() => {
+    const apply = (e: KeyboardEvent) => {
+      const controls = controlsRef.current
+      if (controls === null) return
+      const target = document.activeElement
+      if (
+        target instanceof HTMLInputElement ||
+        target instanceof HTMLTextAreaElement ||
+        (target instanceof HTMLElement && target.isContentEditable)
+      ) {
+        controls.mouseButtons = MOUSE_BUTTONS_BASE
+        return
+      }
+      controls.mouseButtons = e.shiftKey
+        ? MOUSE_BUTTONS_ZOOM
+        : e.ctrlKey || e.altKey
+          ? MOUSE_BUTTONS_ROTATE
+          : MOUSE_BUTTONS_BASE
+    }
+    const reset = () => {
+      if (controlsRef.current !== null) {
+        controlsRef.current.mouseButtons = MOUSE_BUTTONS_BASE
+      }
+    }
+    window.addEventListener('keydown', apply)
+    window.addEventListener('keyup', apply)
+    window.addEventListener('blur', reset)
+    return () => {
+      window.removeEventListener('keydown', apply)
+      window.removeEventListener('keyup', apply)
+      window.removeEventListener('blur', reset)
+      reset()
+    }
+  }, [])
+
   return (
     <div className="pointer-events-none absolute inset-0 z-0">
       <Canvas
@@ -209,12 +278,7 @@ export default function Scene() {
           maxZoom={90}
           smoothTime={0.6}
           dampingFactor={0.08}
-          mouseButtons={{
-            left: CameraControlsImpl.ACTION.TRUCK,
-            right: CameraControlsImpl.ACTION.ROTATE,
-            middle: CameraControlsImpl.ACTION.DOLLY,
-            wheel: CameraControlsImpl.ACTION.ZOOM,
-          }}
+          mouseButtons={MOUSE_BUTTONS_BASE}
           touches={{
             one: CameraControlsImpl.ACTION.TOUCH_TRUCK,
             two: CameraControlsImpl.ACTION.TOUCH_ZOOM_TRUCK,

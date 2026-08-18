@@ -58,8 +58,7 @@ def _snapshot(tmp_path: Path) -> dict:
 def test_snapshot_schema_complete():
     snap = _snapshot(Path("."))
     assert set(snap.keys()) == {
-        "snapshotDate", "generatedAt", "ranges", "recentActivity",
-        "sessions", "rollups", "rollupErrors",
+        "snapshotDate", "generatedAt", "ranges", "recentActivity", "sessions",
     }
     assert snap["snapshotDate"] == "2026-08-17"
     assert snap["generatedAt"].startswith("2026-08-17T")

@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Grid, Html } from '@react-three/drei'
 import { WarehouseEnvironment, WAREHOUSE_CONFIG } from './environments/warehouse'
-import { HarnessAgent } from './HarnessAgent'
-import { buildAgentLayout, SEAT_POSITIONS } from './layout'
+import { SessionKrab } from './SessionKrab'
+import { buildKrabLayout, SEAT_POSITIONS } from './layout'
 import { loadSnapshot } from '@/lib/data'
 import { useRange } from '@/lib/range-store'
 import type { Snapshot } from '@/lib/types'
@@ -16,12 +16,10 @@ import type { Snapshot } from '@/lib/types'
  * local clock and /data/current.json fetch never touch the server.
  *
  * The scene is static — it renders pre-computed snapshot data and never calls
- * an LLM. Session characters take the hot-desk seats (SEAT_POSITIONS, the same
- * 16 slots the furniture uses). The rendering mode is derived from the selected
- * window's session count, never a user choice:
- *   - none   -> empty scene (env + grid + krabs remain)
- *   - <= 16  -> one character per session, tooltip = summary-or-fallback
- *   - > 16   -> one character per (repo x harness), tooltip = LLM rollup
+ * an LLM. One krab per session takes the hot-desk seats (SEAT_POSITIONS, the
+ * same 16 slots the furniture uses): top sessions by assistantMessages fill
+ * the seats, bigger sessions render as bigger krabs, and any overflow shows
+ * as a "+N more" pill. An empty window renders an empty scene.
  */
 
 function localHour(): number {
@@ -55,9 +53,8 @@ export default function Scene() {
 
   const layout = useMemo(
     () =>
-      buildAgentLayout({
+      buildKrabLayout({
         sessions: snapshot?.sessions ?? [],
-        rollups: snapshot?.rollups ?? {},
         range,
         snapshotDate: snapshot?.snapshotDate ?? '',
       }),
@@ -92,7 +89,7 @@ export default function Scene() {
           fadeStrength={1}
           infiniteGrid
         />
-        {layout.mode === 'collapsed' && layout.overflow > 0 && (
+        {layout.mode === 'sessions' && layout.overflow > 0 && (
           <Html position={OVERFLOW_ANCHOR} center pointerEvents="none">
             <div className="pointer-events-none select-none rounded-lg border border-white/10 bg-black/35 px-3 py-2 shadow-lg backdrop-blur-md">
               <div className="font-mono text-[11px] font-semibold tracking-tight text-white/90">
@@ -103,12 +100,13 @@ export default function Scene() {
         )}
         {layout.mode !== 'empty' &&
           layout.items.map((item) => (
-            <HarnessAgent
+            <SessionKrab
               key={item.key}
               harness={item.harness}
               position={SEAT_POSITIONS[item.seatIndex]}
-              title={item.title}
-              tooltip={item.tooltip}
+              scale={item.scale}
+              title={item.tooltipTitle}
+              body={item.tooltipBody}
             />
           ))}
       </Canvas>

@@ -1,5 +1,15 @@
-"""Session harvest tests: four harnesses, repo from cwd, omp summary mapping,
-fallback construction, retention window, malformed-file and edge cases.
+"""Session harvest tests: four harnesses, deterministic per-session stats.
+
+Covers (pivot spec, 2026-08-18):
+- title extraction per harness (omp title/session lines, claude ai-title /
+  custom-title, codex first user message minus environment_context)
+- assistantMessages counting for all four harnesses, including the codex
+  regression (counting must be a loop-top-level sibling ``if _is_assistant``,
+  never nested inside the title branch — that bug zeroed codex counts)
+- locDelta / prRefs / branch mapping from fixture commits + a branches dict
+  (_commit_stats signature is (commits, branches, tz))
+- harvest window (since_days), omp summary mapping by thread_id,
+  malformed-file skip, cwd-over-dir-encoding, local start day.
 
 Fixture trees mirror the verified on-disk layouts:
 - omp: ``omp/<repo-enc>/<ts>_<thread_id>.jsonl`` + sibling subdir
@@ -17,14 +27,15 @@ import pytest
 
 from data_pipeline.config import SourceRoots
 from data_pipeline.gitlog import Commit
-from data_pipeline.sessions import (
-    build_fallback,
-    harvest_counts,
-    harvest_sessions,
-)
+from data_pipeline.sessions import harvest_counts, harvest_sessions
 
 TZ = ZoneInfo("Europe/Berlin")
 NOW = datetime(2026, 8, 17, 20, 0, 0, tzinfo=timezone(timedelta(hours=2)))  # local 08-17 20:00
+
+SESSION_KEYS = {
+    "harness", "repo", "sessionId", "day", "startTs", "title", "summary",
+    "summarySlug", "assistantMessages", "locDelta", "prRefs", "branch",
+}
 
 
 def _roots(tmp_path: Path) -> SourceRoots:
@@ -38,32 +49,37 @@ def _roots(tmp_path: Path) -> SourceRoots:
 
 
 def _commit(day_offset: int, repo: str = "dev-portfolio", msg: str = "m",
-            added: int = 10, removed: int = 4) -> Commit:
+            added: int = 10, removed: int = 4, sha: str | None = None) -> Commit:
     ts = NOW + timedelta(days=-day_offset, hours=-5)
-    return Commit(repo=repo, sha=f"{day_offset:040x}", ts=ts, msg=msg,
+    return Commit(repo=repo, sha=sha or f"{day_offset:040x}", ts=ts, msg=msg,
                   added=added, removed=removed)
 
 
 def _write_omp_session(root: Path, enc: str, thread_id: str, *,
                        ts: str = "2026-08-17T10:00:00.000Z",
-                       cwd: str = "C:\\Users\\evano\\repos\\dev-portfolio",
-                       title: str = "Fix the pipeline",
+                       cwd: str | None = "C:\\Users\\evano\\repos\\dev-portfolio",
+                       title: str | None = "Fix the pipeline",
+                       session_title: str | None = None,
+                       extra_lines: list[dict] | None = None,
                        subagent: bool = False) -> Path:
-    """Write an OMP-style session jsonl; optionally a sibling subagent dir."""
+    """Write an OMP/Pi-style session jsonl; optionally a sibling subdir."""
     import json as _json
 
     enc_dir = root / enc
     enc_dir.mkdir(parents=True, exist_ok=True)
     file_ts = ts.replace(":", "-").replace(".", "-")
     path = enc_dir / f"{file_ts}_{thread_id}.jsonl"
-    lines = [
-        _json.dumps({"type": "title", "v": 1, "title": title, "source": "auto"}),
-        _json.dumps({"type": "session", "version": 3, "id": thread_id,
-                     "timestamp": ts, "cwd": cwd, "title": title}),
-        _json.dumps({"type": "message", "id": "x",
-                     "message": {"role": "user", "content": []}}),
-    ]
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    lines: list[dict] = []
+    if title is not None:
+        lines.append({"type": "title", "v": 1, "title": title, "source": "auto"})
+    lines.append({"type": "session", "version": 3, "id": thread_id,
+                  "timestamp": ts, "cwd": cwd,
+                  "title": session_title if session_title is not None else title})
+    lines.append({"type": "message", "id": "x",
+                  "message": {"role": "user", "content": []}})
+    if extra_lines:
+        lines.extend(extra_lines)
+    path.write_text("\n".join(_json.dumps(line) for line in lines) + "\n", encoding="utf-8")
     if subagent:
         sub = enc_dir / f"{file_ts}_{thread_id}" / "subagent.jsonl"
         sub.parent.mkdir(parents=True, exist_ok=True)
@@ -72,6 +88,7 @@ def _write_omp_session(root: Path, enc: str, thread_id: str, *,
                          "timestamp": ts, "cwd": cwd}) + "\n",
             encoding="utf-8")
     return path
+
 
 def _write_summary(memories_root: Path, enc: str, thread_id: str, slug: str,
                    body: str = "Did the thing. Then did the other thing. All good.") -> Path:
@@ -92,63 +109,163 @@ def test_omp_harvests_session_with_summary_and_slug(tmp_path):
     sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
     assert len(sessions) == 1
     s = sessions[0]
+    assert set(s.keys()) == SESSION_KEYS  # locked session schema
     assert s["harness"] == "omp"
     assert s["repo"] == "dev-portfolio"
     assert s["sessionId"] == thread
     assert s["day"] == "2026-08-17"
     assert s["startTs"] == "2026-08-17T10:00:00Z"
+    assert s["title"] == "Fix the pipeline"
     assert s["summary"] == "Did the thing. Then did the other thing. All good."
     assert s["summarySlug"] == "pipeline_fix"
-    assert s["fallback"] is None
+    assert s["assistantMessages"] == 0
+    assert s["locDelta"] is None
+    assert s["prRefs"] == []
+    assert s["branch"] is None
 
 
-def test_omp_no_summary_builds_fallback_with_commits(tmp_path):
+def test_omp_summary_only_maps_matching_thread_id(tmp_path):
     roots = _roots(tmp_path)
     thread = "01a00002-0000-7000-0000-000000000002"
-    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread,
-                       title="Separate data pipeline from Next.js app")
-    # Three commits summing to +120/−40 (fallback aggregates the day's stats).
-    commits = [
-        _commit(0, repo="dev-portfolio", added=40, removed=14),
-        _commit(0, repo="dev-portfolio", added=40, removed=13),
-        _commit(0, repo="dev-portfolio", added=40, removed=13),
-    ]
-    sessions = harvest_sessions(roots, commits, tz=TZ, now=NOW)
-    assert len(sessions) == 1
+    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread)
+    # Summary for a DIFFERENT thread must not attach to this session.
+    _write_summary(tmp_path / "memories", "--C--Users-evano-repos-dev-portfolio--",
+                   "01a0ffff-0000-7000-0000-00000000ffff", "other_slug")
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
     assert sessions[0]["summary"] is None
     assert sessions[0]["summarySlug"] is None
-    assert sessions[0]["fallback"] == "Separate data pipeline from Next.js app · 3 commits, +120/−40"
 
 
-def test_omp_fallback_title_only_variant(tmp_path):
+def test_omp_title_prefers_title_line_over_session_line(tmp_path):
     roots = _roots(tmp_path)
     thread = "01a00003-0000-7000-0000-000000000003"
-    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread, title="Just a title")
-    # No commits for this repo/day.
+    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread,
+                       title="Auto title", session_title="Initial title")
     sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
-    assert sessions[0]["fallback"] == "Just a title"
+    assert sessions[0]["title"] == "Auto title"
 
 
-def test_omp_fallback_commit_stats_only_and_none(tmp_path):
+def test_omp_title_from_session_line_when_no_title_line(tmp_path):
     roots = _roots(tmp_path)
-    # Pi-style session: no title anywhere → commit stats only.
-    pi_dir = roots.pi / "--C--Users-evano-repos-dev-portfolio--"
-    pi_dir.mkdir(parents=True, exist_ok=True)
-    pi_dir.joinpath("2026-08-17T10-00-00-000Z_01a00009-0000-7000-0000-000000000009.jsonl").write_text(
-        '{"type":"session","version":3,"id":"01a00009-0000-7000-0000-000000000009",'
-        '"timestamp":"2026-08-17T10:00:00.000Z","cwd":"C:\\\\Users\\\\evano\\\\repos\\\\dev-portfolio"}\n',
-        encoding="utf-8")
-    commits = [_commit(0, repo="dev-portfolio", added=5, removed=2)]
-    sessions = harvest_sessions(roots, commits, tz=TZ, now=NOW)
-    assert sessions[0]["harness"] == "pi"
-    assert sessions[0]["fallback"] == "1 commits, +5/−2"
-
-    # Neither title nor commits → fallback None.
     thread = "01a00004-0000-7000-0000-000000000004"
-    _write_omp_session(roots.omp, "-repos-other", thread, title=None, cwd="C:\\Users\\evano\\repos\\other")
-    sessions2 = harvest_sessions(roots, [], tz=TZ, now=NOW)
-    other = [s for s in sessions2 if s["repo"] == "other"][0]
-    assert other["fallback"] is None
+    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread,
+                       title=None, session_title="Session line title")
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
+    assert sessions[0]["title"] == "Session line title"
+
+
+def test_omp_title_none_when_no_title_anywhere(tmp_path):
+    roots = _roots(tmp_path)
+    thread = "01a00005-0000-7000-0000-000000000005"
+    _write_omp_session(roots.omp, "-repos-other", thread, title=None,
+                       cwd="C:\\Users\\evano\\repos\\other")
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
+    assert sessions[0]["title"] is None
+
+
+def test_assistant_counts_for_omp_and_pi(tmp_path):
+    roots = _roots(tmp_path)
+    extra = [
+        {"type": "message", "id": "a1", "message": {"role": "assistant", "content": []}},
+        {"type": "message", "id": "a2", "message": {"role": "assistant", "content": []}},
+        # Old OMP layout: top-level role, no nested message dict.
+        {"type": "message", "id": "a3", "role": "assistant", "content": []},
+        {"type": "message", "id": "u1", "message": {"role": "user", "content": []}},
+    ]
+    _write_omp_session(roots.omp, "-repos-dev-portfolio",
+                       "01a00006-0000-7000-0000-000000000006", extra_lines=extra)
+    _write_omp_session(roots.pi, "--C--Users-evano-repos-loc-dock--",
+                       "01a00007-0000-7000-0000-000000000007",
+                       cwd="C:\\Users\\evano\\repos\\loc-dock", extra_lines=extra[:1])
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
+    by_id = {s["sessionId"]: s for s in sessions}
+    assert by_id["01a00006-0000-7000-0000-000000000006"]["assistantMessages"] == 3
+    assert by_id["01a00007-0000-7000-0000-000000000007"]["assistantMessages"] == 1
+
+
+def test_claude_counts_assistant_messages(tmp_path):
+    roots = _roots(tmp_path)
+    proj = roots.claude / "C--Users-evano-repos-loc-dock"
+    proj.mkdir(parents=True, exist_ok=True)
+    (proj / "abc-123.jsonl").write_text(
+        '{"type":"mode","mode":"normal","sessionId":"abc-123"}\n'
+        '{"timestamp":"2026-08-10T08:00:00.000Z"}\n'
+        '{"type":"assistant","message":{"id":"msg_1"},"sessionId":"abc-123"}\n'
+        '{"type":"user","message":{"id":"usr_1"},"sessionId":"abc-123"}\n'
+        '{"type":"assistant","message":{"id":"msg_2"},"sessionId":"abc-123"}\n',
+        encoding="utf-8")
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
+    assert len(sessions) == 1
+    assert sessions[0]["assistantMessages"] == 2
+
+
+def test_codex_counts_assistant_messages_after_title_set(tmp_path):
+    """Regression: the assistant count must be a loop-top-level sibling of the
+    title branch — a count nested inside the title branch is zeroed once the
+    title is set (the bug that zeroed codex counts)."""
+    roots = _roots(tmp_path)
+    codex_dir = roots.codex / "2026" / "09" / "20"
+    codex_dir.mkdir(parents=True, exist_ok=True)
+    sid = "019967e4-8702-7e71-8d65-0ee1ce207ff4"
+    (codex_dir / f"rollout-2026-09-20T18-10-54-{sid}.jsonl").write_text(
+        '{"timestamp":"2026-09-20T16:10:54.226Z","type":"session_meta",'
+        '"payload":{"id":"' + sid + '","timestamp":"2026-09-20T16:10:54.082Z",'
+        '"cwd":"c:\\\\Users\\\\evano\\\\repos\\\\dataplatform-mini"}}\n'
+        '{"timestamp":"2026-09-20T16:10:54.300Z","type":"response_item",'
+        '"payload":{"type":"message","role":"user","content":[{"type":"input_text","text":"build the thing"}]}}\n'
+        '{"timestamp":"2026-09-20T16:10:55.000Z","type":"response_item",'
+        '"payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"ok"}]}}\n'
+        '{"timestamp":"2026-09-20T16:10:56.000Z","type":"response_item",'
+        '"payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"done"}]}}\n',
+        encoding="utf-8")
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
+    assert len(sessions) == 1
+    s = sessions[0]
+    assert s["title"] == "build the thing"
+    assert s["assistantMessages"] == 2  # would be 0 under the nested-branch bug
+
+
+def test_loc_delta_prs_branch_mapped_from_commits(tmp_path):
+    roots = _roots(tmp_path)
+    thread = "01a00008-0000-7000-0000-000000000008"
+    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread, title="Add pipeline")
+    commits = [
+        _commit(0, msg="feat: add pipeline (#15)", added=40, removed=14, sha="a" * 40),
+        _commit(0, msg="fix: bug in ingest (#16)", added=30, removed=10, sha="b" * 40),
+        _commit(0, msg="chore: no ref", added=5, removed=2, sha="c" * 40),
+    ]
+    branches = {"dev-portfolio": {"a" * 40: "main", "b" * 40: "main", "c" * 40: "feature"}}
+    sessions = harvest_sessions(roots, commits, branches=branches, tz=TZ, now=NOW)
+    assert len(sessions) == 1
+    s = sessions[0]
+    assert s["locDelta"] == {"added": 75, "removed": 26, "net": 49}
+    assert s["prRefs"] == [15, 16]
+    assert s["branch"] == "main"  # most frequent attributed branch
+
+
+def test_loc_delta_null_without_commits_that_day(tmp_path):
+    roots = _roots(tmp_path)
+    thread = "01a00009-0000-7000-0000-000000000009"
+    _write_omp_session(roots.omp, "-repos-other", thread,
+                       cwd="C:\\Users\\evano\\repos\\other")
+    commits = [_commit(0)]  # dev-portfolio only — no commits for "other"
+    sessions = harvest_sessions(roots, commits, branches={}, tz=TZ, now=NOW)
+    s = sessions[0]
+    assert s["locDelta"] is None
+    assert s["prRefs"] == []
+    assert s["branch"] is None
+
+
+def test_branch_none_when_no_branch_attribution(tmp_path):
+    roots = _roots(tmp_path)
+    thread = "01a0000a-0000-7000-0000-00000000000a"
+    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread)
+    commits = [_commit(0, msg="feat: wire it (#42)", added=10, removed=2)]
+    sessions = harvest_sessions(roots, commits, branches={}, tz=TZ, now=NOW)
+    s = sessions[0]
+    assert s["locDelta"] == {"added": 10, "removed": 2, "net": 8}
+    assert s["prRefs"] == [42]
+    assert s["branch"] is None
 
 
 def test_pi_harvests_repo_from_cwd_and_skips_subdirs(tmp_path):
@@ -187,12 +304,31 @@ def test_claude_repo_from_dir_encoding_and_title(tmp_path):
     assert len(sessions) == 1
     s = sessions[0]
     assert s["harness"] == "claude"
-    assert s["repo"] == "loc-dock"
+    assert s["repo"] == "loc-dock"  # dir-encoding fallback (no cwd field)
     assert s["sessionId"] == "abc-123"
     assert s["day"] == "2026-08-10"
     assert s["summary"] is None
-    # Title present → fallback is title-only (no commits).
-    assert s["fallback"] == "Debug the dock"
+    assert s["title"] == "Debug the dock"
+
+
+def test_claude_title_ai_and_custom(tmp_path):
+    roots = _roots(tmp_path)
+    proj = roots.claude / "C--Users-evano-repos-loc-dock"
+    proj.mkdir(parents=True, exist_ok=True)
+    (proj / "abc-1.jsonl").write_text(
+        '{"type":"mode","mode":"normal","sessionId":"abc-1"}\n'
+        '{"type":"ai-title","aiTitle":"Debug the dock","sessionId":"abc-1"}\n'
+        '{"type":"file-history-snapshot","snapshot":{"timestamp":"2026-08-10T08:00:00.000Z"}}\n',
+        encoding="utf-8")
+    (proj / "abc-2.jsonl").write_text(
+        '{"type":"mode","mode":"normal","sessionId":"abc-2"}\n'
+        '{"type":"custom-title","customTitle":"Rename me","sessionId":"abc-2"}\n'
+        '{"type":"file-history-snapshot","snapshot":{"timestamp":"2026-08-10T08:00:00.000Z"}}\n',
+        encoding="utf-8")
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
+    by_id = {s["sessionId"]: s for s in sessions}
+    assert by_id["abc-1"]["title"] == "Debug the dock"
+    assert by_id["abc-2"]["title"] == "Rename me"
 
 
 def test_claude_counts_only_top_level_session_files(tmp_path):
@@ -254,28 +390,76 @@ def test_codex_harvests_meta_and_first_user_message(tmp_path):
     assert s["repo"] == "dataplatform-mini"
     assert s["sessionId"] == "019967e4-8702-7e71-8d65-0ee1ce207ff4"
     assert s["day"] == "2026-09-20"
-    assert s["fallback"] == "initialize a sql mesh project that uses duckdb python and docker"
+    # env-context-only first message is skipped; second user message is the title.
+    assert s["title"] == "initialize a sql mesh project that uses duckdb python and docker"
+    assert s["assistantMessages"] == 0
+
+
+def test_codex_title_strips_environment_context_inline(tmp_path):
+    roots = _roots(tmp_path)
+    codex_dir = roots.codex / "2026" / "09" / "21"
+    codex_dir.mkdir(parents=True, exist_ok=True)
+    sid = "019967e4-8702-7e71-8d65-0ee1ce207ff5"
+    (codex_dir / f"rollout-2026-09-21T18-10-54-{sid}.jsonl").write_text(
+        '{"timestamp":"2026-09-21T16:10:54.226Z","type":"session_meta",'
+        '"payload":{"id":"' + sid + '","timestamp":"2026-09-21T16:10:54.082Z",'
+        '"cwd":"c:\\\\Users\\\\evano\\\\repos\\\\dataplatform-mini"}}\n'
+        '{"timestamp":"2026-09-21T16:10:54.300Z","type":"response_item",'
+        '"payload":{"type":"message","role":"user","content":[{"type":"input_text",'
+        '"text":"<environment_context>\\n  <cwd>c:\\\\Users\\\\evano\\\\repos\\\\dataplatform-mini</cwd>\\n</environment_context>initialize a sql mesh project that uses duckdb python and docker"}]}}\n',
+        encoding="utf-8")
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
+    assert len(sessions) == 1
+    assert sessions[0]["title"] == "initialize a sql mesh project that uses duckdb python and docker"
+
+
+def test_cwd_over_dir_encoding(tmp_path):
+    roots = _roots(tmp_path)
+    thread = "01a0000b-0000-7000-0000-00000000000b"
+    # File sits under the dev-portfolio dir but cwd says other-repo → cwd wins.
+    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread,
+                       cwd="C:\\Users\\evano\\repos\\other-repo")
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
+    assert sessions[0]["repo"] == "other-repo"
+
+
+def test_dir_encoding_fallback_when_no_cwd(tmp_path):
+    roots = _roots(tmp_path)
+    thread = "01a0000c-0000-7000-0000-00000000000c"
+    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread, cwd=None)
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
+    assert sessions[0]["repo"] == "dev-portfolio"
 
 
 def test_retention_window_filters_old_sessions(tmp_path):
     roots = _roots(tmp_path)
     _write_omp_session(roots.omp, "-repos-dev-portfolio",
-                       "01a00005-0000-7000-0000-000000000005",
+                       "01a0000d-0000-7000-0000-00000000000d",
                        ts="2024-01-01T10:00:00.000Z")  # way outside 400d
     sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
     assert sessions == []
+
+
+def test_since_days_window(tmp_path):
+    roots = _roots(tmp_path)
+    thread = "01a0000e-0000-7000-0000-00000000000e"
+    _write_omp_session(roots.omp, "-repos-dev-portfolio", thread,
+                       ts="2026-08-15T10:00:00.000Z")  # ~2.3 days before NOW
+    assert harvest_sessions(roots, [], tz=TZ, now=NOW, since_days=1) == []
+    sessions = harvest_sessions(roots, [], tz=TZ, now=NOW, since_days=3)
+    assert [s["sessionId"] for s in sessions] == [thread]
 
 
 def test_malformed_jsonl_skipped_without_crash(tmp_path, caplog):
     roots = _roots(tmp_path)
     enc_dir = roots.omp / "-repos-dev-portfolio"
     enc_dir.mkdir(parents=True, exist_ok=True)
-    path = enc_dir / "2026-08-17T10-00-00-000Z_01a00006-0000-7000-0000-000000000006.jsonl"
-    path.write_text('{"type":"session","version":3,"id":"01a00006-0000-7000-0000-000000000006",'
+    path = enc_dir / "2026-08-17T10-00-00-000Z_01a0000f-0000-7000-0000-00000000000f.jsonl"
+    path.write_text('{"type":"session","version":3,"id":"01a0000f-0000-7000-0000-00000000000f",'
                     '"timestamp":"2026-08-17T10:00:00.000Z","cwd":"C:\\\\Users\\\\evano\\\\repos\\\\dev-portfolio"}\n'
                     'NOT JSON AT ALL\n', encoding="utf-8")
     _write_omp_session(roots.omp, "-repos-dev-portfolio",
-                       "01a00007-0000-7000-0000-000000000007",
+                       "01a00010-0000-7000-0000-000000000010",
                        ts="2026-08-16T10:00:00.000Z")
     import logging
     with caplog.at_level(logging.WARNING):
@@ -288,7 +472,7 @@ def test_session_spanning_midnight_uses_local_start_day(tmp_path):
     roots = _roots(tmp_path)
     # 23:30 UTC on 08-16 → 01:30 local on 08-17 in Berlin (+2).
     _write_omp_session(roots.omp, "-repos-dev-portfolio",
-                       "01a00008-0000-7000-0000-000000000008",
+                       "01a00011-0000-7000-0000-000000000011",
                        ts="2026-08-16T23:30:00.000Z")
     sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
     assert sessions[0]["day"] == "2026-08-17"
@@ -298,7 +482,7 @@ def test_session_spanning_midnight_uses_local_start_day(tmp_path):
 def test_harvest_counts_per_harness(tmp_path):
     roots = _roots(tmp_path)
     _write_omp_session(roots.omp, "-repos-dev-portfolio",
-                       "01a0000a-0000-7000-0000-00000000000a")
+                       "01a00012-0000-7000-0000-000000000012")
     proj = roots.claude / "C--Users-evano-repos-loc-dock"
     proj.mkdir(parents=True, exist_ok=True)
     (proj / "c1.jsonl").write_text('{"type":"mode","mode":"normal","sessionId":"c1"}\n'
@@ -307,17 +491,10 @@ def test_harvest_counts_per_harness(tmp_path):
     assert harvest_counts(sessions) == {"omp": 1, "claude": 1, "pi": 0, "codex": 0}
 
 
-def test_build_fallback_variants():
-    assert build_fallback("T", (3, 120, 40)) == "T · 3 commits, +120/−40"
-    assert build_fallback("T", None) == "T"
-    assert build_fallback(None, (3, 120, 40)) == "3 commits, +120/−40"
-    assert build_fallback(None, None) is None
-
-
 def test_omp_subagent_sibling_dir_not_counted(tmp_path):
     roots = _roots(tmp_path)
     _write_omp_session(roots.omp, "-repos-dev-portfolio",
-                       "01a0000b-0000-7000-0000-00000000000b",
+                       "01a00013-0000-7000-0000-000000000013",
                        subagent=True)
     sessions = harvest_sessions(roots, [], tz=TZ, now=NOW)
     assert len(sessions) == 1  # subagent jsonl inside sibling dir ignored

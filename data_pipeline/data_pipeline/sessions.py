@@ -29,11 +29,12 @@ from __future__ import annotations
 import json
 import logging
 import re
+from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from .config import GIT_SINCE_DAYS, SKIP_SUBDIRS, SourceRoots
-from .gitlog import Commit
+from .gitlog import Commit, extract_prs
 
 logger = logging.getLogger(__name__)
 
@@ -136,35 +137,65 @@ def _load_omp_summaries(memories_root: Path) -> dict[str, tuple[str, str]]:
     return summaries
 
 
-def _commit_stats(commits: list[Commit], tz) -> dict[tuple[str, str], tuple[int, int, int]]:
-    """(repo, local-day) -> (count, added, removed) across the commit list."""
-    stats: dict[tuple[str, str], tuple[int, int, int]] = {}
+def _is_assistant(obj: dict) -> bool:
+    """True for an assistant-authored row, across all four harness layouts:
+    ``type:"assistant"`` (claude), top-level ``role`` (old OMP), message-nested
+    ``role`` (current OMP/Pi), or ``response_item`` payload role (codex).
+    """
+    if obj.get("type") == "assistant":
+        return True
+    if obj.get("role") == "assistant":
+        return True
+    message = obj.get("message")
+    if isinstance(message, dict) and message.get("role") == "assistant":
+        return True
+    payload = obj.get("payload")
+    return bool(
+        isinstance(payload, dict)
+        and payload.get("type") == "message"
+        and payload.get("role") == "assistant"
+    )
+
+
+def _commit_stats(
+    commits: list[Commit],
+    branches: dict[str, dict[str, str]],
+    tz,
+) -> dict[tuple[str, str], dict]:
+    """(repo, local-day) -> {count, added, removed, prs, branch} (deterministic).
+
+    ``prs`` = distinct ``#NNN`` refs across the day's commit messages;
+    ``branch`` = the most frequent attributed branch among the day's commits
+    (from the sha→branch scan), else None.
+    """
+    stats: dict[tuple[str, str], dict] = {}
+    branch_votes: dict[tuple[str, str], Counter] = {}
     for commit in commits:
         day = commit.ts.astimezone(tz).date().isoformat()
         key = (commit.repo, day)
-        count, added, removed = stats.get(key, (0, 0, 0))
-        stats[key] = (count + 1, added + commit.added, removed + commit.removed)
+        row = stats.setdefault(
+            key, {"count": 0, "added": 0, "removed": 0, "prs": [], "branch": None}
+        )
+        row["count"] += 1
+        row["added"] += commit.added
+        row["removed"] += commit.removed
+        for pr in extract_prs(commit.msg):
+            if pr not in row["prs"]:
+                row["prs"].append(pr)
+        branch = branches.get(commit.repo, {}).get(commit.sha)
+        if branch:
+            branch_votes.setdefault(key, Counter())[branch] += 1
+    for key, votes in branch_votes.items():
+        stats[key]["branch"] = votes.most_common(1)[0][0]
     return stats
-
-
-def build_fallback(title: str | None, stats: tuple[int, int, int] | None) -> str | None:
-    """Zero-LLM tooltip text: title · commit stats (or variants), else None."""
-    if title and stats:
-        count, added, removed = stats
-        return f"{title} · {count} commits, +{added}/−{removed}"
-    if title:
-        return title
-    if stats:
-        count, added, removed = stats
-        return f"{count} commits, +{added}/−{removed}"
-    return None
 
 
 # ── Per-harness parsing ──────────────────────────────────────────────────────
 
 def _parse_omp_pi(path: Path, harness: str, enc_name: str) -> dict | None:
     """Parse an OMP/Pi session file; returns raw session fields or None."""
-    raw = {"harness": harness, "sessionId": None, "startTs": None, "cwd": None, "title": None}
+    raw = {"harness": harness, "sessionId": None, "startTs": None, "cwd": None,
+           "title": None, "assistantMessages": 0}
     for obj in _iter_jsonl(path):
         if not isinstance(obj, dict):
             continue
@@ -177,12 +208,13 @@ def _parse_omp_pi(path: Path, harness: str, enc_name: str) -> dict | None:
             raw["title"] = raw["title"] or obj.get("title")
         elif obj.get("type") == "title" and obj.get("title"):
             raw["title"] = obj["title"]
+        elif _is_assistant(obj):
+            raw["assistantMessages"] += 1
     if not raw["sessionId"] or raw["startTs"] is None:
         logger.warning("skip %s session file without session line: %s", harness, path)
         return None
     raw["repo"] = _repo_from_cwd(raw["cwd"]) or _decode_repo_dir(enc_name, harness)
     return raw
-
 
 def _parse_claude(path: Path, enc_name: str) -> dict | None:
     """Parse a Claude top-level session file; ids/titles from meta lines."""
@@ -192,6 +224,7 @@ def _parse_claude(path: Path, enc_name: str) -> dict | None:
         "startTs": None,
         "cwd": None,
         "title": None,
+        "assistantMessages": 0,
     }
     timestamps: list[datetime] = []
     for obj in _iter_jsonl(path):
@@ -205,6 +238,8 @@ def _parse_claude(path: Path, enc_name: str) -> dict | None:
             raw["title"] = raw["title"] or obj.get("aiTitle") or obj.get("customTitle")
         if obj.get("cwd"):
             raw["cwd"] = obj["cwd"]
+        if _is_assistant(obj):
+            raw["assistantMessages"] += 1
         for ts in (obj.get("timestamp"), (obj.get("snapshot") or {}).get("timestamp")):
             parsed = _parse_iso(ts or "")
             if parsed:
@@ -226,7 +261,8 @@ def _parse_claude(path: Path, enc_name: str) -> dict | None:
 
 def _parse_codex(path: Path) -> dict | None:
     """Parse a Codex rollout file; title = first user message minus env context."""
-    raw = {"harness": "codex", "sessionId": None, "startTs": None, "cwd": None, "title": None}
+    raw = {"harness": "codex", "sessionId": None, "startTs": None, "cwd": None,
+           "title": None, "assistantMessages": 0}
     for obj in _iter_jsonl(path):
         if not isinstance(obj, dict):
             continue
@@ -247,6 +283,8 @@ def _parse_codex(path: Path) -> dict | None:
                 cleaned = ENV_CONTEXT_RE.sub("", text).strip()
                 if cleaned:
                     raw["title"] = cleaned
+        if _is_assistant(obj):
+            raw["assistantMessages"] += 1
     if not raw["sessionId"] or raw["startTs"] is None:
         logger.warning("skip codex session file without session_meta: %s", path)
         return None
@@ -304,15 +342,20 @@ def harvest_sessions(
     roots: SourceRoots,
     commits: list[Commit],
     *,
+    branches: dict[str, dict[str, str]] | None = None,
     tz=None,
     now: datetime | None = None,
     since_days: int = GIT_SINCE_DAYS,
 ) -> list[dict]:
     """One entry per session (within ``since_days`` of ``now``), newest first.
 
-    Each entry: ``harness``, ``repo``, ``sessionId``, ``day`` (local start
-    date), ``startTs`` (UTC ISO, seconds), ``summary``/``summarySlug``
-    (OMP only, else None) and ``fallback`` (built when no summary).
+    Deterministic only — no LLM anywhere. Each entry carries ``harness``,
+    ``repo``, ``sessionId``, ``day`` (local start date), ``startTs`` (UTC ISO,
+    seconds), ``title`` (extracted from the log where possible, else None),
+    ``summary``/``summarySlug`` (harvested OMP rollout summaries, else None),
+    ``assistantMessages`` (counted from the log), and the repo-day git stats
+    ``locDelta`` (added/removed/net, None when the repo had no commits that
+    day), ``prRefs`` (distinct ``#NNN`` refs) and ``branch`` (dominant branch).
     """
     if now is None:
         now = datetime.now().astimezone()
@@ -320,7 +363,7 @@ def harvest_sessions(
     cutoff = now - timedelta(days=since_days)
 
     omp_summaries = _load_omp_summaries(roots.omp.parent / "memories")
-    stats = _commit_stats(commits, tz)
+    stats = _commit_stats(commits, branches or {}, tz)
 
     sessions: list[dict] = []
     for raw in _raw_sessions(roots):
@@ -335,18 +378,32 @@ def harvest_sessions(
             matched = omp_summaries.get(raw["sessionId"])
             if matched:
                 summary, summary_slug = matched
-        fallback = None if summary else build_fallback(
-            raw["title"], stats.get((raw["repo"], raw["startTs"].astimezone(tz).date().isoformat()))
-        )
+        day = raw["startTs"].astimezone(tz).date().isoformat()
+        row = stats.get((raw["repo"], day))
+        loc_delta = None
+        prs: list[int] = []
+        branch = None
+        if row:
+            loc_delta = {
+                "added": row["added"],
+                "removed": row["removed"],
+                "net": row["added"] - row["removed"],
+            }
+            prs = row["prs"]
+            branch = row["branch"]
         sessions.append({
             "harness": raw["harness"],
             "repo": raw["repo"],
             "sessionId": raw["sessionId"],
-            "day": raw["startTs"].astimezone(tz).date().isoformat(),
+            "day": day,
             "startTs": raw["startTs"].astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "title": raw["title"],
             "summary": summary,
             "summarySlug": summary_slug,
-            "fallback": fallback,
+            "assistantMessages": raw["assistantMessages"],
+            "locDelta": loc_delta,
+            "prRefs": prs,
+            "branch": branch,
         })
     sessions.sort(key=lambda s: s["startTs"], reverse=True)
     return sessions

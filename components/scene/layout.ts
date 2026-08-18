@@ -1,21 +1,20 @@
-import type { Harness, RangeKey, Rollups, SessionEntry } from '@/lib/types'
+import type { Harness, RangeKey, SessionEntry } from '@/lib/types'
 
 /**
- * Pure layout derivation for the harness-session scene — no three.js, no React,
- * fully unit-testable. Contracts (plan: tasks/plans/harness-scene-summaries.md):
+ * Pure layout derivation for the deterministic session-krab scene — no
+ * three.js, no React, fully unit-testable. Contracts (frontend-pivot-spec):
  *
  * - window = sessions whose `day` is inside [snapshotDate - grainDays + 1, snapshotDate]
- * - 0 sessions       -> empty layout (the scene renders nothing)
- * - <= capacity (16) -> one character per session, newest first
- * - > capacity       -> one character per (repo x harness), top-N by session
- *                       count; overflow = groups beyond the seats
+ * - 0 window sessions -> empty layout (the scene renders nothing)
+ * - otherwise one krab per session, top-N by (assistantMessages desc,
+ *   startTs desc); overflow = sessions beyond the seats
  *
  * Seat assignment is deterministic: item order == seat order (`seatIndex`).
  */
 
 export const SEAT_CAPACITY = 16
 
-/** Character feet height above the floor (standing on the chair seat). */
+/** Krab feet height above the floor (standing on the chair seat). */
 export const SEAT_Y = 0.44
 
 const GRAIN_DAYS: Record<Exclude<RangeKey, 'all'>, number> = {
@@ -25,28 +24,26 @@ const GRAIN_DAYS: Record<Exclude<RangeKey, 'all'>, number> = {
   '1y': 365,
 }
 
-export interface AgentItem {
+export interface KrabItem {
   key: string
   harness: Harness
   repo: string
-  /** Final body text for the tooltip (summary-or-fallback, or the rollup). */
-  tooltip: string
-  /** Mono title line: repo (per-session) or `repo · harness` (collapsed). */
-  title: string
-  /** 0..15 — the seat this character occupies (assignment order). */
+  /** Mono title line for the tooltip pill (`${repo} · ${harness}`). */
+  tooltipTitle: string
+  /** Deterministic stats body (day, msgs, LOC, PRs, branch, summary). */
+  tooltipBody: string
+  /** 0..15 — the seat this krab occupies (assignment order). */
   seatIndex: number
-  /** Sessions this character represents (1 per-session, group size collapsed). */
-  sessionCount: number
+  /** Krab scale — sessionScale(assistantMessages), ~0.55..1.1. */
+  scale: number
 }
 
-export type AgentLayout =
+export type KrabLayout =
   | { mode: 'empty'; items: [] }
-  | { mode: 'per-session'; items: AgentItem[] }
-  | { mode: 'collapsed'; items: AgentItem[]; overflow: number }
+  | { mode: 'sessions'; items: KrabItem[]; overflow: number }
 
-export interface BuildAgentLayoutArgs {
+export interface BuildKrabLayoutArgs {
   sessions: SessionEntry[]
-  rollups: Rollups
   range: RangeKey
   snapshotDate: string
   /** Defaults to SEAT_CAPACITY (16). Overridable for smaller scenes/tests. */
@@ -71,64 +68,63 @@ function inWindow(day: string, snapshotDate: string, range: RangeKey): boolean {
   return day >= start && day <= snapshotDate
 }
 
-function byStartTsDesc(a: SessionEntry, b: SessionEntry): number {
+/**
+ * Session magnitude -> krab scale. Monotonic non-decreasing in `msgs`:
+ * ~0.55 at 0 messages, capping at 1.1 once `msgs` >= 9999.
+ */
+export function sessionScale(msgs: number): number {
+  return 0.55 + 0.55 * Math.min(Math.log10(1 + Math.max(0, msgs)) / 4, 1)
+}
+
+/**
+ * Deterministic tooltip body for a session: `day · N assistant msgs ·
+ * +added/−removed LOC` (or "no commit activity that day"), then a PRs line,
+ * a branch line, and the harvested summary text when present.
+ */
+export function tooltipBody(session: SessionEntry): string {
+  const loc =
+    session.locDelta === null
+      ? 'no commit activity that day'
+      : `+${session.locDelta.added}/−${session.locDelta.removed} LOC`
+  const lines = [`${session.day} · ${session.assistantMessages} assistant msgs · ${loc}`]
+  if (session.prRefs.length > 0) lines.push(`PRs #${session.prRefs.join(' #')}`)
+  if (session.branch !== null) lines.push(`branch ${session.branch}`)
+  if (session.summary !== null) lines.push(session.summary)
+  return lines.join('\n')
+}
+
+/** Deterministic per-session order: biggest first, then newest, then key. */
+function byMagnitudeDesc(a: SessionEntry, b: SessionEntry): number {
+  if (a.assistantMessages !== b.assistantMessages) return b.assistantMessages - a.assistantMessages
   if (a.startTs > b.startTs) return -1
   if (a.startTs < b.startTs) return 1
   return `${a.harness}:${a.sessionId}`.localeCompare(`${b.harness}:${b.sessionId}`)
 }
 
-export function buildAgentLayout(args: BuildAgentLayoutArgs): AgentLayout {
-  const { sessions, rollups, range, snapshotDate } = args
+export function buildKrabLayout(args: BuildKrabLayoutArgs): KrabLayout {
+  const { sessions, range, snapshotDate } = args
   const capacity = args.capacity ?? SEAT_CAPACITY
 
-  const windowSessions = sessions.filter((s) => inWindow(s.day, snapshotDate, range)).sort(byStartTsDesc)
+  const windowSessions = sessions.filter((s) => inWindow(s.day, snapshotDate, range)).sort(byMagnitudeDesc)
 
   if (windowSessions.length === 0) {
     return { mode: 'empty', items: [] }
   }
 
-  if (windowSessions.length <= capacity) {
-    const items: AgentItem[] = windowSessions.map((s, i) => ({
-      key: `${s.harness}:${s.sessionId}`,
-      harness: s.harness,
-      repo: s.repo,
-      tooltip: s.summary ?? s.fallback ?? `${s.harness} · ${s.day}`,
-      title: s.repo,
-      seatIndex: i,
-      sessionCount: 1,
-    }))
-    return { mode: 'per-session', items }
-  }
+  const top = windowSessions.slice(0, capacity)
+  const overflow = Math.max(0, windowSessions.length - capacity)
 
-  // Collapsed: one character per (repo x harness) pair with window activity.
-  const groups = new Map<string, { key: string; harness: Harness; repo: string; sessions: SessionEntry[] }>()
-  for (const s of windowSessions) {
-    const groupKey = `${s.repo}|${s.harness}`
-    let group = groups.get(groupKey)
-    if (!group) {
-      group = { key: groupKey, harness: s.harness, repo: s.repo, sessions: [] }
-      groups.set(groupKey, group)
-    }
-    group.sessions.push(s)
-  }
-
-  const ordered = [...groups.values()].sort(
-    (a, b) => b.sessions.length - a.sessions.length || a.key.localeCompare(b.key),
-  )
-  const top = ordered.slice(0, capacity)
-  const overflow = Math.max(0, ordered.length - capacity)
-
-  const items: AgentItem[] = top.map((g, i) => ({
-    key: g.key,
-    harness: g.harness,
-    repo: g.repo,
-    tooltip: rollups[range]?.[g.key] ?? 'Summary pending',
-    title: `${g.repo} · ${g.harness}`,
+  const items: KrabItem[] = top.map((s, i) => ({
+    key: `${s.harness}:${s.sessionId}`,
+    harness: s.harness,
+    repo: s.repo,
+    tooltipTitle: `${s.repo} · ${s.harness}`,
+    tooltipBody: tooltipBody(s),
     seatIndex: i,
-    sessionCount: g.sessions.length,
+    scale: sessionScale(s.assistantMessages),
   }))
 
-  return { mode: 'collapsed', items, overflow }
+  return { mode: 'sessions', items, overflow }
 }
 
 /**

@@ -75,16 +75,15 @@ export interface SessionEntry {
   sessionId: string
   day: string
   startTs: string
+  title: string | null
   summary: string | null
   summarySlug: string | null
-  fallback: string | null
+  /** Session magnitude proxy (counted from the harness log). */
+  assistantMessages: number
+  locDelta: { added: number; removed: number; net: number } | null
+  prRefs: number[]
+  branch: string | null
 }
-
-/** Pre-computed LLM rollups per grain, keyed by `repo|harness`. */
-export type Rollups = Partial<Record<RangeKey, Record<string, string>>>
-
-/** Rollup failures per grain, keyed by `repo|harness` (retried next run). */
-export type RollupErrors = Partial<Record<RangeKey, Record<string, string>>>
 
 export interface Snapshot {
   snapshotDate: string
@@ -92,8 +91,6 @@ export interface Snapshot {
   ranges: Record<RangeKey, RangeStats>
   recentActivity: ActivityItem[]
   sessions: SessionEntry[]
-  rollups: Rollups
-  rollupErrors: RollupErrors
 }
 
 /** Blog post metadata handed from server components to the client carousel. */

@@ -6,8 +6,6 @@ import type {
   PrsReferenced,
   RangeKey,
   RangeStats,
-  RollupErrors,
-  Rollups,
   SessionEntry,
   Sessions,
   Snapshot,
@@ -152,7 +150,8 @@ function isHarness(v: unknown): v is Harness {
 /**
  * Defensive normalize of the additive `sessions` array: drop non-objects,
  * unknown harnesses, and entries without repo/sessionId; coerce strings;
- * missing summary/fallback become null. Never throws.
+ * default the deterministic stats (assistantMessages, locDelta, prRefs,
+ * branch, title). Old snapshots without these fields stay safe. Never throws.
  */
 export function normalizeSessionEntries(raw: unknown): SessionEntry[] {
   if (!Array.isArray(raw)) return []
@@ -163,44 +162,30 @@ export function normalizeSessionEntries(raw: unknown): SessionEntry[] {
     const repo = typeof s.repo === 'string' && s.repo !== '' ? s.repo : null
     const sessionId = typeof s.sessionId === 'string' && s.sessionId !== '' ? s.sessionId : null
     if (!harness || !repo || !sessionId) continue
+    const msgs = finiteNumber(s.assistantMessages)
+    const loc = isRecord(s.locDelta)
+      ? {
+          added: finiteNumber(s.locDelta.added) ?? 0,
+          removed: finiteNumber(s.locDelta.removed) ?? 0,
+          net: finiteNumber(s.locDelta.net) ?? 0,
+        }
+      : null
     entries.push({
       harness,
       repo,
       sessionId,
       day: typeof s.day === 'string' ? s.day : '',
       startTs: typeof s.startTs === 'string' ? s.startTs : '',
+      title: typeof s.title === 'string' && s.title !== '' ? s.title : null,
       summary: typeof s.summary === 'string' && s.summary !== '' ? s.summary : null,
       summarySlug: typeof s.summarySlug === 'string' && s.summarySlug !== '' ? s.summarySlug : null,
-      fallback: typeof s.fallback === 'string' && s.fallback !== '' ? s.fallback : null,
+      assistantMessages: msgs === null ? 0 : Math.max(0, msgs),
+      locDelta: loc,
+      prRefs: numberArray(s.prRefs),
+      branch: typeof s.branch === 'string' && s.branch !== '' ? s.branch : null,
     })
   }
   return entries
-}
-
-/** Coerce an unknown value into a `{ key: text }` string map, dropping non-strings. */
-function stringMap(raw: unknown): Record<string, string> {
-  const r = isRecord(raw) ? raw : {}
-  const out: Record<string, string> = {}
-  for (const [k, v] of Object.entries(r)) {
-    if (typeof v === 'string' && v !== '') out[k] = v
-  }
-  return out
-}
-
-/** Defensive normalize of the additive `rollups` map (per-grain string maps). */
-export function normalizeRollups(raw: unknown): Rollups {
-  const r = isRecord(raw) ? raw : {}
-  const out: Rollups = {}
-  for (const key of RANGE_KEYS) {
-    const map = stringMap(r[key])
-    if (Object.keys(map).length > 0) out[key] = map
-  }
-  return out
-}
-
-/** Defensive normalize of the additive `rollupErrors` map (same shape). */
-export function normalizeRollupErrors(raw: unknown): RollupErrors {
-  return normalizeRollups(raw)
 }
 
 /**
@@ -223,8 +208,6 @@ export function normalizeSnapshot(raw: unknown): Snapshot | null {
     ranges,
     recentActivity: normalizeActivity(raw.recentActivity),
     sessions: normalizeSessionEntries(raw.sessions),
-    rollups: normalizeRollups(raw.rollups),
-    rollupErrors: normalizeRollupErrors(raw.rollupErrors),
   }
 }
 
@@ -251,8 +234,6 @@ export function emptySnapshot(): Snapshot {
     ranges,
     recentActivity: [],
     sessions: [],
-    rollups: {},
-    rollupErrors: {},
   }
 }
 

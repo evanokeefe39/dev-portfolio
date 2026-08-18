@@ -1,6 +1,7 @@
 /**
  * Snapshot schema — single source of truth for the frontend.
- * Mirrors public/data/current.json, produced by the data_pipeline package.
+ * Mirrors public/data/7d.json (eager) plus the per-range session slices
+ * (30d/90d/1y/all.json), produced by the data_pipeline package.
  */
 
 export type RangeKey = '7d' | '30d' | '90d' | '1y' | 'all'

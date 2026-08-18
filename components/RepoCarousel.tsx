@@ -1,19 +1,21 @@
 'use client'
 
+import { useEffect } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import AutoScroll from 'embla-carousel-auto-scroll'
 import { aggregateReposByRepo, filterWindow } from '@/components/scene/layout'
 import { formatInt } from '@/lib/format'
 import { HARNESS_COLORS } from '@/lib/harness'
 import { useRange } from '@/lib/range-store'
-import { useSnapshot } from '@/lib/snapshot-store'
+import { ensureRangeSessions, useSnapshot } from '@/lib/snapshot-store'
 
 /** Right-edge repo-aggregate carousel (30d/90d/1y/all): one glass card per
- *  repo, Embla auto-scroll, pauses on hover. Hidden at 7d (per-session view)
- *  and while the snapshot is loading. */
+ *  repo, Embla auto-scroll, pauses on hover. Hidden at 7d (per-session view),
+ *  while the snapshot is loading, and until the selected range's lazy session
+ *  slice has been fetched. */
 export default function RepoCarousel() {
   const range = useRange()
-  const { snapshot } = useSnapshot()
+  const { snapshot, rangeSessions } = useSnapshot()
   const [emblaRef] = useEmblaCarousel(
     { loop: true, align: 'start' },
     [
@@ -25,10 +27,15 @@ export default function RepoCarousel() {
       }),
     ],
   )
+  // Load the lazy per-range session slice once a longer range is selected.
+  useEffect(() => {
+    if (range !== '7d') ensureRangeSessions(range)
+  }, [range])
 
-  if (range === '7d' || !snapshot) return null
+  const slice = rangeSessions[range]
+  if (range === '7d' || !snapshot || !slice) return null
 
-  const repos = aggregateReposByRepo(filterWindow(snapshot.sessions, range, snapshot.snapshotDate))
+  const repos = aggregateReposByRepo(filterWindow(slice, range, snapshot.snapshotDate))
   if (repos.length === 0) return null
 
   return (

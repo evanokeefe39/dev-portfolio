@@ -1,6 +1,11 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { getSnapshotState, startSnapshotLoad, subscribeSnapshot } from '../lib/snapshot-store'
+import {
+  ensureRangeSessions,
+  getSnapshotState,
+  startSnapshotLoad,
+  subscribeSnapshot,
+} from '../lib/snapshot-store'
 
 // Minimal snapshot payload — normalizeSnapshot zero-fills the missing ranges.
 const FIXTURE = {
@@ -20,27 +25,64 @@ const FIXTURE = {
   sessions: [],
 }
 
-test('snapshot store fetches once and notifies subscribers on resolve', async () => {
+// Stripped 30d slice per the lazy-slice schema (6 keys, locDelta without net).
+const THIRTY_DAY_SLICE = {
+  snapshotDate: '2026-08-18',
+  generatedAt: '2026-08-18T00:00:00Z',
+  range: '30d',
+  sessions: [
+    {
+      harness: 'omp',
+      repo: 'dev-portfolio',
+      sessionId: 'slice-1',
+      day: '2026-08-15',
+      assistantMessages: 9,
+      locDelta: { added: 2622, removed: 1015 },
+      prRefs: [17, 18],
+    },
+  ],
+}
+
+test('snapshot store fetches 7d eagerly once and 30d slice on demand once', async () => {
   const real = globalThis.fetch
-  let calls = 0
+  const calls: string[] = []
   const observed: string[] = []
-  globalThis.fetch = (async () => {
-    calls += 1
-    return new Response(JSON.stringify(FIXTURE), { status: 200 })
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    const url = String(input)
+    calls.push(url)
+    if (url === '/data/7d.json') return new Response(JSON.stringify(FIXTURE), { status: 200 })
+    return new Response(JSON.stringify(THIRTY_DAY_SLICE), { status: 200 })
   }) as unknown as typeof fetch
   try {
     const unsubA = subscribeSnapshot(() => observed.push(getSnapshotState().status))
     const unsubB = subscribeSnapshot(() => {})
-    assert.equal(calls, 1, 'two subscribers must share one fetch')
-    assert.equal(getSnapshotState().status, 'loading')
+    assert.deepEqual(calls, ['/data/7d.json'], 'first subscribe triggers exactly one eager fetch')
+
+    await ensureRangeSessions('30d') // the store's own exported promise — no wall-clock wait
+    assert.deepEqual(
+      calls,
+      ['/data/7d.json', '/data/30d.json'],
+      'ensureRangeSessions adds exactly one fetch',
+    )
+    assert.equal(getSnapshotState().rangeSessions['30d']?.length, 1)
+    assert.equal(getSnapshotState().rangeSessions['30d']?.[0].sessionId, 'slice-1')
     unsubB()
+
+    await ensureRangeSessions('30d')
+    assert.deepEqual(
+      calls,
+      ['/data/7d.json', '/data/30d.json'],
+      'repeated ensureRangeSessions does not refetch',
+    )
 
     await startSnapshotLoad() // the promise the store already exposes — no wall-clock wait
 
     assert.equal(getSnapshotState().status, 'ready')
     assert.equal(getSnapshotState().snapshot?.snapshotDate, '2026-08-18')
-    assert.deepEqual(observed, ['ready'], 'subscriber was notified on resolution')
-    assert.equal(calls, 1, 'no refetch after resolution')
+    assert.equal(getSnapshotState().rangeSessions['30d']?.length, 1)
+    assert.equal(getSnapshotState().rangeSessions['30d']?.[0].locDelta?.net, 0)
+    assert.ok(observed.includes('ready'), 'subscriber was notified on resolution')
+    assert.equal(calls.length, 2, 'no refetch after resolution')
     unsubA()
   } finally {
     globalThis.fetch = real

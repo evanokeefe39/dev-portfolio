@@ -35,8 +35,29 @@ def _commit(day_offset, msg, repo="repo-a", added=40, removed=10):
     return Commit(repo=repo, sha=f"{day_offset:040x}", ts=ts, msg=msg,
                   added=added, removed=removed)
 
+def _session(day, session_id, *, summary=None, added=0, removed=0,
+             messages=5, prs=None):
+    """A full SessionEntry-shaped record (matching harvest_sessions output)."""
+    loc_delta = None
+    if added or removed:
+        loc_delta = {"added": added, "removed": removed, "net": added - removed}
+    return {
+        "harness": "omp",
+        "repo": "dev-portfolio",
+        "sessionId": session_id,
+        "day": day,
+        "startTs": f"{day}T10:00:00Z",
+        "title": f"Session {session_id}",
+        "summary": summary,
+        "summarySlug": f"{session_id}-summary" if summary else None,
+        "assistantMessages": messages,
+        "locDelta": loc_delta,
+        "prRefs": prs or [],
+        "branch": "main",
+    }
 
-def _snapshot(tmp_path: Path) -> dict:
+
+def _snapshot(tmp_path: Path, sessions: list[dict] | None = None) -> dict:
     pricing_path = tmp_path / "prices.json"
     pricing_path.write_text(json.dumps({"claude-opus-4-8": {
         "input_cost_per_token": 5e-6, "output_cost_per_token": 2.5e-5,
@@ -52,7 +73,7 @@ def _snapshot(tmp_path: Path) -> dict:
     ]
     branches = {"dev-portfolio": {commits[0].sha: "main", commits[1].sha: "main"}}
     return build_snapshot(entries, commits, pricing_available=pricing.available,
-                          branches=branches, tz=TZ, now=NOW)
+                          branches=branches, tz=TZ, now=NOW, sessions=sessions)
 
 
 def test_snapshot_schema_complete():
@@ -141,17 +162,79 @@ def test_recent_activity_fields_and_order():
     assert first["linesRemoved"] == 10
 
 
-def test_write_outputs_writes_current_and_history(tmp_path):
-    snap = _snapshot(tmp_path)
-    current, archive = write_outputs(snap, tmp_path / "public" / "data")
-    assert current == tmp_path / "public" / "data" / "current.json"
-    assert archive == tmp_path / "public" / "data" / "history" / "2026-08-17.json"
-    parsed = json.loads(current.read_text(encoding="utf-8"))
-    assert parsed == snap
-    # A second run keeps the existing history file.
-    other = json.loads(archive.read_text(encoding="utf-8"))
-    assert other == snap
-    assert (tmp_path / "public" / "data" / "history").glob("*.json")
+def test_write_outputs_writes_slices_and_history(tmp_path):
+    # Fixture sessions: inside 7d (with summary), inside 30d only, outside 90d.
+    sessions = [
+        _session("2026-08-17", "s-7d", summary="7d summary", added=100, removed=10,
+                 prs=[1]),
+        _session("2026-08-01", "s-30d", added=50, removed=5, prs=[2]),
+        _session("2026-04-01", "s-old"),
+    ]
+    snap = _snapshot(tmp_path, sessions=sessions)
+    data_dir = tmp_path / "public" / "data"
+    paths = write_outputs(snap, data_dir)
+
+    # current.json is gone; six files written (7d + 4 slices + history archive).
+    assert not (data_dir / "current.json").exists()
+    assert len(paths) == 6
+    assert set(paths) == {
+        data_dir / "7d.json",
+        data_dir / "30d.json",
+        data_dir / "90d.json",
+        data_dir / "1y.json",
+        data_dir / "all.json",
+        data_dir / "history" / "2026-08-17.json",
+    }
+
+    # 7d.json: full snapshot shape, sessions windowed to 7d, summaries kept.
+    seven_day = json.loads((data_dir / "7d.json").read_text(encoding="utf-8"))
+    assert set(seven_day.keys()) == {
+        "snapshotDate", "generatedAt", "ranges", "recentActivity", "sessions",
+    }
+    assert seven_day["snapshotDate"] == snap["snapshotDate"]
+    assert seven_day["generatedAt"] == snap["generatedAt"]
+    assert seven_day["ranges"] == snap["ranges"]
+    assert seven_day["recentActivity"] == snap["recentActivity"]
+    assert [s["sessionId"] for s in seven_day["sessions"]] == ["s-7d"]
+    kept = seven_day["sessions"][0]
+    assert kept["summary"] == "7d summary"
+    assert kept["locDelta"] == {"added": 100, "removed": 10, "net": 90}
+
+    # Lazy slices: exact top-level keys; sessions stripped and windowed.
+    STRIPPED_KEYS = {
+        "harness", "repo", "sessionId", "day", "assistantMessages", "locDelta",
+        "prRefs",
+    }
+    thirty = json.loads((data_dir / "30d.json").read_text(encoding="utf-8"))
+    assert set(thirty.keys()) == {"snapshotDate", "generatedAt", "range", "sessions"}
+    assert thirty["range"] == "30d"
+    assert {s["sessionId"] for s in thirty["sessions"]} == {"s-7d", "s-30d"}
+    for s in thirty["sessions"]:
+        assert set(s.keys()) == STRIPPED_KEYS
+        assert set(s["locDelta"].keys()) == {"added", "removed"}
+    thirty_by_id = {s["sessionId"]: s for s in thirty["sessions"]}
+    assert thirty_by_id["s-7d"]["locDelta"] == {"added": 100, "removed": 10}
+
+    # 90d window excludes the session outside it; 1y keeps all three.
+    ninety = json.loads((data_dir / "90d.json").read_text(encoding="utf-8"))
+    assert {s["sessionId"] for s in ninety["sessions"]} == {"s-7d", "s-30d"}
+    one_year = json.loads((data_dir / "1y.json").read_text(encoding="utf-8"))
+    assert {s["sessionId"] for s in one_year["sessions"]} == {"s-7d", "s-30d", "s-old"}
+
+    # all.json: every session, stripped; locDelta stays null without git stats.
+    all_data = json.loads((data_dir / "all.json").read_text(encoding="utf-8"))
+    assert all_data["range"] == "all"
+    assert {s["sessionId"] for s in all_data["sessions"]} == {"s-7d", "s-30d", "s-old"}
+    assert all(set(s.keys()) == STRIPPED_KEYS for s in all_data["sessions"])
+    all_by_id = {s["sessionId"]: s for s in all_data["sessions"]}
+    assert all_by_id["s-old"]["locDelta"] is None
+
+    # History archive equals the full snapshot, sessions included.
+    archive = json.loads(
+        (data_dir / "history" / "2026-08-17.json").read_text(encoding="utf-8")
+    )
+    assert archive == snap
+    assert archive["sessions"] == sessions
 
 
 def test_json_serializable_no_nan(tmp_path):

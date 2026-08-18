@@ -56,13 +56,13 @@ Use LTTB (Largest Triangle Three Buckets) algorithm for downsampling — it pres
 | Styling | Tailwind CSS | Purged in production |
 | Sparklines | Raw SVG polylines | No charting library needed — paths generated from committed JSON |
 | Bar charts | CSS widths | Percentage of max value, rendered as divs |
-| Data | Committed JSON snapshots | `public/data/current.json` + `public/data/history/` — served statically, included in the static export |
+| Data | Committed JSON snapshots | `public/data/7d.json` (eager) + `30d/90d/1y/all.json` (lazy slices) + `public/data/history/` — served statically, included in the static export |
 | Data process | Python + DuckDB, standalone `data_pipeline/` pkg | `uv run snapshot`; reads OMP/Claude/Pi/Codex JSONL + `git log`. Cost: OMP direct, others via LiteLLM. Separate from the Next.js app |
 | Deployment | Vercel | Static hosting, auto-deploy on push |
 
 ## Data process (local snapshot)
 
-A standalone Python package at `data_pipeline/` (own `pyproject.toml`, `.venv` managed by `uv`) reads the same sources [loc-dock](../../loc-dock) uses and writes aggregate JSON into the Next.js `public/data/` directory. The frontend fetches `/data/current.json` at runtime; the Python process and the Next.js app share no code. Vercel builds the static site from the committed JSON — no runtime data access, no tokens in CI.
+A standalone Python package at `data_pipeline/` (own `pyproject.toml`, `.venv` managed by `uv`) reads the same sources [loc-dock](../../loc-dock) uses and writes aggregate JSON into the Next.js `public/data/` directory. The frontend fetches `/data/7d.json` eagerly (five range aggregates + 7d-windowed sessions) and the per-range session slices on demand; the Python process and the Next.js app share no code. Vercel builds the static site from the committed JSON — no runtime data access, no tokens in CI.
 
 **Why local and Python:** the sources (`~/.claude` JSONL, local git repos) live on the developer's machine; GitHub Actions runners cannot see them. Python + DuckDB is the mature stack (matches loc-dock's spikes) and Python is guaranteed present locally. The process runs on-demand (`uv run snapshot`) and commits the result; cadence is manual for v1, with optional local cron later. `public/` is the only directory served verbatim at the site root and copied as-is into the static `out/` export.
 
@@ -80,7 +80,7 @@ A standalone Python package at `data_pipeline/` (own `pyproject.toml`, `.venv` m
 3. For each range (7d, 30d, 90d, 1y, all): aggregate tokens (by model), cost, sessions, LOC delta, PR-ref count, active repos.
 4. Compute `% change vs prior period` (e.g., this 7d vs the previous 7d).
 5. LTTB-downsample every sparkline to 12–15 points.
-6. Write `public/data/current.json` + archive `public/data/history/YYYY-MM-DD.json`.
+6. Write `public/data/7d.json` (eager: five ranges + 7d-windowed sessions), the lazy `30d/90d/1y/all.json` slices (windowed sessions stripped of tooltip-only fields), and archive the full snapshot to `public/data/history/YYYY-MM-DD.json`.
 7. Commit the updated `public/data/` (the `data_pipeline/` package is committed once; only its JSON output is regenerated).
 
 ### Smoke-test gate (before writing aggregation logic)
@@ -92,7 +92,7 @@ Per the Data Reality Check gate, the script is built against real data first:
 - Confirm `read_ndjson_objects` parses it; confirm `git log --numstat` output shape.
 - Reconcile a hand-computed total against the script's output before trusting it.
 
-### Snapshot schema (`public/data/current.json`)
+### Snapshot schema (`public/data/7d.json`)
 
 ```json
 {
@@ -126,6 +126,8 @@ Per the Data Reality Check gate, the script is built against real data first:
 }
 ```
 
+Lazy slices (`30d/90d/1y/all.json`) carry only `{snapshotDate, generatedAt, range, sessions}` — the windowed sessions stripped to `harness, repo, sessionId, day, assistantMessages, locDelta {added, removed}, prRefs` (no summaries/titles/branches). The client aggregates them into per-repo cards; `7d.json` keeps full session detail (hover tooltips) and all five range aggregates so the stat card has every range's numbers on first paint.
+
 - `prsReferenced` (not "merged") — counts `#NNN` refs in commit messages, local.
 - `branch` is best-effort via `git log --source`; nullable when ambiguous.
 - `locDelta.sparkline` is a `[added, removed][]` series (stacked bar), downsampled.
@@ -134,8 +136,8 @@ Per the Data Reality Check gate, the script is built against real data first:
 ### History & retention
 
 - Each run archives a dated copy to `public/data/history/YYYY-MM-DD.json`.
-- **All snapshots are kept forever** (decided). Aggregate JSON is ~5–20 KB each; a year of daily snapshots is a few MB — the repo stays cloneable.
-- The site reads `public/data/current.json` only; history is an audit trail and a future "trend of trends" data source.
+- **All snapshots are kept forever** (decided). Per-range JSON is ~30–160 KB raw (~3–16 KB gzipped); a year of daily archives is a few MB — the repo stays cloneable.
+- The site fetches `/data/7d.json` eagerly and the per-range slices on demand; history is an audit trail and a future "trend of trends" data source.
 
 ### Deferred to v2
 

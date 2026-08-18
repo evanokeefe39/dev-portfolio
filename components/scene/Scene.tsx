@@ -7,12 +7,16 @@ import { WarehouseEnvironment, WAREHOUSE_CONFIG } from './environments/warehouse
 import { SessionKrab } from './SessionKrab'
 import { buildKrabLayout, SEAT_POSITIONS } from './layout'
 import { useRange } from '@/lib/range-store'
-import { useSnapshot } from '@/lib/snapshot-store'
+import { ensureRangeSessions, useSnapshot } from '@/lib/snapshot-store'
 
 /**
  * Full-viewport hero: the voxel warehouse rendered behind the glass overlays.
  * Client-only (loaded via next/dynamic ssr:false from app/page.tsx) so the
- * local clock and /data/current.json fetch never touch the server.
+ * local clock and data fetches never touch the server. /data/7d.json loads
+ * eagerly (range aggregates + 7d-windowed sessions); 30d/90d/1y/all session
+ * slices load lazily in the background — while a longer-range slice is still
+ * loading the 7d layout stays visible, then the scene recomputes (repo mode)
+ * when the slice lands.
  *
  * The scene is static — it renders pre-computed snapshot data and never calls
  * an LLM. Krab labels are hover-gated: a tooltip pill appears only while the
@@ -34,22 +38,33 @@ export default function Scene() {
   // Local clock, refreshed every minute so daylight slowly follows the visitor.
   const [hour, setHour] = useState<number>(() => localHour())
   const range = useRange()
-  const { snapshot } = useSnapshot()
+  const { snapshot, rangeSessions } = useSnapshot()
 
   useEffect(() => {
     const id = setInterval(() => setHour(localHour()), 60_000)
     return () => clearInterval(id)
   }, [])
 
-  const layout = useMemo(
-    () =>
-      buildKrabLayout({
-        sessions: snapshot?.sessions ?? [],
-        range,
-        snapshotDate: snapshot?.snapshotDate ?? '',
-      }),
-    [snapshot, range],
-  )
+  // Load the lazy per-range session slice once a longer range is selected;
+  // the eager 7d layout stays visible until the slice lands.
+  useEffect(() => {
+    if (range !== '7d') ensureRangeSessions(range)
+  }, [range])
+
+  const layout = useMemo(() => {
+    const sliceReady = range === '7d' || rangeSessions[range] !== undefined
+    const layoutRange = sliceReady ? range : '7d'
+    const sessions = sliceReady
+      ? range === '7d'
+        ? (snapshot?.sessions ?? [])
+        : (rangeSessions[range] ?? [])
+      : (snapshot?.sessions ?? [])
+    return buildKrabLayout({
+      sessions,
+      range: layoutRange,
+      snapshotDate: snapshot?.snapshotDate ?? '',
+    })
+  }, [snapshot, range, rangeSessions])
 
   return (
     <div className="pointer-events-none absolute inset-0 z-0">

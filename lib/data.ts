@@ -238,16 +238,34 @@ export function emptySnapshot(): Snapshot {
 }
 
 /**
- * Fetch /data/current.json at runtime (client side). Any failure — 404, bad
- * JSON, network error — resolves to `null`; callers render the empty state.
+ * Fetch /data/7d.json at runtime (client side) — the eager slice carrying the
+ * five range aggregates + 7d-windowed sessions. Any failure — 404, bad JSON,
+ * network error — resolves to `null`; callers render the empty state.
  */
 export async function loadSnapshot(): Promise<Snapshot | null> {
   try {
-    const res = await fetch('/data/current.json', { cache: 'no-store' })
+    const res = await fetch('/data/7d.json', { cache: 'no-store' })
     if (!res.ok) return null
     const raw: unknown = await res.json()
     return normalizeSnapshot(raw)
   } catch {
     return null
+  }
+}
+
+/**
+ * Fetch the lazy per-range session slice /data/{range}.json at runtime.
+ * The slice carries windowed sessions stripped to what repo aggregation
+ * needs; normalizeSessionEntries defaults the missing detail fields.
+ * Any failure — 404, bad JSON, network error — resolves to `[]`.
+ */
+export async function loadRangeSessions(range: RangeKey): Promise<SessionEntry[]> {
+  try {
+    const res = await fetch(`/data/${range}.json`, { cache: 'no-store' })
+    if (!res.ok) return []
+    const raw: unknown = await res.json()
+    return normalizeSessionEntries(isRecord(raw) ? raw.sessions : undefined)
+  } catch {
+    return []
   }
 }

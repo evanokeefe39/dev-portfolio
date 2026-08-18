@@ -1,11 +1,11 @@
 {
   "snapshotDate": "2026-08-18",
-  "generatedAt": "2026-08-18T10:28:42+02:00",
+  "generatedAt": "2026-08-18T13:13:19+02:00",
   "ranges": {
     "7d": {
       "tokenBurn": {
-        "total": 1720826954,
-        "changePct": -31.5,
+        "total": 1770779529,
+        "changePct": -29.5,
         "sparkline": [
           237344002,
           286764323,
@@ -13,17 +13,17 @@
           256623723,
           203075070,
           315172755,
-          26336778
+          76289353
         ]
       },
       "tokensByModel": [
         {
           "model": "deepseek-v4-flash",
-          "tokens": 1085288892
+          "tokens": 1132748232
         },
         {
           "model": "deepseek-v4-pro",
-          "tokens": 629620182
+          "tokens": 632113417
         },
         {
           "model": "moonshotai/kimi-k3",
@@ -35,7 +35,7 @@
         }
       ],
       "cost": {
-        "total": 21.234883,
+        "total": 21.763223,
         "breakdown": {
           "input": 0.0,
           "output": 0.0,
@@ -44,8 +44,8 @@
         }
       },
       "sessions": {
-        "total": 188,
-        "active": 4
+        "total": 204,
+        "active": 2
       },
       "prsReferenced": {
         "count": 21,
@@ -61,9 +61,9 @@
         ]
       },
       "locDelta": {
-        "net": 54832,
-        "added": 59810,
-        "removed": 4978,
+        "net": 69399,
+        "added": 77499,
+        "removed": 8100,
         "sparkline": [
           [
             5943.0,
@@ -90,16 +90,16 @@
             1123.0
           ],
           [
-            14987.0,
-            338.0
+            32676.0,
+            3460.0
           ]
         ]
       }
     },
     "30d": {
       "tokenBurn": {
-        "total": 4854726208,
-        "changePct": 182.4,
+        "total": 4904678783,
+        "changePct": 185.3,
         "sparkline": [
           0,
           0,
@@ -114,17 +114,17 @@
           237344002,
           395510303,
           315172755,
-          26336778
+          76289353
         ]
       },
       "tokensByModel": [
         {
           "model": "deepseek-v4-flash",
-          "tokens": 3352332149
+          "tokens": 3399791489
         },
         {
           "model": "deepseek-v4-pro",
-          "tokens": 1479288041
+          "tokens": 1481781276
         },
         {
           "model": "moonshotai/kimi-k3",
@@ -136,7 +136,7 @@
         }
       ],
       "cost": {
-        "total": 55.767474,
+        "total": 56.295814,
         "breakdown": {
           "input": 0.0,
           "output": 0.0,
@@ -145,8 +145,8 @@
         }
       },
       "sessions": {
-        "total": 367,
-        "active": 4
+        "total": 383,
+        "active": 2
       },
       "prsReferenced": {
         "count": 21,
@@ -169,9 +169,9 @@
         ]
       },
       "locDelta": {
-        "net": 103634,
-        "added": 204871,
-        "removed": 101237,
+        "net": 118201,
+        "added": 222560,
+        "removed": 104359,
         "sparkline": [
           [
             0.0,
@@ -226,15 +226,15 @@
             1123.0
           ],
           [
-            14987.0,
-            338.0
+            32676.0,
+            3460.0
           ]
         ]
       }
     },
     "90d": {
       "tokenBurn": {
-        "total": 11653653556,
+        "total": 11703606131,
         "changePct": null,
         "sparkline": [
           0,
@@ -250,13 +250,13 @@
           0,
           729927098,
           237344002,
-          26336778
+          76289353
         ]
       },
       "tokensByModel": [
         {
           "model": "deepseek-v4-flash",
-          "tokens": 5022165712
+          "tokens": 5069625052
         },
         {
           "model": "claude-opus-4-6",
@@ -264,7 +264,7 @@
         },
         {
           "model": "deepseek-v4-pro",
-          "tokens": 2165984527
+          "tokens": 2168477762
         },
         {
           "model": "claude-opus-4-8",
@@ -364,7 +364,7 @@
         }
       ],
       "cost": {
-        "total": 3239.63871,
+        "total": 3240.16705,
         "breakdown": {
           "input": 10.781694,
           "output": 496.653447,
@@ -373,8 +373,8 @@
         }
       },
       "sessions": {
-        "total": 865,
-        "active": 4
+        "total": 881,
+        "active": 2
       },
       "prsReferenced": {
         "count": 38,
@@ -397,9 +397,9 @@
         ]
       },
       "locDelta": {
-        "net": 398211,
-        "added": 623462,
-        "removed": 225251,
+        "net": 412778,
+        "added": 641151,
+        "removed": 228373,
         "sparkline": [
           [
             5457.0,
@@ -454,15 +454,15 @@
             7486.0
           ],
           [
-            14987.0,
-            338.0
+            32676.0,
+            3460.0
           ]
         ]
       }
     },
     "1y": {
       "tokenBurn": {
-        "total": 11653653556,
+        "total": 11703606131,
         "changePct": null,
         "sparkline": [
           0,
@@ -478,13 +478,13 @@
           553203731,
           0,
           729927098,
-          26336778
+          76289353
         ]
       },
       "tokensByModel": [
         {
           "model": "deepseek-v4-flash",
-          "tokens": 5022165712
+          "tokens": 5069625052
         },
         {
           "model": "claude-opus-4-6",
@@ -492,7 +492,7 @@
         },
         {
           "model": "deepseek-v4-pro",
-          "tokens": 2165984527
+          "tokens": 2168477762
         },
         {
           "model": "claude-opus-4-8",
@@ -592,7 +592,7 @@
         }
       ],
       "cost": {
-        "total": 3239.63871,
+        "total": 3240.16705,
         "breakdown": {
           "input": 10.781694,
           "output": 496.653447,
@@ -601,8 +601,8 @@
         }
       },
       "sessions": {
-        "total": 865,
-        "active": 4
+        "total": 881,
+        "active": 2
       },
       "prsReferenced": {
         "count": 1905,
@@ -625,9 +625,9 @@
         ]
       },
       "locDelta": {
-        "net": 3077674,
-        "added": 4138211,
-        "removed": 1060537,
+        "net": 3092241,
+        "added": 4155900,
+        "removed": 1063659,
         "sparkline": [
           [
             373.0,
@@ -682,15 +682,15 @@
             68138.0
           ],
           [
-            14987.0,
-            338.0
+            32676.0,
+            3460.0
           ]
         ]
       }
     },
     "all": {
       "tokenBurn": {
-        "total": 11653653556,
+        "total": 11703606131,
         "changePct": null,
         "sparkline": [
           0,
@@ -706,13 +706,13 @@
           553203731,
           0,
           729927098,
-          26336778
+          76289353
         ]
       },
       "tokensByModel": [
         {
           "model": "deepseek-v4-flash",
-          "tokens": 5022165712
+          "tokens": 5069625052
         },
         {
           "model": "claude-opus-4-6",
@@ -720,7 +720,7 @@
         },
         {
           "model": "deepseek-v4-pro",
-          "tokens": 2165984527
+          "tokens": 2168477762
         },
         {
           "model": "claude-opus-4-8",
@@ -820,7 +820,7 @@
         }
       ],
       "cost": {
-        "total": 3239.63871,
+        "total": 3240.16705,
         "breakdown": {
           "input": 10.781694,
           "output": 496.653447,
@@ -829,8 +829,8 @@
         }
       },
       "sessions": {
-        "total": 865,
-        "active": 4
+        "total": 881,
+        "active": 2
       },
       "prsReferenced": {
         "count": 2024,
@@ -853,9 +853,9 @@
         ]
       },
       "locDelta": {
-        "net": 3144463,
-        "added": 4258056,
-        "removed": 1113593,
+        "net": 3159030,
+        "added": 4275745,
+        "removed": 1116715,
         "sparkline": [
           [
             1341.0,
@@ -910,14 +910,32 @@
             4143.0
           ],
           [
-            14987.0,
-            338.0
+            32676.0,
+            3460.0
           ]
         ]
       }
     }
   },
   "recentActivity": [
+    {
+      "repo": "dev-portfolio",
+      "message": "feat(frontend): fetch snapshot once and aggregate repos >7d",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 628,
+      "linesRemoved": 81,
+      "ts": "2026-08-18T12:33:03+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "refactor: replace LLM rollups with deterministic session stats + krabs",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 17061,
+      "linesRemoved": 3041,
+      "ts": "2026-08-18T10:34:49+02:00"
+    },
     {
       "repo": "dev-portfolio",
       "message": "feat: add harness session harvest, LLM rollups, and session scene",
@@ -1087,27 +1105,63 @@
       "linesAdded": 10,
       "linesRemoved": 6,
       "ts": "2026-08-16T17:25:51+02:00"
-    },
-    {
-      "repo": "loc-dock",
-      "message": "fix: release workflow version-strip expression",
-      "prRefs": [],
-      "branch": "master",
-      "linesAdded": 6,
-      "linesRemoved": 6,
-      "ts": "2026-08-16T17:14:57+02:00"
-    },
-    {
-      "repo": "loc-dock",
-      "message": "chore: bump version to 0.2.4 for release",
-      "prRefs": [],
-      "branch": "master",
-      "linesAdded": 10,
-      "linesRemoved": 7,
-      "ts": "2026-08-16T17:01:52+02:00"
     }
   ],
   "sessions": [
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01450-a1dc-7000-9d57-4e64387cc396",
+      "day": "2026-08-18",
+      "startTs": "2026-08-18T10:00:23Z",
+      "title": "Review 3D scene jitter and code smells",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460,
+        "net": 29216
+      },
+      "prRefs": [],
+      "branch": "feat/portfolio-v1"
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a0143a-ee52-7000-be13-23b8cad0dc11",
+      "day": "2026-08-18",
+      "startTs": "2026-08-18T09:36:41Z",
+      "title": "Improve 3D scene navigation and aggregation",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460,
+        "net": 29216
+      },
+      "prRefs": [],
+      "branch": "feat/portfolio-v1"
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01403-0450-7000-812f-0a7c49c2921e",
+      "day": "2026-08-18",
+      "startTs": "2026-08-18T08:35:37Z",
+      "title": "Add repo carousel to 3D scene",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 93,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460,
+        "net": 29216
+      },
+      "prRefs": [],
+      "branch": "feat/portfolio-v1"
+    },
     {
       "harness": "omp",
       "repo": "datalake",
@@ -1138,7 +1192,7 @@
       "title": "Checkpoint commit before pivot",
       "summary": null,
       "summarySlug": null,
-      "assistantMessages": 138,
+      "assistantMessages": 147,
       "locDelta": {
         "added": 20908,
         "removed": 108,

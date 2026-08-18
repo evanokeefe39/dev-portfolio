@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from 'node:fs'
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { emptySnapshot, loadSnapshot, normalizeSnapshot } from '../lib/data'
+import { emptySnapshot, loadRangeSessions, loadSnapshot, normalizeSnapshot } from '../lib/data'
 import {
   barPercent,
   formatISODate,
@@ -154,6 +154,67 @@ test('loadSnapshot resolves a valid snapshot', async () => {
   }
 })
 
+test('loadRangeSessions parses stripped slice sessions', async () => {
+  const real = globalThis.fetch
+  let url = ''
+  const stripped = {
+    snapshotDate: '2026-08-18',
+    generatedAt: '2026-08-18T00:00:00Z',
+    range: '30d',
+    sessions: [
+      {
+        harness: 'omp',
+        repo: 'dev-portfolio',
+        sessionId: 'slice-1',
+        day: '2026-08-15',
+        assistantMessages: 9,
+        locDelta: { added: 2622, removed: 1015 },
+        prRefs: [17, 18],
+      },
+    ],
+  }
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    url = String(input)
+    return new Response(JSON.stringify(stripped), { status: 200 })
+  }) as unknown as typeof fetch
+  try {
+    const sessions = await loadRangeSessions('30d')
+    assert.equal(url, '/data/30d.json')
+    assert.equal(sessions.length, 1)
+    const s = sessions[0]
+    assert.equal(s.summary, null)
+    assert.equal(s.title, null)
+    assert.equal(s.branch, null)
+    assert.equal(s.startTs, '')
+    assert.equal(s.locDelta?.net, 0)
+    assert.equal(s.locDelta?.added, 2622)
+    assert.equal(s.locDelta?.removed, 1015)
+    assert.deepEqual(s.prRefs, [17, 18])
+  } finally {
+    globalThis.fetch = real
+  }
+})
+
+test('loadRangeSessions resolves [] on 404', async () => {
+  const real = globalThis.fetch
+  globalThis.fetch = (async () => new Response('{}', { status: 404 })) as unknown as typeof fetch
+  try {
+    assert.deepEqual(await loadRangeSessions('90d'), [])
+  } finally {
+    globalThis.fetch = real
+  }
+})
+
+test('loadRangeSessions resolves [] on malformed JSON', async () => {
+  const real = globalThis.fetch
+  globalThis.fetch = (async () => new Response('not json', { status: 200 })) as unknown as typeof fetch
+  try {
+    assert.deepEqual(await loadRangeSessions('1y'), [])
+  } finally {
+    globalThis.fetch = real
+  }
+})
+
 test('formatTokens compacts large numbers', () => {
   assert.equal(formatTokens(1200000), '1.2M')
   assert.equal(formatTokens(84000), '84K')
@@ -202,7 +263,7 @@ test('barPercent clamps and floors', () => {
 })
 
 test('real snapshot file normalizes if present (owned by data_pipeline)', () => {
-  const p = 'public/data/current.json'
+  const p = 'public/data/7d.json'
   if (!existsSync(p)) {
     return // file not produced yet — this is the graceful 404 path
   }

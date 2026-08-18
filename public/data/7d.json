@@ -1,0 +1,1964 @@
+{
+  "snapshotDate": "2026-08-18",
+  "generatedAt": "2026-08-18T13:13:19+02:00",
+  "ranges": {
+    "7d": {
+      "tokenBurn": {
+        "total": 1770779529,
+        "changePct": -29.5,
+        "sparkline": [
+          237344002,
+          286764323,
+          395510303,
+          256623723,
+          203075070,
+          315172755,
+          76289353
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 1132748232
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 632113417
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 3316663
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 2601217
+        }
+      ],
+      "cost": {
+        "total": 21.763223,
+        "breakdown": {
+          "input": 0.0,
+          "output": 0.0,
+          "cacheWrite": 0.0,
+          "cacheRead": 0.0
+        }
+      },
+      "sessions": {
+        "total": 204,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 21,
+        "activeRepos": 5,
+        "sparkline": [
+          1,
+          5,
+          6,
+          5,
+          8,
+          2,
+          0
+        ]
+      },
+      "locDelta": {
+        "net": 69399,
+        "added": 77499,
+        "removed": 8100,
+        "sparkline": [
+          [
+            5943.0,
+            462.0
+          ],
+          [
+            1784.0,
+            574.0
+          ],
+          [
+            6412.0,
+            1716.0
+          ],
+          [
+            3040.0,
+            498.0
+          ],
+          [
+            1626.0,
+            267.0
+          ],
+          [
+            26018.0,
+            1123.0
+          ],
+          [
+            32676.0,
+            3460.0
+          ]
+        ]
+      }
+    },
+    "30d": {
+      "tokenBurn": {
+        "total": 4904678783,
+        "changePct": 185.3,
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          174511270,
+          17397399,
+          0,
+          428207489,
+          64191547,
+          729927098,
+          237344002,
+          395510303,
+          315172755,
+          76289353
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 3399791489
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 1481781276
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 15259590
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 7846428
+        }
+      ],
+      "cost": {
+        "total": 56.295814,
+        "breakdown": {
+          "input": 0.0,
+          "output": 0.0,
+          "cacheWrite": 0.0,
+          "cacheRead": 0.0
+        }
+      },
+      "sessions": {
+        "total": 383,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 21,
+        "activeRepos": 5,
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          1,
+          8,
+          2,
+          0
+        ]
+      },
+      "locDelta": {
+        "net": 118201,
+        "added": 222560,
+        "removed": 104359,
+        "sparkline": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            9939.0,
+            0.0
+          ],
+          [
+            1729.0,
+            640.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            76189.0,
+            4143.0
+          ],
+          [
+            3537.0,
+            68138.0
+          ],
+          [
+            24836.0,
+            2193.0
+          ],
+          [
+            10448.0,
+            7486.0
+          ],
+          [
+            1626.0,
+            267.0
+          ],
+          [
+            26018.0,
+            1123.0
+          ],
+          [
+            32676.0,
+            3460.0
+          ]
+        ]
+      }
+    },
+    "90d": {
+      "tokenBurn": {
+        "total": 11703606131,
+        "changePct": null,
+        "sparkline": [
+          0,
+          390256108,
+          3656227,
+          553203731,
+          37216236,
+          0,
+          452750996,
+          0,
+          0,
+          0,
+          0,
+          729927098,
+          237344002,
+          76289353
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 5069625052
+        },
+        {
+          "model": "claude-opus-4-6",
+          "tokens": 4005304025
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 2168477762
+        },
+        {
+          "model": "claude-opus-4-8",
+          "tokens": 247372594
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": 156463879
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 28370791
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 15259590
+        },
+        {
+          "model": "claude-opus-4-7",
+          "tokens": 12547609
+        },
+        {
+          "model": "fuse-deep",
+          "tokens": 108068
+        },
+        {
+          "model": "fuse-fast",
+          "tokens": 34667
+        },
+        {
+          "model": "meta/llama-4-maverick-17b-128e-instruct",
+          "tokens": 33618
+        },
+        {
+          "model": "qwen/qwen3-32b",
+          "tokens": 8476
+        },
+        {
+          "model": "<synthetic>",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7-highspeed",
+          "tokens": 0
+        },
+        {
+          "model": "daily",
+          "tokens": 0
+        },
+        {
+          "model": "deepseek-r1-distill-llama-70b",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-deepseek-v4-flash",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-spread",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-unknown",
+          "tokens": 0
+        },
+        {
+          "model": "gemini-1.5-flash",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.1-8b-instant",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.3-70b-versatile",
+          "tokens": 0
+        },
+        {
+          "model": "llama3.1-8b",
+          "tokens": 0
+        },
+        {
+          "model": "minimax/minimax-m2.7",
+          "tokens": 0
+        },
+        {
+          "model": "zai-glm-4.7",
+          "tokens": 0
+        }
+      ],
+      "cost": {
+        "total": 3240.16705,
+        "breakdown": {
+          "input": 10.781694,
+          "output": 496.653447,
+          "cacheWrite": 531.020323,
+          "cacheRead": 2129.845005
+        }
+      },
+      "sessions": {
+        "total": 881,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 38,
+        "activeRepos": 14,
+        "sparkline": [
+          0,
+          8,
+          0,
+          0,
+          11,
+          0,
+          5,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          0
+        ]
+      },
+      "locDelta": {
+        "net": 412778,
+        "added": 641151,
+        "removed": 228373,
+        "sparkline": [
+          [
+            5457.0,
+            492.0
+          ],
+          [
+            22905.0,
+            8808.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            20885.0,
+            904.0
+          ],
+          [
+            12262.0,
+            57342.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            9270.0,
+            3731.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            9939.0,
+            0.0
+          ],
+          [
+            76189.0,
+            4143.0
+          ],
+          [
+            10448.0,
+            7486.0
+          ],
+          [
+            32676.0,
+            3460.0
+          ]
+        ]
+      }
+    },
+    "1y": {
+      "tokenBurn": {
+        "total": 11703606131,
+        "changePct": null,
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          553203731,
+          0,
+          729927098,
+          76289353
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 5069625052
+        },
+        {
+          "model": "claude-opus-4-6",
+          "tokens": 4005304025
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 2168477762
+        },
+        {
+          "model": "claude-opus-4-8",
+          "tokens": 247372594
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": 156463879
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 28370791
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 15259590
+        },
+        {
+          "model": "claude-opus-4-7",
+          "tokens": 12547609
+        },
+        {
+          "model": "fuse-deep",
+          "tokens": 108068
+        },
+        {
+          "model": "fuse-fast",
+          "tokens": 34667
+        },
+        {
+          "model": "meta/llama-4-maverick-17b-128e-instruct",
+          "tokens": 33618
+        },
+        {
+          "model": "qwen/qwen3-32b",
+          "tokens": 8476
+        },
+        {
+          "model": "<synthetic>",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7-highspeed",
+          "tokens": 0
+        },
+        {
+          "model": "daily",
+          "tokens": 0
+        },
+        {
+          "model": "deepseek-r1-distill-llama-70b",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-deepseek-v4-flash",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-spread",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-unknown",
+          "tokens": 0
+        },
+        {
+          "model": "gemini-1.5-flash",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.1-8b-instant",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.3-70b-versatile",
+          "tokens": 0
+        },
+        {
+          "model": "llama3.1-8b",
+          "tokens": 0
+        },
+        {
+          "model": "minimax/minimax-m2.7",
+          "tokens": 0
+        },
+        {
+          "model": "zai-glm-4.7",
+          "tokens": 0
+        }
+      ],
+      "cost": {
+        "total": 3240.16705,
+        "breakdown": {
+          "input": 10.781694,
+          "output": 496.653447,
+          "cacheWrite": 531.020323,
+          "cacheRead": 2129.845005
+        }
+      },
+      "sessions": {
+        "total": 881,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 1905,
+        "activeRepos": 23,
+        "sparkline": [
+          10,
+          1,
+          12,
+          0,
+          16,
+          0,
+          39,
+          53,
+          3,
+          19,
+          0,
+          5,
+          8,
+          0
+        ]
+      },
+      "locDelta": {
+        "net": 3092241,
+        "added": 4155900,
+        "removed": 1063659,
+        "sparkline": [
+          [
+            373.0,
+            139.0
+          ],
+          [
+            29849.0,
+            3608.0
+          ],
+          [
+            9657.0,
+            9242.0
+          ],
+          [
+            17579.0,
+            1045.0
+          ],
+          [
+            28492.0,
+            18544.0
+          ],
+          [
+            25236.0,
+            149745.0
+          ],
+          [
+            5.0,
+            3.0
+          ],
+          [
+            265973.0,
+            8250.0
+          ],
+          [
+            17316.0,
+            10839.0
+          ],
+          [
+            58483.0,
+            2744.0
+          ],
+          [
+            12262.0,
+            57342.0
+          ],
+          [
+            18238.0,
+            141.0
+          ],
+          [
+            3537.0,
+            68138.0
+          ],
+          [
+            32676.0,
+            3460.0
+          ]
+        ]
+      }
+    },
+    "all": {
+      "tokenBurn": {
+        "total": 11703606131,
+        "changePct": null,
+        "sparkline": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          553203731,
+          0,
+          729927098,
+          76289353
+        ]
+      },
+      "tokensByModel": [
+        {
+          "model": "deepseek-v4-flash",
+          "tokens": 5069625052
+        },
+        {
+          "model": "claude-opus-4-6",
+          "tokens": 4005304025
+        },
+        {
+          "model": "deepseek-v4-pro",
+          "tokens": 2168477762
+        },
+        {
+          "model": "claude-opus-4-8",
+          "tokens": 247372594
+        },
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": 156463879
+        },
+        {
+          "model": "z-ai/glm-5.2",
+          "tokens": 28370791
+        },
+        {
+          "model": "moonshotai/kimi-k3",
+          "tokens": 15259590
+        },
+        {
+          "model": "claude-opus-4-7",
+          "tokens": 12547609
+        },
+        {
+          "model": "fuse-deep",
+          "tokens": 108068
+        },
+        {
+          "model": "fuse-fast",
+          "tokens": 34667
+        },
+        {
+          "model": "meta/llama-4-maverick-17b-128e-instruct",
+          "tokens": 33618
+        },
+        {
+          "model": "qwen/qwen3-32b",
+          "tokens": 8476
+        },
+        {
+          "model": "<synthetic>",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "MiniMax-M2.7-highspeed",
+          "tokens": 0
+        },
+        {
+          "model": "daily",
+          "tokens": 0
+        },
+        {
+          "model": "deepseek-r1-distill-llama-70b",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-MiniMax-M2.7",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-deepseek-v4-flash",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-spread",
+          "tokens": 0
+        },
+        {
+          "model": "fuse-unknown",
+          "tokens": 0
+        },
+        {
+          "model": "gemini-1.5-flash",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.1-8b-instant",
+          "tokens": 0
+        },
+        {
+          "model": "llama-3.3-70b-versatile",
+          "tokens": 0
+        },
+        {
+          "model": "llama3.1-8b",
+          "tokens": 0
+        },
+        {
+          "model": "minimax/minimax-m2.7",
+          "tokens": 0
+        },
+        {
+          "model": "zai-glm-4.7",
+          "tokens": 0
+        }
+      ],
+      "cost": {
+        "total": 3240.16705,
+        "breakdown": {
+          "input": 10.781694,
+          "output": 496.653447,
+          "cacheWrite": 531.020323,
+          "cacheRead": 2129.845005
+        }
+      },
+      "sessions": {
+        "total": 881,
+        "active": 2
+      },
+      "prsReferenced": {
+        "count": 2024,
+        "activeRepos": 23,
+        "sparkline": [
+          9,
+          18,
+          1,
+          12,
+          16,
+          0,
+          22,
+          0,
+          53,
+          0,
+          14,
+          1,
+          8,
+          0
+        ]
+      },
+      "locDelta": {
+        "net": 3159030,
+        "added": 4275745,
+        "removed": 1116715,
+        "sparkline": [
+          [
+            1341.0,
+            551.0
+          ],
+          [
+            36996.0,
+            614.0
+          ],
+          [
+            9657.0,
+            9242.0
+          ],
+          [
+            14952.0,
+            1897.0
+          ],
+          [
+            1838.0,
+            6174.0
+          ],
+          [
+            28492.0,
+            18544.0
+          ],
+          [
+            175760.0,
+            40927.0
+          ],
+          [
+            23053.0,
+            16740.0
+          ],
+          [
+            265973.0,
+            8250.0
+          ],
+          [
+            9910.0,
+            10101.0
+          ],
+          [
+            44469.0,
+            6676.0
+          ],
+          [
+            12262.0,
+            57342.0
+          ],
+          [
+            76189.0,
+            4143.0
+          ],
+          [
+            32676.0,
+            3460.0
+          ]
+        ]
+      }
+    }
+  },
+  "recentActivity": [
+    {
+      "repo": "dev-portfolio",
+      "message": "feat(frontend): fetch snapshot once and aggregate repos >7d",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 628,
+      "linesRemoved": 81,
+      "ts": "2026-08-18T12:33:03+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "refactor: replace LLM rollups with deterministic session stats + krabs",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 17061,
+      "linesRemoved": 3041,
+      "ts": "2026-08-18T10:34:49+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "feat: add harness session harvest, LLM rollups, and session scene",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 14987,
+      "linesRemoved": 338,
+      "ts": "2026-08-18T10:04:04+02:00"
+    },
+    {
+      "repo": "datalake",
+      "message": "feat: record estimated_cost_usd in bronze meta sidecar",
+      "prRefs": [],
+      "branch": "feat/post-performance-observations",
+      "linesAdded": 4,
+      "linesRemoved": 0,
+      "ts": "2026-08-17T23:11:12+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: update harness-scene plan (adaptive per-session, .env LLM config)",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 25,
+      "linesRemoved": 11,
+      "ts": "2026-08-17T21:16:43+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: add harness-scene summary rollup plan",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 144,
+      "linesRemoved": 0,
+      "ts": "2026-08-17T20:08:54+02:00"
+    },
+    {
+      "repo": "job-search-toolkit",
+      "message": "feat(linkedin): backend-agnostic LinkedIn source adapter",
+      "prRefs": [],
+      "branch": "feat/linkedin-source-adapter",
+      "linesAdded": 2488,
+      "linesRemoved": 0,
+      "ts": "2026-08-17T19:50:03+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "ci: add lint/typecheck scripts and fix lint errors",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 12,
+      "linesRemoved": 12,
+      "ts": "2026-08-17T19:37:57+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: correct data sources and lessons for OMP harness",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 72,
+      "linesRemoved": 7,
+      "ts": "2026-08-17T19:04:38+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "feat: implement portfolio site (data pipeline, Next.js app, 3D scene)",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 19682,
+      "linesRemoved": 0,
+      "ts": "2026-08-17T19:04:32+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: resolve open questions, split data_pipeline from frontend",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 30,
+      "linesRemoved": 16,
+      "ts": "2026-08-17T17:33:35+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: enhance plan with local snapshot data process",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 90,
+      "linesRemoved": 53,
+      "ts": "2026-08-17T17:23:48+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: record repo-init review and assumption log",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 28,
+      "linesRemoved": 9,
+      "ts": "2026-08-17T17:11:37+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "docs: add 3D scene tech review and update plan",
+      "prRefs": [],
+      "branch": "feat/portfolio-v1",
+      "linesAdded": 302,
+      "linesRemoved": 0,
+      "ts": "2026-08-17T17:11:11+02:00"
+    },
+    {
+      "repo": "dev-portfolio",
+      "message": "chore: initialize repository infrastructure",
+      "prRefs": [],
+      "branch": "main",
+      "linesAdded": 523,
+      "linesRemoved": 0,
+      "ts": "2026-08-17T17:11:06+02:00"
+    },
+    {
+      "repo": "datalake",
+      "message": "feat: top/rising creators lists + creators-list quality columns (#17)",
+      "prRefs": [
+        17
+      ],
+      "branch": "main",
+      "linesAdded": 1322,
+      "linesRemoved": 502,
+      "ts": "2026-08-17T09:46:22+02:00"
+    },
+    {
+      "repo": "datalake",
+      "message": "feat: media e2e + catalog DDL + doc sync (#18)",
+      "prRefs": [
+        18
+      ],
+      "branch": "main",
+      "linesAdded": 1296,
+      "linesRemoved": 513,
+      "ts": "2026-08-17T09:43:09+02:00"
+    },
+    {
+      "repo": "loc-dock",
+      "message": "ci: auto-publish releases, notes from template, version guard (#30)",
+      "prRefs": [
+        30
+      ],
+      "branch": "master",
+      "linesAdded": 49,
+      "linesRemoved": 38,
+      "ts": "2026-08-16T19:28:39+02:00"
+    },
+    {
+      "repo": "loc-dock",
+      "message": "ci: run CI only on PRs, add cargo test, fix OMP silver tests (#29)",
+      "prRefs": [
+        29
+      ],
+      "branch": "master",
+      "linesAdded": 12,
+      "linesRemoved": 11,
+      "ts": "2026-08-16T19:28:34+02:00"
+    },
+    {
+      "repo": "loc-dock",
+      "message": "fix: release workflow downloads use step output for version",
+      "prRefs": [],
+      "branch": "master",
+      "linesAdded": 10,
+      "linesRemoved": 6,
+      "ts": "2026-08-16T17:25:51+02:00"
+    }
+  ],
+  "sessions": [
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01450-a1dc-7000-9d57-4e64387cc396",
+      "day": "2026-08-18",
+      "startTs": "2026-08-18T10:00:23Z",
+      "title": "Review 3D scene jitter and code smells",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460,
+        "net": 29216
+      },
+      "prRefs": [],
+      "branch": "feat/portfolio-v1"
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a0143a-ee52-7000-be13-23b8cad0dc11",
+      "day": "2026-08-18",
+      "startTs": "2026-08-18T09:36:41Z",
+      "title": "Improve 3D scene navigation and aggregation",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 20,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460,
+        "net": 29216
+      },
+      "prRefs": [],
+      "branch": "feat/portfolio-v1"
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01403-0450-7000-812f-0a7c49c2921e",
+      "day": "2026-08-18",
+      "startTs": "2026-08-18T08:35:37Z",
+      "title": "Add repo carousel to 3D scene",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 93,
+      "locDelta": {
+        "added": 32676,
+        "removed": 3460,
+        "net": 29216
+      },
+      "prRefs": [],
+      "branch": "feat/portfolio-v1"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a0118e-becf-7000-9b57-e3a2cd3cc129",
+      "day": "2026-08-17",
+      "startTs": "2026-08-17T21:09:22Z",
+      "title": null,
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 9,
+      "locDelta": {
+        "added": 2622,
+        "removed": 1015,
+        "net": 1607
+      },
+      "prRefs": [
+        17,
+        18
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01127-c894-7000-b88e-fddb9694f503",
+      "day": "2026-08-17",
+      "startTs": "2026-08-17T19:16:55Z",
+      "title": "Checkpoint commit before pivot",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 147,
+      "locDelta": {
+        "added": 20908,
+        "removed": 108,
+        "net": 20800
+      },
+      "prRefs": [],
+      "branch": "feat/portfolio-v1"
+    },
+    {
+      "harness": "omp",
+      "repo": "dev-portfolio",
+      "sessionId": "01a01037-f3b8-7000-8480-a87e884de7e3",
+      "day": "2026-08-17",
+      "startTs": "2026-08-17T14:54:57Z",
+      "title": "Separate data pipeline from Next.js app",
+      "summary": "Reviewed dev-portfolio plan and updated the 3D-scene session-rollup plan. Key durable decisions: single-page portfolio with full-viewport 3D isometric office hero, glass overlays, weekly static data pipeline (GitHub Action -> JSON -> Vercel rebuild). Added adaptive per-session vs repo×harness rollup rule (~16 desk capacity), immutable rollup cache keyed by (repo,harness,grain,window-end), DeepSeek LLM config via .env/.env.example, and loc-dock LLM failure lessons. User also requested professional repo init: CI, release/PR templates, linear git history, AGENTS.md.",
+      "summarySlug": "dev_portfolio_scene_",
+      "assistantMessages": 143,
+      "locDelta": {
+        "added": 20908,
+        "removed": 108,
+        "net": 20800
+      },
+      "prRefs": [],
+      "branch": "feat/portfolio-v1"
+    },
+    {
+      "harness": "omp",
+      "repo": "repos",
+      "sessionId": "01a00ff8-23e8-7000-bd5d-a623357966aa",
+      "day": "2026-08-17",
+      "startTs": "2026-08-17T13:45:15Z",
+      "title": "Find lost 3D crab project",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 21,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "01a00fe5-cf54-7000-8f63-f221f16ec55e",
+      "day": "2026-08-17",
+      "startTs": "2026-08-17T13:25:14Z",
+      "title": "Build Apify job scraper pipeline",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 105,
+      "locDelta": {
+        "added": 2488,
+        "removed": 0,
+        "net": 2488
+      },
+      "prRefs": [],
+      "branch": "feat/linkedin-source-adapter"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00fdc-a129-7000-9b9f-de4cc543d3a0",
+      "day": "2026-08-17",
+      "startTs": "2026-08-17T13:15:12Z",
+      "title": "Implement post metrics observations",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 51,
+      "locDelta": {
+        "added": 2622,
+        "removed": 1015,
+        "net": 1607
+      },
+      "prRefs": [
+        17,
+        18
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00ea9-e9d9-7000-a0ae-d0dacebc4ecd",
+      "day": "2026-08-17",
+      "startTs": "2026-08-17T07:40:11Z",
+      "title": "Restart server on main",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 80,
+      "locDelta": {
+        "added": 2622,
+        "removed": 1015,
+        "net": 1607
+      },
+      "prRefs": [
+        17,
+        18
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "01a00e91-609e-7000-aca0-07a17d56be9f",
+      "day": "2026-08-17",
+      "startTs": "2026-08-17T07:13:23Z",
+      "title": "Search LinkedIn for Fabric recruiting posts",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 83,
+      "locDelta": {
+        "added": 2488,
+        "removed": 0,
+        "net": 2488
+      },
+      "prRefs": [],
+      "branch": "feat/linkedin-source-adapter"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00b46-47d8-7000-8993-e281d104a7c2",
+      "day": "2026-08-16",
+      "startTs": "2026-08-16T15:52:30Z",
+      "title": "Debug evolving.ai actionable rate mismatch",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 106,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a00b31-82e9-7000-b113-8e565a346dec",
+      "day": "2026-08-16",
+      "startTs": "2026-08-16T15:29:49Z",
+      "title": "Plan CI/CD pipeline fixes",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 120,
+      "locDelta": {
+        "added": 289,
+        "removed": 124,
+        "net": 165
+      },
+      "prRefs": [
+        30,
+        29,
+        28
+      ],
+      "branch": "master"
+    },
+    {
+      "harness": "omp",
+      "repo": "monet",
+      "sessionId": "01a00b2e-4a4b-7000-a51a-0a921774138c",
+      "day": "2026-08-16",
+      "startTs": "2026-08-16T15:26:18Z",
+      "title": "Apply the OMP harness plan",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 18,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "monet-saas",
+      "sessionId": "01a00ab1-f8f1-7000-b912-8963ebff0252",
+      "day": "2026-08-16",
+      "startTs": "2026-08-16T13:10:30Z",
+      "title": "Find Monet landing page",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 40,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "monet",
+      "sessionId": "01a00a9e-7427-7000-8032-711502331d72",
+      "day": "2026-08-16",
+      "startTs": "2026-08-16T12:49:11Z",
+      "title": "Tune omp models and session handover",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 50,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "01a00a91-285b-7000-8dcf-64c31402a3fc",
+      "day": "2026-08-16",
+      "startTs": "2026-08-16T12:34:40Z",
+      "title": "Implement multi-year curriculum support",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 88,
+      "locDelta": {
+        "added": 1337,
+        "removed": 143,
+        "net": 1194
+      },
+      "prRefs": [
+        8,
+        7,
+        6,
+        5,
+        4
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a00a7d-2a60-7000-8b8b-6ece2052f69d",
+      "day": "2026-08-16",
+      "startTs": "2026-08-16T12:12:50Z",
+      "title": "Review summary loading RCA",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 106,
+      "locDelta": {
+        "added": 289,
+        "removed": 124,
+        "net": 165
+      },
+      "prRefs": [
+        30,
+        29,
+        28
+      ],
+      "branch": "master"
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a00a3e-47c8-7000-9ba1-efa7d240e0f3",
+      "day": "2026-08-16",
+      "startTs": "2026-08-16T11:04:08Z",
+      "title": null,
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 2,
+      "locDelta": {
+        "added": 289,
+        "removed": 124,
+        "net": 165
+      },
+      "prRefs": [
+        30,
+        29,
+        28
+      ],
+      "branch": "master"
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "01a006a2-d03f-7000-b1fe-79595105f710",
+      "day": "2026-08-15",
+      "startTs": "2026-08-15T18:15:28Z",
+      "title": "Implement curriculum-model and lifecycle-facts",
+      "summary": "Created the 16-phase, 78-task implementation todo list for dnd-education-sim realistic-school work: curriculum-model phases C1-C9 first, then lifecycle-facts L1-L7. Phase C1 catalogue is its own small PR. Implementation was not started; awaiting user review/go-ahead.",
+      "summarySlug": "dnd_realistic_school",
+      "assistantMessages": 118,
+      "locDelta": {
+        "added": 1357,
+        "removed": 298,
+        "net": 1059
+      },
+      "prRefs": [
+        3,
+        2
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a00658-0a4f-7000-ab9e-8f1d82a95757",
+      "day": "2026-08-15",
+      "startTs": "2026-08-15T16:53:48Z",
+      "title": "Continue pipeline hardening work",
+      "summary": "Pipeline-hardening continuation for C:/Users/evano/repos/datalake: read AGENTS.md and tasks/plans/pipeline-hardening-architecture-review.md; PRs #15 and #16 already squash-merged cover prior items plus dashboard badge; next work is items 3-5 (schema/DDL reconciliation, media end-to-end with scrape-time media_cache, doc reconciliation and WATCHDOG.md). Also seeded creator-ranking-rising-creators plan with six open design questions.",
+      "summarySlug": "pipeline_hardening_i",
+      "assistantMessages": 242,
+      "locDelta": {
+        "added": 404,
+        "removed": 36,
+        "net": 368
+      },
+      "prRefs": [
+        16,
+        15
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a001ee-3b16-7000-a64f-8092ef4023cc",
+      "day": "2026-08-14",
+      "startTs": "2026-08-14T20:19:45Z",
+      "title": "Add standout/hot column to creator detail",
+      "summary": "Datalake architecture-review planning session. Continue pipeline-hardening work from tasks/plans/pipeline-hardening-architecture-review.md. PRs #15 and #16 are already merged. Remaining items: reconcile schema catalog with DDL (dead_letter created_at vs failed_at drift, add media_metadata.video_duration_seconds, config_hash in watermarks, derive DDL from schemas.py), media end-to-end using media_cache to avoid CDN URL expiry (~4-5 days) with an External Integration Gate smoke test, and doc reconciliation retiring queue-era sections and dead GoldConfig.post_ids. Notes one local-only test failure and operating conventions.",
+      "summarySlug": "datalake_pipeline_ha",
+      "assistantMessages": 101,
+      "locDelta": {
+        "added": 4686,
+        "removed": 1545,
+        "net": 3141
+      },
+      "prRefs": [
+        14,
+        13,
+        11,
+        12
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "01a001e1-9e55-7000-8f01-56aa435ed756",
+      "day": "2026-08-14",
+      "startTs": "2026-08-14T20:05:58Z",
+      "title": "Refactor git repo scanning logic",
+      "summary": "User reported repo/PR summaries picking up feature branches as repos. Assistant began diagnosis by reading src/git.rs, src/data.rs, src/summary.rs; relevant code includes summary.rs summarize_one_repo/SharedSummary and data.rs spawn_data_loop. No completed 5-whys or confirmed root cause in this rollout. Additionally captured Windows build prerequisites: VS2022 vcvars64.bat + Windows SDK 10.0.22621.0 kernel32.lib; use batch script for cargo test and avoid short timeouts.",
+      "summarySlug": "feature_branches_mis",
+      "assistantMessages": 148,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "dnd-education-sim",
+      "sessionId": "01a001dd-7e1a-7000-937a-5c2a3304bff5",
+      "day": "2026-08-14",
+      "startTs": "2026-08-14T20:01:28Z",
+      "title": "Review curriculum and lifecycle plans",
+      "summary": "Extracted durable handoff/implementation context for dnd-education-sim realistic-school and lifecycle-facts work: repo location, branch workflow, phase plan, authoritative design decisions, known traps, and the lifecycle-facts output-table contract.",
+      "summarySlug": "dnd_education_sim_li",
+      "assistantMessages": 82,
+      "locDelta": {
+        "added": 349,
+        "removed": 0,
+        "net": 349
+      },
+      "prRefs": [
+        1
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "crm",
+      "sessionId": "01a001c2-866b-7000-a2a1-de1fc129e660",
+      "day": "2026-08-14",
+      "startTs": "2026-08-14T19:32:00Z",
+      "title": "Plan Twenty CRM professional setup",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 205,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a0013e-ac5d-7000-a3df-f0d8bdf66ab1",
+      "day": "2026-08-14",
+      "startTs": "2026-08-14T17:07:59Z",
+      "title": "Improve tables with sorting and badges",
+      "summary": "Dashboard UI iteration requested clickable creator links in Top Standouts, platform badges via lucide icons, globally sortable tables with asc/desc indicators, a consolidated filter modal with text search, EDU/ACT uppercase treatment, and creators table aggregates. Later resolved the actual merge blocker for PR #14: required_status_checks was removed; required_pull_request_reviews was never present. CI still runs but no longer gates merges. The feat/dashboard-tables-filtering branch was deleted after squash-merge, and no open PRs remain.",
+      "summarySlug": "dashboard_ui_table_s",
+      "assistantMessages": 191,
+      "locDelta": {
+        "added": 4686,
+        "removed": 1545,
+        "net": 3141
+      },
+      "prRefs": [
+        14,
+        13,
+        11,
+        12
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "01a0011f-45d2-7000-bfc6-b262e5b78fe3",
+      "day": "2026-08-14",
+      "startTs": "2026-08-14T16:33:41Z",
+      "title": "Document WA assessment requirements",
+      "summary": "In the education warehouse silver star schema, 'active students each school year' is COUNT(DISTINCT student_sk) from silver.fact_enrolment grouped by academic_year. Do not confuse total historical students in dim_student (~1.6k) with active students per academic_year. academic_year is derived on silver load as entry_calendar_year + (class.year_level - student.year_level); enrolment grain is (student_sk, class_sk, academic_year). Always join on surrogate *_sk keys, not school-supplied natural ids.",
+      "summarySlug": "active_students_per_",
+      "assistantMessages": 90,
+      "locDelta": {
+        "added": 1377,
+        "removed": 171,
+        "net": 1206
+      },
+      "prRefs": [
+        3
+      ],
+      "branch": "demo-multi-persona-insights"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "01a000a6-c1ca-7000-93d0-4a28e385ed00",
+      "day": "2026-08-14",
+      "startTs": "2026-08-14T14:22:03Z",
+      "title": "Add creator posts API endpoint",
+      "summary": "Implemented and squash-merged the creators UI redesign as PR #13 into main at commit fe7c3f4. The plan file tasks/plans/creators-ui-redesign.md defined: sortable/filterable AG Grid creators list, unified reusable CreatorModal for create/edit with profile reconciliation, read-only creator detail page using server-driven endpoint /api/creators/:id/posts, and shared ag-theme-alpine-dark theme extracted to index.css. CI test and dagster-check jobs passed before merge. A stale local API server on 127.0.0.1:3002 needed restart after merge.",
+      "summarySlug": "creators_ui_redesign",
+      "assistantMessages": 132,
+      "locDelta": {
+        "added": 4686,
+        "removed": 1545,
+        "net": 3141
+      },
+      "prRefs": [
+        14,
+        13,
+        11,
+        12
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "01a00074-4c25-7000-bc6c-41e9d5368c4c",
+      "day": "2026-08-14",
+      "startTs": "2026-08-14T13:26:56Z",
+      "title": "Plan single-batch pipeline refactor",
+      "summary": "Executed the planned regeneration to 800 active students/year (160 per Y8-Y12 level) using one full-history batch, made silver fact loads idempotent, and committed that work plus a conformed integer date_key migration and Power BI template.",
+      "summarySlug": "regenerate_school_80",
+      "assistantMessages": 69,
+      "locDelta": {
+        "added": 1377,
+        "removed": 171,
+        "net": 1206
+      },
+      "prRefs": [
+        3
+      ],
+      "branch": "demo-multi-persona-insights"
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019fff9d-79e9-7000-95cc-9376ce721133",
+      "day": "2026-08-14",
+      "startTs": "2026-08-14T09:32:18Z",
+      "title": "Power BI validation and dashboard handover",
+      "summary": "Continued Power BI data inspection and dashboard handover. Read tasks/plans/data-inspection-handover.md and powerbi/README.md, then wrote tasks/plans/regenerate-representative-school.md scaling cohort_size=160 with one full-history batch and silver truncate+rebuild idempotency; awaiting user sign-off before coding. Preserved key model facts (three year_level meanings, school_year text vs academic_year integers) and the deferred findings backlog.",
+      "summarySlug": "powerbi_data_inspect",
+      "assistantMessages": 38,
+      "locDelta": {
+        "added": 1377,
+        "removed": 171,
+        "net": 1206
+      },
+      "prRefs": [
+        3
+      ],
+      "branch": "demo-multi-persona-insights"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ffc59-5c2b-7000-9de2-761c3bc0d18e",
+      "day": "2026-08-13",
+      "startTs": "2026-08-13T18:19:02Z",
+      "title": "Refactor dashboard profiles to creators",
+      "summary": "Seeded scrape_targets from existing DuckDB data: 2263 posts, 401 distinct owners collapsed into 154 tracked profiles (55 previous dim_profile + 63 multi-post + 36 viral single-post; 247 long-tail singles skipped). Depth equals number of posts already held per profile, no tiers. Repaired reset_watermarks in src/datalake/cli/_state.py to use ON CONFLICT(name) DO UPDATE instead of DELETE+reinsert, preventing profiles_ig watermark loss and full avatar re-downloads. Confirmed likes sentinel semantics: -1=Apify hidden/unavailable, NULL=absent, 0=real zero; seed treats -1 as missing and never as zero. Approved creators/profiles spec at tasks/plans/creators-and-profiles.md: 10 stories, 11 edge cases, binary DoD; creator name backfill uses first profile name, /creators keyed by integer id. Repo is on feat/profile-management with uncommitted _state.py, scripts/seed_scrape_targets.py, data/seed_scrape_targets.csv. Known hardening gaps: ig_posts_slv does not write silver_ig watermark; silver_ig/gold_ig stuck at 1970-01-02; silver stores -1 likes raw; enrichment 21/2263.",
+      "summarySlug": "creators_profiles_se",
+      "assistantMessages": 269,
+      "locDelta": {
+        "added": 1784,
+        "removed": 574,
+        "net": 1210
+      },
+      "prRefs": [
+        12,
+        13,
+        11,
+        10,
+        9
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ffb37-b843-7000-a0cf-92d427ce584c",
+      "day": "2026-08-13",
+      "startTs": "2026-08-13T13:02:40Z",
+      "title": "Upsert watermarks and seed ops profiles",
+      "summary": "Derived a 154-profile tracked seed list from existing DuckDB post data, seeded ops scrape_targets, fixed reset_watermarks to use upsert instead of destructive delete, documented the -1 likes sentinel, approved the creators/profiles spec, and recorded pipeline hardening gaps including missing silver_ig watermark writes and ops.sqlite external-recreate risk.",
+      "summarySlug": "profile_seed_and_wat",
+      "assistantMessages": 64,
+      "locDelta": {
+        "added": 1784,
+        "removed": 574,
+        "net": 1210
+      },
+      "prRefs": [
+        12,
+        13,
+        11,
+        10,
+        9
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "loc-dock",
+      "sessionId": "019ffae9-7d1a-7000-a21c-6461eb9720c5",
+      "day": "2026-08-13",
+      "startTs": "2026-08-13T11:37:13Z",
+      "title": "Compare Loc Dock and DeepSeek usage",
+      "summary": "LOC Dock usage totals did not match the DeepSeek dashboard after OMP usage was introduced. Inspected the DeepSeek export zip at the repo root, then applied OMP config/agent guidance changes: advisor moved deepseek-v4-flash:high to :low, compaction enabled, and a global WATCHDOG.md instruction was added. The LOC Dock side still needs rebuild plus relaunch to backfill August data from the export.",
+      "summarySlug": "locdock_omp_usage_mi",
+      "assistantMessages": 77,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "model-research",
+      "sessionId": "019ffac6-88c5-7000-8167-33a041c0e05e",
+      "day": "2026-08-13",
+      "startTs": "2026-08-13T10:59:02Z",
+      "title": "Research DeepSeek alternatives and costs",
+      "summary": null,
+      "summarySlug": null,
+      "assistantMessages": 22,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ffa98-dc25-7000-8b20-082666dd20a3",
+      "day": "2026-08-13",
+      "startTs": "2026-08-13T10:09:09Z",
+      "title": "Record decisions in plan files",
+      "summary": "Shipped profile management v1 on feat/profile-management (PR #12) plus CI fixes (#12/#13, ruff dependency group, common/apify extraction, lifespan ops.sqlite init). Fixed profiles_ig timezone watermark drift causing silent avatar-download skips; re-scraped 50/55 avatars. Next: merge PR #12, build /creators/:username pages, add batch add/edit UI, audit watermark tz handling.",
+      "summarySlug": "profile_management_v",
+      "assistantMessages": 296,
+      "locDelta": {
+        "added": 1784,
+        "removed": 574,
+        "net": 1210
+      },
+      "prRefs": [
+        12,
+        13,
+        11,
+        10,
+        9
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ffa26-0d0f-7000-8662-c89ffc32df80",
+      "day": "2026-08-13",
+      "startTs": "2026-08-13T08:03:45Z",
+      "title": "Rename date_sk to date_key",
+      "summary": "Power BI attribute hierarchy disabled error resolved by consolidating date tables into silver.dim_date and patching pbix_mcp; captured schema semantics, data corrections, and modeling constraints for future runs.",
+      "summarySlug": "powerbi_attribute_hi",
+      "assistantMessages": 123,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff659-5dd1-7000-861e-8aac24d6863f",
+      "day": "2026-08-12",
+      "startTs": "2026-08-12T14:21:19Z",
+      "title": "Find database role with full admin access",
+      "summary": "Neon gold tables were not actually missing: the edu_writer role does not have privileges on the gold schema. Use the owner/admin DSN (NEON_OWNER_DSN / local superuser) to inspect or administer the whole DB; role/schema model lives in warehouse/migrations/001_schemas_roles.sql. Separately, pbix_mcp template bug: columns are written with IsAvailableInMDX=0, disabling attribute hierarchies and causing hierarchy creation failures plus misleading DirectQuery errors. Fix is IsAvailableInMDX=1 on all columns and regenerating the .pbit/.pbix template.",
+      "summarySlug": "neon_roles_and_pbix_",
+      "assistantMessages": 125,
+      "locDelta": {
+        "added": 1671,
+        "removed": 320,
+        "net": 1351
+      },
+      "prRefs": [],
+      "branch": "demo-multi-persona-insights"
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff64e-1fe6-7000-af51-eddc47c2c31e",
+      "day": "2026-08-12",
+      "startTs": "2026-08-12T14:09:02Z",
+      "title": "Integrate Crunchbase data into toolkit",
+      "summary": "Explored integrating Crunchbase data into the job-search-toolkit. Crunchbase should feed company enrichment (dim_company_enriched) rather than the job ranking path. License constraints prohibit exporting/republishing Crunchbase structured bulk data, but public funding/M&A events can safely become curated market commentary. Documented a recurring 'companies I'm watching' content series in docs/crm_lead_management.md content track with guardrails.",
+      "summarySlug": "crunchbase_integrati",
+      "assistantMessages": 39,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142,
+        "net": 4130
+      },
+      "prRefs": [
+        12
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff60b-1028-7000-ba52-da3a6df7d6fa",
+      "day": "2026-08-12",
+      "startTs": "2026-08-12T12:55:48Z",
+      "title": "Find free SQL GUI clients",
+      "summary": "User is selecting a free SQL GUI client that supports DuckDB without a paywall, plus data lake file browsing and PostgreSQL. Beekeeper Studio gates DuckDB behind an upgrade. Best free recommendation is DBeaver Community; DbGate is the modern-UI alternative, Duck-UI is a DuckDB-native browser workbench, HeidiSQL is Windows-native, and DB Browser for SQLite is only a compatibility fallback.",
+      "summarySlug": "sql_gui_clients_duck",
+      "assistantMessages": 4,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142,
+        "net": 4130
+      },
+      "prRefs": [
+        12
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff5d9-04bc-7000-9cee-2a2eccd138f8",
+      "day": "2026-08-12",
+      "startTs": "2026-08-12T12:01:08Z",
+      "title": "Audit lines of code by file",
+      "summary": "Audited lines of code across the job_search_toolkit repo. Use `git ls-files` for reliable tracked-source LOC counts rather than `find ... | xargs wc -l`, which failed on quoting/path exclusions. Total: 16,403 LOC across 79 git-tracked source files. Largest files are docs YAML/markdown, JD pipeline silver.py, and scrapers (faruse, hiringcafe, datasciencejobs, hellowork). Corrected category breakdown is available for future repo-size/refactor conversations.",
+      "summarySlug": "loc_audit_job_search",
+      "assistantMessages": 5,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142,
+        "net": 4130
+      },
+      "prRefs": [
+        12
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff5ca-5e5f-7000-b963-127beafc6e52",
+      "day": "2026-08-12",
+      "startTs": "2026-08-12T11:45:08Z",
+      "title": "Continue Kimball dims decoupled ranking",
+      "summary": "Completed and merged the Kimball dims/facts + decoupled ranking + deferred LLM enrichment work. Main is clean at a0c2144 (PRs #11 and #12). Confirmed architecture: bronze is filesystem JSON under data/bronze, not a DuckDB schema; DuckDB holds silver tables/dims and gold views only. Live migration applied 5,136 jobs -> 1,992 companies; 60/60 tests pass; bounded --enrich verified ranking unchanged. Process fix logged: commit doc changes via branch, not directly to main.",
+      "summarySlug": "kimball_dims_decoupl",
+      "assistantMessages": 134,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142,
+        "net": 4130
+      },
+      "prRefs": [
+        12
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff4fc-5a71-7000-bf4e-03d48ab0de09",
+      "day": "2026-08-12",
+      "startTs": "2026-08-12T08:00:06Z",
+      "title": "Summarize completed work and remaining todos",
+      "summary": "Approved Kimball 3+1 schema plan is mostly implemented and tested green. Ranking is decoupled from LLM enrichment: scored_jobs depends only on silver_upsert, ranked_csv joins dim_company, and company_quality is a tabular ESN/engagement heuristic. LLM enrichment is deferred into optional dim_company_enriched, one call per distinct company. Migration verified on a copy: 1,992 unique companies from 5,136 jobs. Remaining work: apply live migration, run bounded E2E without and with --enrich, verify export bridges, final pytest, plan DoD/AGENTS cleanup.",
+      "summarySlug": "kimball_dims_decoupl",
+      "assistantMessages": 166,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142,
+        "net": 4130
+      },
+      "prRefs": [
+        12
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "data-warehousing-for-education",
+      "sessionId": "019ff4fa-7574-7000-8977-9337b03d7d95",
+      "day": "2026-08-12",
+      "startTs": "2026-08-12T07:58:02Z",
+      "title": "Verify five-year simulation support",
+      "summary": "Repository C:\\Users\\evano\\repos\\data-warehousing-for-education has ISSUES.md backlog with 4 open items: extend demo data to 5 years, restore region-configurable calendar from git history, decide rescue/drop for legacy sim_raw on Neon, and decouple dim_date from sim. Cleaned stale legacy bronze batches from the old 2-year run; bronze now has exactly 6 yearly EOY batches 2021-2026. User plans to build Power BI manually rather than rely fully on MCP generation after seeing load errors and unappealing layouts.",
+      "summarySlug": "powerbi_medallion_is",
+      "assistantMessages": 123,
+      "locDelta": {
+        "added": 1671,
+        "removed": 320,
+        "net": 1351
+      },
+      "prRefs": [],
+      "branch": "demo-multi-persona-insights"
+    },
+    {
+      "harness": "omp",
+      "repo": "job-search-toolkit",
+      "sessionId": "019ff4f7-d8c9-7000-ac2f-5c05f7d1b0fb",
+      "day": "2026-08-12",
+      "startTs": "2026-08-12T07:55:11Z",
+      "title": "Create todos from Kimball plan",
+      "summary": "User asked to read tasks/plans/kimball-dims-decoupled-ranking.md and create todos only, explicitly not to go further. The agent read the plan and then began deep implementation verification before being interrupted. Durable signal: the plan describes a Kimball dims/facts restructure with decoupled ranking and optional dimension-scoped LLM enrichment; future runs should stop at todo creation when that instruction is given.",
+      "summarySlug": "kimball_dims_decoupl",
+      "assistantMessages": 27,
+      "locDelta": {
+        "added": 4272,
+        "removed": 142,
+        "net": 4130
+      },
+      "prRefs": [
+        12
+      ],
+      "branch": "main"
+    },
+    {
+      "harness": "omp",
+      "repo": "datalake",
+      "sessionId": "019ff4ec-6aa7-7000-89fb-52524f9aa2ca",
+      "day": "2026-08-12",
+      "startTs": "2026-08-12T07:42:42Z",
+      "title": "Sharpen multimodal extraction priorities",
+      "summary": "Datalake repo catch-up after hiatus. Feat/media-and-entity-routing was squash-merged via PR #9. PR #10 is open on chore/issues logging breakages #12 and #13. Next work: merge PR #10, fix serving test breakage (#12), fix stale code/docs (#13), then build profile management (#11). Pending decisions: Gemini video tier and avatar re-scrape.",
+      "summarySlug": "datalake_project_rec",
+      "assistantMessages": 221,
+      "locDelta": null,
+      "prRefs": [],
+      "branch": null
+    }
+  ]
+}

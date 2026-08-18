@@ -43,7 +43,7 @@ def _parse_args(argv: list[str]) -> argparse.Namespace:
         description=(
             "Build the dev-portfolio data snapshot: ingest Claude/Pi/Codex/OMP "
             "session JSONL + git history, compute 5-range metrics, write "
-            "public/data/current.json."
+            "public/data/7d.json plus lazy per-range slices ({30d,90d,1y,all}.json)."
         ),
     )
     parser.add_argument(
@@ -165,7 +165,7 @@ def main(argv: list[str] | None = None) -> int:
         sessions=sessions,
     )
 
-    current_path, archive_path = write_outputs(snapshot, args.public_dir)
+    paths = write_outputs(snapshot, args.public_dir)
 
     print(f"entries ingested: {inserted} (rows: {len(entries)})")
     print(f"commits scanned:  {len(commits)} across {len(branches)} repos")
@@ -184,8 +184,7 @@ def main(argv: list[str] | None = None) -> int:
             f"cost=${stats['cost']['total']} sessions={stats['sessions']['total']} "
             f"loc={stats['locDelta']['net']:+d}"
         )
-    print(f"wrote {current_path}")
-    print(f"wrote {archive_path}")
+    print(f"wrote {len(paths)} data files")
     return 0
 
 

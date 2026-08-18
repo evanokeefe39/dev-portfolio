@@ -41,9 +41,10 @@ the main executor's daily noise.
 ## Frontend data + scene labels
 
 - Snapshot reads must go through `lib/snapshot-store.ts` (`useSnapshot`) — a
-  second direct `loadSnapshot()` duplicates a ~340KB fetch+normalize per mount
-  (hit once: StatCard and Scene fetched independently, causing the stat-card
-  lag). Reject any new direct fetch of `/data/current.json`.
+  second direct `loadSnapshot()` duplicates the snapshot fetch+normalize per
+  mount (hit once: StatCard and Scene fetched independently, causing the
+  stat-card lag). The store fetches `/data/7d.json` eagerly and the per-range
+  slices on demand; reject any direct fetch of a `/data/*.json` file.
 - drei `<Html>`'s outer positioning div does NOT inherit the `pointerEvents`
   prop — without `wrapperClass="pointer-events-none"` each invisible tooltip
   leaves a hit-testable box over the scene that swallows canvas pointer events

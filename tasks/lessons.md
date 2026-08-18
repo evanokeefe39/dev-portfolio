@@ -125,3 +125,21 @@ correction; reference the specific failure mode and the rule that prevents it.
   `wrapperClass="pointer-events-none"` on top of `pointerEvents="none"`; verify
   hover in a real browser, not just by reading the DOM (elementFromPoint is the
   cheap check).
+
+## 2026-08-18 — split snapshot per range: eager 7d, lazy slices
+
+- **Pattern:** one 332KB `current.json` (52KB gzip) shipped every session
+  record to every visitor: the 7d view needs 42 sessions, the 90d view 564.
+  Aggregate ranges were only 7.8KB — the payload was a session log, not
+  aggregates.
+- **Rule:** split static JSON by access pattern — `7d.json` (eager, full
+  detail, all five range aggregates so the stat card has every range on first
+  paint) + `30d/90d/1y/all.json` (lazy, windowed sessions stripped to what
+  repo aggregation needs: no summaries/titles/branches/startTs, locDelta
+  without net). `loadSnapshot`/`loadRangeSessions` in lib/data.ts;
+  `ensureRangeSessions` in the store. No query library needed.
+- **Pattern:** when a lazy slice is missing, the scene keeps the 7d layout
+  until it lands — the range toggle never shows a blank scene.
+- **Rule:** strip at the pipeline write step, not in the client; the frontend
+  normalizer tolerates missing fields by design, and the pipeline owns the
+  locked session schema.

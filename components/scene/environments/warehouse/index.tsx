@@ -1,5 +1,5 @@
 import React from 'react'
-import { EffectComposer, Noise, Vignette, Scanline, ChromaticAberration } from '@react-three/postprocessing'
+import { EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 import { Floor, Walls, Windows, SupportBeams, Mezzanine } from './Room'
 import { HotDesks, DeskChairs, LoungeArea, BackWallCabinets, MezzanineOffice, Kitchen } from './Furniture'
@@ -40,8 +40,6 @@ export function WarehouseEnvironment({ hour = 10 }: { hour?: number }) {
       {/* Post-processing -- GodRays removed (caused WebGL errors and washed out shadows) */}
       <EffectComposer>
         <Noise opacity={0.003} blendFunction={BlendFunction.ADD} />
-        <Scanline density={2} blendFunction={BlendFunction.OVERLAY} opacity={0.03} />
-        <ChromaticAberration offset={[0.0003, 0.0003]} />
         <Vignette eskil={false} offset={0.3} darkness={0.15} />
       </EffectComposer>
     </>

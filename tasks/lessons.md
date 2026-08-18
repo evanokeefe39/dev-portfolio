@@ -143,3 +143,24 @@ correction; reference the specific failure mode and the rule that prevents it.
 - **Rule:** strip at the pipeline write step, not in the client; the frontend
   normalizer tolerates missing fields by design, and the pipeline owns the
   locked session schema.
+
+## 2026-08-18 — scene perf: parallel workstreams, pure walk module, leg mirror
+
+- **Pattern:** extracting KrazyKrab's frame loop into a pure `walk.ts`
+  silently dropped the left/right leg mirror (`i < 3 ? sw : -sw`) because the
+  apply-loop spec was written "clean." Restored at the apply site; walk.ts
+  stays unmirrored (mirroring is a presentation concern).
+- **Rule:** when a pure-function extraction rewrites the apply site, the spec
+  must enumerate presentation transforms (mirroring, sign flips) or the
+  visual output changes without a test catching it.
+- **Pattern:** `readPixels` on a `preserveDrawingBuffer: false` WebGL canvas
+  returns transparent zeros after compositing — it reads like a blank scene
+  but isn't one.
+- **Rule:** verify a live render loop with rAF cadence + cross-frame
+  screenshot diffs, never readPixels on the default framebuffer.
+- **Pattern:** five perf workstreams with disjoint file ownership ran in
+  parallel without conflicts; every worker self-verified, and the
+  orchestrator re-read every diff before accepting (caught the WS-4 mirror
+  and an intermediate WS-3 duplicate component).
+- **Rule:** for parallel work, keep per-workstream file ownership disjoint and
+  re-read every changed file — never accept a worker's summary on trust.

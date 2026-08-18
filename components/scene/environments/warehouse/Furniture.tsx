@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { Voxel } from '../../Voxel'
 import { FiddleLeafFig } from '../../FiddleLeafFig'
@@ -17,72 +17,144 @@ const CUP_COLORS = ['#e04040', '#3090d0', '#40b060', '#d08030', '#c05080', '#208
                    '#e04040', '#3090d0', '#40b060', '#d08030', '#c05080', '#2080c0', '#d0a020', '#60a0a0']
 const WORKSTATION_INDICES = [0, 1, 2, 3, 4, 5, 6, 7] as const
 
-export const HotDesks = React.memo(function HotDesks() {
+/* ── HotDesks / DeskChairs ──
+   Instance matrices are computed at module level from the same constants and
+   formulas as the original per-<Voxel> loops. Each box size is baked into a
+   shared geometry and every instance is a translation-only matrix (scale 1,
+   no rotation), so world layouts stay arithmetically identical. */
+
+const DESK_TOP_MATRICES: THREE.Matrix4[] = []
+const DESK_LEG_MATRICES: THREE.Matrix4[] = []
+const LAPTOP_BASE_MATRICES: THREE.Matrix4[] = []
+const MONITOR_MATRICES: THREE.Matrix4[] = []
+const SCREEN_MATRICES: THREE.Matrix4[] = []
+const SCREEN_INSTANCE_COLORS: THREE.Color[] = []
+const CUP_MATRICES: THREE.Matrix4[] = []
+const CUP_INSTANCE_COLORS: THREE.Color[] = []
+const CHAIR_LEG_MATRICES: THREE.Matrix4[] = []
+const CHAIR_SEAT_MATRICES: THREE.Matrix4[] = []
+
+function translationMatrix(x: number, y: number, z: number): THREE.Matrix4 {
+  return new THREE.Matrix4().makeTranslation(x, y, z)
+}
+
+DESK_POSITIONS.forEach((desk, di) => {
+  DESK_TOP_MATRICES.push(translationMatrix(desk.cx, 0.65, desk.cz))
+
+  for (const lx of [-DESK_W / 2 + 0.15, DESK_W / 2 - 0.15]) {
+    for (const lz of [-DESK_D / 2 + 0.1, DESK_D / 2 - 0.1]) {
+      DESK_LEG_MATRICES.push(translationMatrix(desk.cx + lx, 0.32, desk.cz + lz))
+    }
+  }
+
+  WORKSTATION_INDICES.forEach((wi) => {
+    const side = wi < 4 ? -1 : 1
+    const col = wi % 4
+    const dx = desk.cx - 1.5 + col * 1.0
+    const dz = desk.cz + side * 0.35
+    const idx = di * 8 + wi
+    const facing = -side
+
+    LAPTOP_BASE_MATRICES.push(translationMatrix(dx, 0.71, dz))
+    MONITOR_MATRICES.push(translationMatrix(dx, 0.82, dz + facing * 0.14))
+    SCREEN_MATRICES.push(translationMatrix(dx, 0.82, dz + facing * 0.13))
+    SCREEN_INSTANCE_COLORS.push(new THREE.Color(LAPTOP_COLORS[idx % LAPTOP_COLORS.length]))
+    CUP_MATRICES.push(translationMatrix(dx + 0.28, 0.72, dz - facing * 0.1))
+    CUP_INSTANCE_COLORS.push(new THREE.Color(CUP_COLORS[idx % CUP_COLORS.length]))
+  })
+})
+
+DESK_POSITIONS.forEach((desk) => {
+  WORKSTATION_INDICES.forEach((wi) => {
+    const side = wi < 4 ? -1 : 1
+    const col = wi % 4
+    const dx = desk.cx - 1.5 + col * 1.0
+    const dz = desk.cz + side * 0.85
+
+    CHAIR_LEG_MATRICES.push(translationMatrix(dx - 0.12, 0.2, dz - 0.12))
+    CHAIR_LEG_MATRICES.push(translationMatrix(dx + 0.12, 0.2, dz - 0.12))
+    CHAIR_LEG_MATRICES.push(translationMatrix(dx - 0.12, 0.2, dz + 0.12))
+    CHAIR_LEG_MATRICES.push(translationMatrix(dx + 0.12, 0.2, dz + 0.12))
+    CHAIR_SEAT_MATRICES.push(translationMatrix(dx, 0.42, dz))
+  })
+})
+
+/* ── Shared geometry & materials (one BoxGeometry + MeshLambertMaterial per group) ── */
+
+const DESK_TOP_GEO = new THREE.BoxGeometry(DESK_W, 0.06, DESK_D)
+const DESK_TOP_MAT = new THREE.MeshLambertMaterial({ color: '#d4c4a0' })
+const DESK_LEG_GEO = new THREE.BoxGeometry(0.06, 0.62, 0.06)
+const DESK_LEG_MAT = new THREE.MeshLambertMaterial({ color: '#4a4a4a' })
+const LAPTOP_BASE_GEO = new THREE.BoxGeometry(0.4, 0.02, 0.3)
+const LAPTOP_BASE_MAT = new THREE.MeshLambertMaterial({ color: '#2a2a2a' })
+const MONITOR_GEO = new THREE.BoxGeometry(0.38, 0.22, 0.02)
+const MONITOR_MAT = new THREE.MeshLambertMaterial({ color: '#3a3a3a' })
+const SCREEN_GEO = new THREE.BoxGeometry(0.32, 0.17, 0.01)
+const SCREEN_MAT = new THREE.MeshLambertMaterial({ color: '#ffffff' })
+const CUP_GEO = new THREE.BoxGeometry(0.06, 0.08, 0.06)
+const CUP_MAT = new THREE.MeshLambertMaterial({ color: '#ffffff' })
+const CHAIR_LEG_GEO = new THREE.BoxGeometry(0.04, 0.4, 0.04)
+const CHAIR_LEG_MAT = new THREE.MeshLambertMaterial({ color: '#6a4428' })
+const CHAIR_SEAT_GEO = new THREE.BoxGeometry(0.32, 0.04, 0.32)
+const CHAIR_SEAT_MAT = new THREE.MeshLambertMaterial({ color: '#d4c4a0' })
+
+/* ── Instanced layer: mirrors the WallLayer pattern (useEffect + setMatrixAt) ── */
+
+function InstancedFurniture({
+  matrices,
+  colors,
+  geometry,
+  material,
+}: {
+  matrices: THREE.Matrix4[]
+  colors?: THREE.Color[]
+  geometry: THREE.BoxGeometry
+  material: THREE.MeshLambertMaterial
+}) {
+  const meshRef = useRef<THREE.InstancedMesh>(null)
+
+  useEffect(() => {
+    const mesh = meshRef.current
+    if (!mesh) return
+
+    for (let i = 0; i < matrices.length; i++) {
+      mesh.setMatrixAt(i, matrices[i])
+      if (colors) mesh.setColorAt(i, colors[i])
+    }
+    mesh.instanceMatrix.needsUpdate = true
+    const instanceColor = mesh.instanceColor
+    if (instanceColor) instanceColor.needsUpdate = true
+  }, [matrices, colors])
 
   return (
+    <instancedMesh
+      ref={meshRef}
+      args={[geometry, material, matrices.length]}
+      castShadow
+      receiveShadow
+      frustumCulled={false}
+    />
+  )
+}
+
+export const HotDesks = React.memo(function HotDesks() {
+  return (
     <>
-      {DESK_POSITIONS.map((desk, di) => (
-        <React.Fragment key={`desk-${di}`}>
-          <Voxel position={[desk.cx, 0.65, desk.cz]} size={[DESK_W, 0.06, DESK_D]} color="#d4c4a0" />
-
-          {[-DESK_W / 2 + 0.15, DESK_W / 2 - 0.15].map((lx) =>
-            [-DESK_D / 2 + 0.1, DESK_D / 2 - 0.1].map((lz) => (
-              <Voxel key={`leg-${di}-${lx}-${lz}`}
-                position={[desk.cx + lx, 0.32, desk.cz + lz]}
-                size={[0.06, 0.62, 0.06]}
-                color="#4a4a4a"
-              />
-            ))
-          )}
-
-          {WORKSTATION_INDICES.map((wi) => {
-            const side = wi < 4 ? -1 : 1
-            const col = wi % 4
-            const dx = desk.cx - 1.5 + col * 1.0
-            const dz = desk.cz + side * 0.35
-            const idx = di * 8 + wi
-            const facing = -side
-
-            return (
-              <React.Fragment key={`ws-${di}-${wi}`}>
-                <Voxel position={[dx, 0.71, dz]} size={[0.4, 0.02, 0.3]} color="#2a2a2a" />
-                <Voxel position={[dx, 0.82, dz + facing * 0.14]} size={[0.38, 0.22, 0.02]} color="#3a3a3a" />
-                <Voxel position={[dx, 0.82, dz + facing * 0.13]} size={[0.32, 0.17, 0.01]} color={LAPTOP_COLORS[idx % LAPTOP_COLORS.length]} />
-                <Voxel position={[dx + 0.28, 0.72, dz - facing * 0.1]} size={[0.06, 0.08, 0.06]} color={CUP_COLORS[idx % CUP_COLORS.length]} />
-              </React.Fragment>
-            )
-          })}
-        </React.Fragment>
-      ))}
+      <InstancedFurniture matrices={DESK_TOP_MATRICES} geometry={DESK_TOP_GEO} material={DESK_TOP_MAT} />
+      <InstancedFurniture matrices={DESK_LEG_MATRICES} geometry={DESK_LEG_GEO} material={DESK_LEG_MAT} />
+      <InstancedFurniture matrices={LAPTOP_BASE_MATRICES} geometry={LAPTOP_BASE_GEO} material={LAPTOP_BASE_MAT} />
+      <InstancedFurniture matrices={MONITOR_MATRICES} geometry={MONITOR_GEO} material={MONITOR_MAT} />
+      <InstancedFurniture matrices={SCREEN_MATRICES} colors={SCREEN_INSTANCE_COLORS} geometry={SCREEN_GEO} material={SCREEN_MAT} />
+      <InstancedFurniture matrices={CUP_MATRICES} colors={CUP_INSTANCE_COLORS} geometry={CUP_GEO} material={CUP_MAT} />
     </>
   )
 })
 
 export const DeskChairs = React.memo(function DeskChairs() {
-  const legColor = '#6a4428'
-  const seatColor = '#d4c4a0'
-
   return (
     <>
-      {DESK_POSITIONS.map((desk, di) =>
-        WORKSTATION_INDICES.map((wi) => {
-          const side = wi < 4 ? -1 : 1
-          const col = wi % 4
-          const dx = desk.cx - 1.5 + col * 1.0
-          const dz = desk.cz + side * 0.85
-          return (
-            <React.Fragment key={`chair-${di}-${wi}`}>
-              {/* 4 wooden legs */}
-              <Voxel position={[dx - 0.12, 0.2, dz - 0.12]} size={[0.04, 0.4, 0.04]} color={legColor} />
-              <Voxel position={[dx + 0.12, 0.2, dz - 0.12]} size={[0.04, 0.4, 0.04]} color={legColor} />
-              <Voxel position={[dx - 0.12, 0.2, dz + 0.12]} size={[0.04, 0.4, 0.04]} color={legColor} />
-              <Voxel position={[dx + 0.12, 0.2, dz + 0.12]} size={[0.04, 0.4, 0.04]} color={legColor} />
-              {/* seat */}
-              <Voxel position={[dx, 0.42, dz]} size={[0.32, 0.04, 0.32]} color={seatColor} />
-            </React.Fragment>
-          )
-        })
-      )}
+      <InstancedFurniture matrices={CHAIR_LEG_MATRICES} geometry={CHAIR_LEG_GEO} material={CHAIR_LEG_MAT} />
+      <InstancedFurniture matrices={CHAIR_SEAT_MATRICES} geometry={CHAIR_SEAT_GEO} material={CHAIR_SEAT_MAT} />
     </>
   )
 })

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { Grid, Html } from '@react-three/drei'
+import { Grid, Html, Stats } from '@react-three/drei'
 import { WarehouseEnvironment, WAREHOUSE_CONFIG } from './environments/warehouse'
 import { SessionKrab } from './SessionKrab'
 import { buildKrabLayout, SEAT_POSITIONS } from './layout'
@@ -70,6 +70,8 @@ export default function Scene() {
     <div className="pointer-events-none absolute inset-0 z-0">
       <Canvas
         shadows
+        // dpr 1: iGPU fill-rate bound; 1.5x retina costs 2.25x pixels through the post stack.
+        dpr={1}
         style={{ pointerEvents: 'auto' }}
         orthographic
         camera={{
@@ -78,9 +80,12 @@ export default function Scene() {
           near: 0.1,
           far: 200,
         }}
-        gl={{ antialias: true }}
+        // antialias off: the EffectComposer multisamples its own composite,
+        // so canvas MSAA would only double the fill cost on retina DPR.
+        gl={{ antialias: false }}
         onCreated={({ camera }) => camera.lookAt(...WAREHOUSE_CONFIG.orbitTarget)}
       >
+        {process.env.NODE_ENV === 'development' && <Stats showPanel={0} />}
         <WarehouseEnvironment hour={hour} />
         <Grid
           position={[0, -0.1, 0]}

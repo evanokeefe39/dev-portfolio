@@ -15,11 +15,21 @@ the main executor's daily noise.
 
 ## 3D performance
 
-- Scene is voxel-style (Lambert materials, box geometry). Watch draw calls:
-  `InstancedMesh` for repeated desks/chairs/pillars, `mergeGeometries` for static
-  geometry, power-of-two compressed textures. Profile with `renderer.info`.
-- `EffectComposer` lives per-environment; verify it still works after the R3F v9
-  + postprocessing v3 upgrade (god rays were already removed due to WebGL errors).
+- Done 2026-08-18: desks/chairs instanced (154 meshes -> 8 `InstancedMesh`
+  groups in Furniture.tsx — the draw-call hot spots), directional shadow map
+  4096 -> 2048 with frustum tightened to +/-7 (Daylight.tsx), Canvas `dpr={1}`
+  + `antialias: false` (Scene.tsx), EffectComposer trimmed from 4 passes to
+  Noise + Vignette only (ChromaticAberration + Scanline dropped — iGPU
+  fill-rate bound at ~15fps), krab walk extracted to pure `krabs/walk.ts`
+  (delta clamped to 0.05s, pause eases via an activity factor — no teleport,
+  no phase pop). Dev-only drei `<Stats>` panel in Scene.tsx: click it twice to
+  cycle to the render panel for draw calls.
+- Still to watch: real-GPU fps re-check after the dpr/composer cuts; if still
+  < 30fps, next levers are session-krab body instancing (16 krabs x ~20 voxels
+  = ~320 meshes), shadow map 1024, pendant pointLights, and the ambient-krab
+  cut (15 walkers = ~420 meshes, owned by another plan).
+- `EffectComposer` lives per-environment; god rays were already removed due to
+  WebGL errors (SunRays.tsx deleted 2026-08-18 — do not re-add).
 
 ## Data pipeline
 

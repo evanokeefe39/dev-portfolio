@@ -2,6 +2,7 @@ import React, { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { Voxel } from '../Voxel'
+import { stepKrab, type KrabStepState } from './walk'
 
 export interface KrabConfig {
   path: [number, number][]
@@ -38,7 +39,7 @@ export function KrazyKrab({ path, speed, pause, scale, legRate, snapRate,
     useRef<THREE.Group>(null!), useRef<THREE.Group>(null!), useRef<THREE.Group>(null!),
   ]
 
-  const state = useRef({ pathIndex: 0, progress: 0, pausing: 0, time: 0 })
+  const state = useRef<KrabStepState>({ pathIndex: 0, progress: 0, pausing: 0, time: 0, activity: 1 })
 
   const pathLengths = useMemo(() => {
     return path.map((_, i) => {
@@ -49,37 +50,20 @@ export function KrazyKrab({ path, speed, pause, scale, legRate, snapRate,
   }, [path])
 
   useFrame((_, delta) => {
-    const s = state.current
-    s.time += delta
-    if (s.pausing > 0) { s.pausing -= delta; return }
-
-    const segLen = pathLengths[s.pathIndex]
-    s.progress += delta / (segLen / speed)
-    if (s.progress >= 1) {
-      s.progress = 0
-      s.pathIndex = (s.pathIndex + 1) % path.length
-      s.pausing = pause
-    }
-
-    const cur = path[s.pathIndex]
-    const next = path[(s.pathIndex + 1) % path.length]
-    const t = s.progress
-    const x = cur[0] + (next[0] - cur[0]) * t
-    const z = cur[1] + (next[1] - cur[1]) * t
-    const angle = Math.atan2(next[0] - cur[0], next[1] - cur[1])
+    const pose = stepKrab(state.current, path, pathLengths, { speed, pause, legRate, snapRate }, delta)
 
     if (groupRef.current) {
-      groupRef.current.position.set(x, 0, z)
-      groupRef.current.rotation.y = angle + Math.PI / 2
+      groupRef.current.position.set(pose.x, 0, pose.z)
+      groupRef.current.rotation.y = pose.rotationY
     }
 
     for (let i = 0; i < 6; i++) {
-      const sw = Math.sin(s.time * legRate + i * 2.1) * 0.35
-      if (legs[i].current) legs[i].current.rotation.z = i < 3 ? sw : -sw
+      // Legs 0-2 sit on the left, 3-5 on the right: mirror the swing so the
+      // gait alternates (original behavior), the pure pose stays unmirrored.
+      if (legs[i].current) legs[i].current.rotation.z = i < 3 ? pose.legSwings[i] : -pose.legSwings[i]
     }
-    const snap = Math.sin(s.time * snapRate) * 0.25
-    if (leftClaw.current) leftClaw.current.rotation.y = snap
-    if (rightClaw.current) rightClaw.current.rotation.y = -snap
+    if (leftClaw.current) leftClaw.current.rotation.y = pose.clawSnap
+    if (rightClaw.current) rightClaw.current.rotation.y = -pose.clawSnap
   })
 
   return (

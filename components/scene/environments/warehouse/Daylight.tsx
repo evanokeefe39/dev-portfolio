@@ -168,10 +168,10 @@ export function Daylight({ hour }: { hour: number }) {
     light.target.updateMatrixWorld()
     light.updateMatrixWorld()
 
-    light.shadow.camera.left = -10
-    light.shadow.camera.right = 10
-    light.shadow.camera.top = 10
-    light.shadow.camera.bottom = -10
+    light.shadow.camera.left = -7
+    light.shadow.camera.right = 7
+    light.shadow.camera.top = 7
+    light.shadow.camera.bottom = -7
     light.shadow.camera.near = 0.1
     light.shadow.camera.far = 30
     light.shadow.camera.updateProjectionMatrix()
@@ -200,8 +200,8 @@ export function Daylight({ hour }: { hour: number }) {
         intensity={d.sunIntensity}
         color={d.sunColor}
         castShadow
-        shadow-mapSize-width={4096}
-        shadow-mapSize-height={4096}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
       />
 
       {/* Back wall window (z=-5) */}

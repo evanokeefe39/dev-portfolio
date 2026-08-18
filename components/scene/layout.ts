@@ -35,8 +35,8 @@ export interface KrabItem {
   repo: string
   /** Mono title line for the tooltip pill (`${repo} · ${harness}`). */
   tooltipTitle: string
-  /** Deterministic stats body — repo aggregate (sessions, days, msgs, LOC,
-   *  PRs, harnesses). */
+  /** Deterministic stats body — repo aggregate (sessions, days, msgs, LOC, PRs).
+   *  Two newline-separated lines; no harness counts (harness = chip/color). */
   tooltipBody: string
   /** 0..15 — the seat this krab occupies (assignment order). */
   seatIndex: number
@@ -93,20 +93,29 @@ export function sessionScale(msgs: number): number {
 }
 
 /**
- * One-line session summary for the focus panel:
- * `${day} · ${assistantMessages} msgs` + ` · +added/−removed LOC` when the
- * session has commits + ` · #NN` per PR ref + ` · <title>` (title ?? summary)
- * when present. No-commit sessions omit the LOC clause.
+ * Structured per-session summary for the focus panel. Fields stay separate so
+ * the panel can color the LOC clause by sign and conditionally render the
+ * branch icon + name (branch is null in the >7d lazy slices, present in 7d).
  */
-export function sessionRow(s: SessionEntry): string {
-  const parts = [`${s.day} · ${s.assistantMessages} msgs`]
-  if (s.locDelta !== null) {
-    parts.push(`+${s.locDelta.added}/−${s.locDelta.removed} LOC`)
+export interface SessionRowParts {
+  day: string
+  msgs: number
+  loc: { added: number; removed: number } | null
+  prRefs: number[]
+  branch: string | null
+  title: string | null
+}
+
+/** `title ?? summary` — same fallback semantics as the retired sessionRow. */
+export function sessionRowParts(s: SessionEntry): SessionRowParts {
+  return {
+    day: s.day,
+    msgs: s.assistantMessages,
+    loc: s.locDelta !== null ? { added: s.locDelta.added, removed: s.locDelta.removed } : null,
+    prRefs: s.prRefs,
+    branch: s.branch,
+    title: s.title ?? s.summary,
   }
-  for (const ref of s.prRefs) parts.push(`#${ref}`)
-  const title = s.title ?? s.summary
-  if (title !== null) parts.push(title)
-  return parts.join(' · ')
 }
 
 export interface RepoHarnessCount {
@@ -215,19 +224,18 @@ export function aggregateReposByRepo(sessions: SessionEntry[]): RepoAggregate[] 
 }
 
 /**
- * Deterministic repo-aggregate tooltip body — `sessions · days · msgs`,
- * `+LOC/−LOC` (plus PR refs when present), then the top-3 harnesses.
+ * Deterministic repo-aggregate tooltip body — two lines, pinned by tests and
+ * parsed by SessionKrab:
+ *   line 1: `${sessions.length} sessions · days · msgs`
+ *   line 2: `+added −removed LOC` (+ ` · N PR refs` when the repo has PR refs)
+ * No harness-count line — the harness shows as the chip/color in the
+ * component instead.
  */
 export function repoTooltipBody(r: RepoAggregate): string {
-  const locLine = `+${r.locAdded}/−${r.locRemoved} LOC${r.prRefs > 0 ? ` · ${r.prRefs} PR refs` : ''}`
-  const harnessLine = r.harnesses
-    .slice(0, 3)
-    .map((h) => `${h.harness} ${h.sessions}`)
-    .join(' · ')
+  const locLine = `+${r.locAdded} −${r.locRemoved} LOC${r.prRefs > 0 ? ` · ${r.prRefs} PR refs` : ''}`
   return [
     `${r.sessions.length} sessions · ${r.daysActive} days · ${r.assistantMessages} assistant msgs`,
     locLine,
-    harnessLine,
   ].join('\n')
 }
 

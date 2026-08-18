@@ -1,7 +1,8 @@
 'use client'
 
-import React, { memo } from 'react'
-import { Html } from '@react-three/drei'
+import React, { memo, useState } from 'react'
+import { Html, useCursor } from '@react-three/drei'
+import { HARNESS_COLORS } from '@/lib/harness'
 import type { Harness } from '@/lib/types'
 import { Voxel } from './Voxel'
 
@@ -14,20 +15,14 @@ import { Voxel } from './Voxel'
  *
  * The tooltip is a drei <Html> glass pill (same style as the retired
  * SessionLabels pills): a mono title line + 2-4 deterministic stat lines,
- * above the krab. Memoized so neither the static voxel body nor the tooltip
- * re-renders when unrelated scene state (e.g. the hourly clock) changes.
+ * above the krab, gated behind hover — invisible until the pointer is over
+ * the krab's hitbox. Memoized so neither the static voxel body nor the
+ * tooltip re-renders when unrelated scene state (e.g. the hourly clock)
+ * changes.
  */
 
 const EYE_COLOR = '#111111'
 const GLINT_COLOR = '#ffffff'
-
-/** body/shell light + legs/claws dark per harness. */
-const PALETTES: Record<Harness, { body: string; dark: string }> = {
-  omp: { body: '#e8865a', dark: '#a8542f' },
-  claude: { body: '#cc785c', dark: '#8f4a36' },
-  pi: { body: '#3fb3a0', dark: '#2a7a6c' },
-  codex: { body: '#6a7bd8', dark: '#4653a0' },
-}
 
 export interface SessionKrabProps {
   harness: Harness
@@ -48,7 +43,12 @@ export const SessionKrab = memo(function SessionKrab({
   title,
   body,
 }: SessionKrabProps) {
-  const palette = PALETTES[harness]
+  const [hovered, setHovered] = useState(false)
+  const palette = HARNESS_COLORS[harness]
+
+  // Pointer cursor while hovered — R3F v9 dropped the per-object `cursor` prop,
+  // so drive it from the same hover state via drei's useCursor (unmount-safe).
+  useCursor(hovered)
   return (
     <group position={position} scale={[scale, scale, scale]}>
       {/* body */}
@@ -82,9 +82,14 @@ export const SessionKrab = memo(function SessionKrab({
       <Voxel position={[0.24, 0.24, -0.14]} size={[0.1, 0.06, 0.06]} color={palette.body} />
       <Voxel position={[0.32, 0.26, -0.14]} size={[0.06, 0.03, 0.07]} color={palette.dark} />
       <Voxel position={[0.32, 0.22, -0.14]} size={[0.06, 0.03, 0.07]} color={palette.dark} />
+      {/* invisible hover hitbox — covers the krab body up through the tooltip pill region */}
+      <mesh position={[0, 0.8, 0]} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
+        <boxGeometry args={[1.1, 1.7, 0.9]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+      </mesh>
       {/* tooltip pill above the krab */}
-      <Html position={[0, 1.25, 0]} center pointerEvents="none">
-        <div className="pointer-events-none select-none rounded-lg border border-white/10 bg-black/35 px-3 py-2 shadow-lg backdrop-blur-md">
+      <Html position={[0, 1.25, 0]} center pointerEvents="none" wrapperClass="pointer-events-none">
+        <div className="pointer-events-none select-none rounded-lg border border-white/10 bg-black/35 px-3 py-2 shadow-lg backdrop-blur-md" style={{ opacity: hovered ? 1 : 0, transition: 'opacity 150ms' }}>
           <div className="font-mono text-[11px] font-semibold tracking-tight text-white/90">{title}</div>
           {body.split('\n').map((line, i) => (
             <div key={i} className="mt-0.5 max-w-[220px] truncate text-[11px] text-white/60">

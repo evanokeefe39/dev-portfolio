@@ -37,3 +37,21 @@ the main executor's daily noise.
 
 - Linear history, squash-merge only, no direct pushes to `main`. Conventional
   commits. Reject merge commits and bare `WIP`/`fixed the bug` messages.
+
+## Frontend data + scene labels
+
+- Snapshot reads must go through `lib/snapshot-store.ts` (`useSnapshot`) — a
+  second direct `loadSnapshot()` duplicates a ~340KB fetch+normalize per mount
+  (hit once: StatCard and Scene fetched independently, causing the stat-card
+  lag). Reject any new direct fetch of `/data/current.json`.
+- drei `<Html>`'s outer positioning div does NOT inherit the `pointerEvents`
+  prop — without `wrapperClass="pointer-events-none"` each invisible tooltip
+  leaves a hit-testable box over the scene that swallows canvas pointer events
+  (hover-gating silently broke; caught in browser verification). Every `<Html>`
+  label in the scene needs the wrapperClass.
+- Krab labels are hover-gated on purpose; always-visible `<Html>` pills regress
+  the scene (krabs invisible behind them). The invisible hitbox must stay tall
+  enough to cover the pill region or hover flickers on/off.
+- `buildKrabLayout` renders per-session only at 7d; 30d/90d/1y/all aggregate by
+  repo (`mode: 'repos'`). Both modes are covered in tests/layout.test.ts — keep
+  it that way; the derivation is pure and unit-tested.

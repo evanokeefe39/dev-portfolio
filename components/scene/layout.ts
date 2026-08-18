@@ -1,4 +1,5 @@
 import type { Harness, RangeKey, SessionEntry } from '@/lib/types'
+import { HARNESSES } from '@/lib/types'
 
 /**
  * Pure layout derivation for the deterministic session-krab scene — no
@@ -6,8 +7,11 @@ import type { Harness, RangeKey, SessionEntry } from '@/lib/types'
  *
  * - window = sessions whose `day` is inside [snapshotDate - grainDays + 1, snapshotDate]
  * - 0 window sessions -> empty layout (the scene renders nothing)
- * - otherwise one krab per session, top-N by (assistantMessages desc,
+ * - at 7d: one krab per session, top-N by (assistantMessages desc,
  *   startTs desc); overflow = sessions beyond the seats
+ * - at 30d/90d/1y/all: one krab per repo, top-N by assistantMessages
+ *   (repo magnitude = total assistant messages); overflow = repos beyond
+ *   the seats
  *
  * Seat assignment is deterministic: item order == seat order (`seatIndex`).
  */
@@ -30,7 +34,8 @@ export interface KrabItem {
   repo: string
   /** Mono title line for the tooltip pill (`${repo} · ${harness}`). */
   tooltipTitle: string
-  /** Deterministic stats body (day, msgs, LOC, PRs, branch, summary). */
+  /** Deterministic stats body — session (day, msgs, LOC, PRs, branch,
+   *  summary) or repo aggregate (sessions, days, msgs, LOC, PRs, harnesses). */
   tooltipBody: string
   /** 0..15 — the seat this krab occupies (assignment order). */
   seatIndex: number
@@ -41,6 +46,7 @@ export interface KrabItem {
 export type KrabLayout =
   | { mode: 'empty'; items: [] }
   | { mode: 'sessions'; items: KrabItem[]; overflow: number }
+  | { mode: 'repos'; items: KrabItem[]; overflow: number }
 
 export interface BuildKrabLayoutArgs {
   sessions: SessionEntry[]
@@ -66,6 +72,16 @@ function inWindow(day: string, snapshotDate: string, range: RangeKey): boolean {
   if (start === '') return false
   // 'YYYY-MM-DD' sorts lexicographically, so string comparison is a date range check.
   return day >= start && day <= snapshotDate
+}
+
+/** Sessions inside the grain window ending at `snapshotDate` — filter only,
+ *  no sorting (callers order per mode). */
+export function filterWindow(
+  sessions: SessionEntry[],
+  range: RangeKey,
+  snapshotDate: string,
+): SessionEntry[] {
+  return sessions.filter((s) => inWindow(s.day, snapshotDate, range))
 }
 
 /**
@@ -101,30 +117,158 @@ function byMagnitudeDesc(a: SessionEntry, b: SessionEntry): number {
   return `${a.harness}:${a.sessionId}`.localeCompare(`${b.harness}:${b.sessionId}`)
 }
 
+export interface RepoHarnessCount {
+  harness: Harness
+  sessions: number
+}
+
+export interface RepoAggregate {
+  repo: string
+  /** Distinct days with activity inside the window. */
+  daysActive: number
+  sessions: number
+  assistantMessages: number
+  locAdded: number
+  locRemoved: number
+  /** Total `#NNN` PR references across the window's sessions. */
+  prRefs: number
+  /** Per-harness session counts, most sessions first (ties by HARNESSES order). */
+  harnesses: RepoHarnessCount[]
+  /** Dominant harness = `harnesses[0]`. */
+  harness: Harness
+}
+
+/** Deterministic harness order: most sessions first, ties by HARNESSES order. */
+function byHarnessSessionsDesc(a: RepoHarnessCount, b: RepoHarnessCount): number {
+  if (a.sessions !== b.sessions) return b.sessions - a.sessions
+  return HARNESSES.indexOf(a.harness) - HARNESSES.indexOf(b.harness)
+}
+
+/** Deterministic repo order: biggest first (assistantMessages), ties by name. */
+function byRepoMagnitudeDesc(a: RepoAggregate, b: RepoAggregate): number {
+  if (a.assistantMessages !== b.assistantMessages) return b.assistantMessages - a.assistantMessages
+  return a.repo.localeCompare(b.repo)
+}
+
+/** Collapse a window's sessions into one aggregate per repo, biggest first. */
+export function aggregateReposByRepo(sessions: SessionEntry[]): RepoAggregate[] {
+  const byRepo = new Map<
+    string,
+    {
+      sessions: number
+      assistantMessages: number
+      locAdded: number
+      locRemoved: number
+      prRefs: number
+      days: Set<string>
+      harnesses: Map<Harness, number>
+    }
+  >()
+
+  for (const s of sessions) {
+    let acc = byRepo.get(s.repo)
+    if (!acc) {
+      acc = {
+        sessions: 0,
+        assistantMessages: 0,
+        locAdded: 0,
+        locRemoved: 0,
+        prRefs: 0,
+        days: new Set(),
+        harnesses: new Map(),
+      }
+      byRepo.set(s.repo, acc)
+    }
+    acc.sessions += 1
+    acc.assistantMessages += s.assistantMessages
+    if (s.locDelta !== null) {
+      acc.locAdded += s.locDelta.added
+      acc.locRemoved += s.locDelta.removed
+    }
+    acc.prRefs += s.prRefs.length
+    acc.days.add(s.day)
+    acc.harnesses.set(s.harness, (acc.harnesses.get(s.harness) ?? 0) + 1)
+  }
+
+  const aggregates: RepoAggregate[] = []
+  for (const [repo, acc] of byRepo) {
+    const harnesses: RepoHarnessCount[] = [...acc.harnesses.entries()]
+      .map(([harness, sessions]) => ({ harness, sessions }))
+      .sort(byHarnessSessionsDesc)
+    aggregates.push({
+      repo,
+      daysActive: acc.days.size,
+      sessions: acc.sessions,
+      assistantMessages: acc.assistantMessages,
+      locAdded: acc.locAdded,
+      locRemoved: acc.locRemoved,
+      prRefs: acc.prRefs,
+      harnesses,
+      harness: harnesses[0].harness,
+    })
+  }
+
+  aggregates.sort(byRepoMagnitudeDesc)
+  return aggregates
+}
+
+/**
+ * Deterministic repo-aggregate tooltip body — `sessions · days · msgs`,
+ * `+LOC/−LOC` (plus PR refs when present), then the top-3 harnesses.
+ */
+export function repoTooltipBody(r: RepoAggregate): string {
+  const locLine = `+${r.locAdded}/−${r.locRemoved} LOC${r.prRefs > 0 ? ` · ${r.prRefs} PR refs` : ''}`
+  const harnessLine = r.harnesses
+    .slice(0, 3)
+    .map((h) => `${h.harness} ${h.sessions}`)
+    .join(' · ')
+  return [
+    `${r.sessions} sessions · ${r.daysActive} days · ${r.assistantMessages} assistant msgs`,
+    locLine,
+    harnessLine,
+  ].join('\n')
+}
+
 export function buildKrabLayout(args: BuildKrabLayoutArgs): KrabLayout {
   const { sessions, range, snapshotDate } = args
   const capacity = args.capacity ?? SEAT_CAPACITY
 
-  const windowSessions = sessions.filter((s) => inWindow(s.day, snapshotDate, range)).sort(byMagnitudeDesc)
+  const windowSessions = filterWindow(sessions, range, snapshotDate)
 
   if (windowSessions.length === 0) {
     return { mode: 'empty', items: [] }
   }
 
-  const top = windowSessions.slice(0, capacity)
-  const overflow = Math.max(0, windowSessions.length - capacity)
+  // 7d keeps the per-session view: one krab per session, top-N by magnitude.
+  if (range === '7d') {
+    const top = windowSessions.sort(byMagnitudeDesc).slice(0, capacity)
+    const overflow = Math.max(0, windowSessions.length - capacity)
+    const items: KrabItem[] = top.map((s, i) => ({
+      key: `${s.harness}:${s.sessionId}`,
+      harness: s.harness,
+      repo: s.repo,
+      tooltipTitle: `${s.repo} · ${s.harness}`,
+      tooltipBody: tooltipBody(s),
+      seatIndex: i,
+      scale: sessionScale(s.assistantMessages),
+    }))
+    return { mode: 'sessions', items, overflow }
+  }
 
-  const items: KrabItem[] = top.map((s, i) => ({
-    key: `${s.harness}:${s.sessionId}`,
-    harness: s.harness,
-    repo: s.repo,
-    tooltipTitle: `${s.repo} · ${s.harness}`,
-    tooltipBody: tooltipBody(s),
+  // Coarser grains: one krab per repo, biggest repos fill the seats first.
+  const repos = aggregateReposByRepo(windowSessions)
+  const top = repos.slice(0, capacity)
+  const overflow = Math.max(0, repos.length - capacity)
+  const items: KrabItem[] = top.map((r, i) => ({
+    key: r.repo,
+    harness: r.harness,
+    repo: r.repo,
+    tooltipTitle: `${r.repo} · ${r.harness}`,
+    tooltipBody: repoTooltipBody(r),
     seatIndex: i,
-    scale: sessionScale(s.assistantMessages),
+    scale: sessionScale(r.assistantMessages),
   }))
-
-  return { mode: 'sessions', items, overflow }
+  return { mode: 'repos', items, overflow }
 }
 
 /**

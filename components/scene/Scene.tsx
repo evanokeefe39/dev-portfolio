@@ -6,9 +6,8 @@ import { Grid, Html } from '@react-three/drei'
 import { WarehouseEnvironment, WAREHOUSE_CONFIG } from './environments/warehouse'
 import { SessionKrab } from './SessionKrab'
 import { buildKrabLayout, SEAT_POSITIONS } from './layout'
-import { loadSnapshot } from '@/lib/data'
 import { useRange } from '@/lib/range-store'
-import type { Snapshot } from '@/lib/types'
+import { useSnapshot } from '@/lib/snapshot-store'
 
 /**
  * Full-viewport hero: the voxel warehouse rendered behind the glass overlays.
@@ -16,10 +15,11 @@ import type { Snapshot } from '@/lib/types'
  * local clock and /data/current.json fetch never touch the server.
  *
  * The scene is static — it renders pre-computed snapshot data and never calls
- * an LLM. One krab per session takes the hot-desk seats (SEAT_POSITIONS, the
- * same 16 slots the furniture uses): top sessions by assistantMessages fill
- * the seats, bigger sessions render as bigger krabs, and any overflow shows
- * as a "+N more" pill. An empty window renders an empty scene.
+ * an LLM. Krab labels are hover-gated: a tooltip pill appears only while the
+ * pointer is over a krab. At 7d each session is one krab on the hot-desk
+ * seats (SEAT_POSITIONS); above 7d sessions collapse to per-repo aggregate
+ * krabs. Any overflow shows as a "+N more" pill. An empty window renders an
+ * empty scene.
  */
 
 function localHour(): number {
@@ -33,22 +33,12 @@ const OVERFLOW_ANCHOR: [number, number, number] = [4.8, 2.4, 1.6]
 export default function Scene() {
   // Local clock, refreshed every minute so daylight slowly follows the visitor.
   const [hour, setHour] = useState<number>(() => localHour())
-  const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
   const range = useRange()
+  const { snapshot } = useSnapshot()
 
   useEffect(() => {
     const id = setInterval(() => setHour(localHour()), 60_000)
     return () => clearInterval(id)
-  }, [])
-
-  useEffect(() => {
-    let cancelled = false
-    loadSnapshot().then((snap) => {
-      if (!cancelled) setSnapshot(snap)
-    })
-    return () => {
-      cancelled = true
-    }
   }, [])
 
   const layout = useMemo(
@@ -65,6 +55,7 @@ export default function Scene() {
     <div className="pointer-events-none absolute inset-0 z-0">
       <Canvas
         shadows
+        style={{ pointerEvents: 'auto' }}
         orthographic
         camera={{
           position: WAREHOUSE_CONFIG.camera.position,
@@ -89,8 +80,8 @@ export default function Scene() {
           fadeStrength={1}
           infiniteGrid
         />
-        {layout.mode === 'sessions' && layout.overflow > 0 && (
-          <Html position={OVERFLOW_ANCHOR} center pointerEvents="none">
+        {layout.mode !== 'empty' && layout.overflow > 0 && (
+          <Html position={OVERFLOW_ANCHOR} center pointerEvents="none" wrapperClass="pointer-events-none">
             <div className="pointer-events-none select-none rounded-lg border border-white/10 bg-black/35 px-3 py-2 shadow-lg backdrop-blur-md">
               <div className="font-mono text-[11px] font-semibold tracking-tight text-white/90">
                 +{layout.overflow} more

@@ -98,3 +98,30 @@ correction; reference the specific failure mode and the rule that prevents it.
   mirroring an older tool (loc-dock) carried stale paths forward.
 - **Action:** added the OMP source with a COALESCE silver template (handles both
   usage layouts) and direct cost; 7d tokenBurn went 0 → 2.17B.
+
+## 2026-08-18 — frontend iteration: fetch dedup, hover labels, repo aggregation
+
+- **Pattern:** StatCard and the 3D scene each fetched `/data/current.json`
+  (~340KB, 565 sessions) independently with `cache: 'no-store'` — double fetch
+  + double normalize per mount was the stat-card lag. Server-state libraries
+  (TanStack Query/SWR) are overkill for one static file; the fix is a
+  module-level cached promise + `useSyncExternalStore`
+  (`lib/snapshot-store.ts`), the same pattern range-store already used.
+- **Rule:** shared static data goes through one fetch-once store; never call
+  `loadSnapshot()` directly from more than one component.
+- **Pattern:** always-visible drei `<Html>` labels hid every krab in the scene.
+- **Rule:** 3D labels are hover-gated (invisible hitbox covers the pill region;
+  `pointerEvents="none"` so the pill never steals hover). Always-visible
+  labels on a dense scene are a defect.
+- **Pattern:** per-session krabs don't scale past 7d (564/565 sessions at 90d).
+- **Rule:** choose scene grain by range — individual sessions at 7d, repo
+  aggregates above — keep the derivation pure (tests/layout.test.ts) and drive
+  DOM presentation (RepoCarousel) from the same aggregation function.
+- **Pattern:** drei `<Html>`'s outer positioning div ignores the
+  `pointerEvents` prop — invisible (opacity-0) tooltips still left
+  hit-testable boxes over the scene that swallowed every canvas pointer event,
+  so hover-gating silently did nothing.
+- **Rule:** every drei `<Html>` label in an interactive scene needs
+  `wrapperClass="pointer-events-none"` on top of `pointerEvents="none"`; verify
+  hover in a real browser, not just by reading the DOM (elementFromPoint is the
+  cheap check).

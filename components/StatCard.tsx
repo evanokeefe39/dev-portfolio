@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import type { RangeStats, Snapshot } from '@/lib/types'
+import type { RangeStats } from '@/lib/types'
 import { RANGE_KEYS } from '@/lib/types'
-import { emptySnapshot, loadSnapshot } from '@/lib/data'
+import { emptySnapshot } from '@/lib/data'
 import { setRange, useRange } from '@/lib/range-store'
+import { useSnapshot } from '@/lib/snapshot-store'
 import { barPercent, formatInt, formatPct, formatSignedInt, formatTokens } from '@/lib/format'
 import Sparkline from '@/components/Sparkline'
 
@@ -13,33 +14,18 @@ const CYCLE_MS = 4000
 
 const FACES = ['Token burn', 'Tokens by model', 'PRs referenced', 'LOC delta'] as const
 
+const EMPTY = emptySnapshot()
+
 /**
  * Glass stat card, top-left below the nav. Four faces cycle on a 4s interval
  * with a 300ms vertical fade-slide. Hover pauses, click advances, dots show
  * position, and the range toggle (7d/30d/90d/1y/all) filters every face.
  */
 export default function StatCard() {
-  const [snapshot, setSnapshot] = useState<Snapshot | null>(null)
-  const [loaded, setLoaded] = useState(false)
+  const { snapshot, status } = useSnapshot()
   const range = useRange()
   const [face, setFace] = useState(0)
   const [paused, setPaused] = useState(false)
-
-  useEffect(() => {
-    let alive = true
-    loadSnapshot()
-      .then((snap) => {
-        if (!alive) return
-        setSnapshot(snap)
-        setLoaded(true)
-      })
-      .catch(() => {
-        if (alive) setLoaded(true)
-      })
-    return () => {
-      alive = false
-    }
-  }, [])
 
   // Auto-cycle; re-armed on every face change so manual clicks reset the timer.
   useEffect(() => {
@@ -48,7 +34,7 @@ export default function StatCard() {
     return () => clearInterval(timer)
   }, [paused, face])
 
-  const stats: RangeStats = (snapshot ?? emptySnapshot()).ranges[range]
+  const stats: RangeStats = (snapshot ?? EMPTY).ranges[range]
 
   return (
     <section
@@ -111,7 +97,7 @@ export default function StatCard() {
         </AnimatePresence>
       </div>
 
-      {loaded && !snapshot && (
+      {status === 'ready' && !snapshot && (
         <div className="mt-4 flex items-center gap-2 rounded-lg border border-dashed border-white/15 px-3 py-2 text-xs text-white/50">
           <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-300/80" />
           no data yet

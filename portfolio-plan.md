@@ -9,8 +9,9 @@ Single-page dev portfolio for a data engineer / analytics engineer. Full-viewpor
 1. **3D scene** — full viewport, the warehouse environment from `3d-scene-test` (Cozy Office dropped for v1). Time-of-day auto-tracks the visitor's local time; no manual slider
 2. **Nav bar** — floating glass pill, top edge. Name (monospace) + links (Blog, About, GitHub)
 3. **Stat card** — single glass card, top-left below nav. Cycles through four metric faces on a 4s interval. Has a persistent time range toggle row (7d, 30d, 90d, 1y, all) that filters all faces
-4. **Session data labels** — floating glass pills anchored near agent characters in the 3D scene. Show repo, commit message + `#NNN` PR ref, LOC +/-. Branch is best-effort (via `git log --source`). Cycle through recent activity on a timer
-5. **Blog carousel** — floating glass card row, bottom edge. Auto-scrolls. Each card shows date + title, links to full MDX post
+4. **Scene labels** — hover-gated glass pills anchored to the krabs: at 7d one pill per session (repo · harness, day, msgs, LOC, PRs, branch, summary); above 7d the scene aggregates by repo and pills show per-repo stats. Invisible at rest so the krabs stay visible
+5. **Repo carousel** — glass card row, right edge below the nav, visible for ranges above 7d. One swipeable/scrollable card per repo (Embla auto-scroll, pauses on hover): repo name, harness dots, sessions/days/msgs, LOC and PR refs
+6. **Blog carousel** — floating glass card row, bottom edge. Auto-scrolls. Each card shows date + title, links to full MDX post
 
 All overlays use the same glass treatment: `rgba(0,0,0,0.3)` background, `1px solid rgba(255,255,255,0.1)` border, `border-radius: 10px`.
 
@@ -163,7 +164,7 @@ Existing scene is a React Three Fiber v8 app on Vite (React 18). Porting it into
 **Option B: R3F port into Next.js** (target)
 - Move the existing `environments/*` / `components/*` / `krabs/*` modules into the Next app as client components (`'use client'`, `dynamic(..., { ssr: false })`)
 - Upgrade `@react-three/fiber` 8→9, `drei` 9→10, `@react-three/postprocessing` 2→3 (React 19)
-- Use `drei`'s `<Html>` for data labels in 3D space
+- Use `drei`'s `<Html>` for hover-gated data labels in 3D space (visible only while the pointer is over a krab)
 - Pros: single build, 3D-anchored labels, shared state with overlay UI, one React runtime
 - Cons: ~1–2 days of dependency upgrade + import/type fixes (mechanical, not a rewrite)
 

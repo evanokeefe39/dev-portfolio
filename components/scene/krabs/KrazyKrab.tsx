@@ -2,8 +2,12 @@ import React, { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { Voxel } from '../Voxel'
-import { stepKrab, type KrabStepState } from './walk'
+import { stepKrab, MAX_DT, type KrabStepState } from './walk'
 
+// Idle mode: no path-following, no horizontal movement — only a slow vertical
+// bob (±0.02) plus the leg wiggle/claw snap derived at full activity.
+const IDLE_BOB_RATE = 2 // rad/s — period ≈ 3.1 s, deliberately slow
+const IDLE_BOB_AMPLITUDE = 0.02
 export interface KrabConfig {
   path: [number, number][]
   speed: number
@@ -19,6 +23,8 @@ export interface KrabConfig {
   clawTip: string
   eyeColor: string
   shell: React.ReactNode
+  idle?: boolean  // NEW — true: no path-following, no horizontal movement;
+  // keep leg wiggle + claw snap; gentle vertical bob (±0.02).
   // proportion overrides (default 1.0)
   bodyWidth?: number    // wider/narrower body
   bodyDepth?: number    // longer/shorter body
@@ -29,7 +35,7 @@ export interface KrabConfig {
 
 export function KrazyKrab({ path, speed, pause, scale, legRate, snapRate,
   bodyColor, bodyLight, legColor, legDark, clawColor, clawTip, eyeColor, shell,
-  bodyWidth: bw = 1, bodyDepth: bd = 1, clawScale: cs = 1, legLen: ll = 1, eyeStalk: es = 1,
+  bodyWidth: bw = 1, bodyDepth: bd = 1, clawScale: cs = 1, legLen: ll = 1, eyeStalk: es = 1, idle = false,
 }: KrabConfig) {
   const groupRef = useRef<THREE.Group>(null!)
   const leftClaw = useRef<THREE.Group>(null!)
@@ -50,6 +56,31 @@ export function KrazyKrab({ path, speed, pause, scale, legRate, snapRate,
   }, [path])
 
   useFrame((_, delta) => {
+    if (idle) {
+      // Idle krab: never walks, never moves horizontally — x/z are never
+      // written, so the parent-set position is permanent (no clipping by
+      // construction). Advance the same clamped clock as walk.ts (dropped
+      // frames can't jump the phase), then derive the leg wiggle + claw snap
+      // at full activity (mirrors walk.ts's formulas, activity = 1) and a
+      // slow sine bob on y.
+      const s = state.current
+      s.time += Math.min(delta, MAX_DT)
+
+      if (groupRef.current) {
+        groupRef.current.position.y = Math.sin(s.time * IDLE_BOB_RATE) * IDLE_BOB_AMPLITUDE
+      }
+
+      for (let i = 0; i < 6; i++) {
+        const swing = Math.sin(s.time * legRate + i * 2.1) * 0.35
+        // Legs 0-2 sit on the left, 3-5 on the right: mirror the swing the
+        // same way the walk apply-site does.
+        if (legs[i].current) legs[i].current.rotation.z = i < 3 ? swing : -swing
+      }
+      if (leftClaw.current) leftClaw.current.rotation.y = Math.sin(s.time * snapRate) * 0.25
+      if (rightClaw.current) rightClaw.current.rotation.y = -Math.sin(s.time * snapRate) * 0.25
+      return
+    }
+
     const pose = stepKrab(state.current, path, pathLengths, { speed, pause, legRate, snapRate }, delta)
 
     if (groupRef.current) {

@@ -164,3 +164,29 @@ correction; reference the specific failure mode and the rule that prevents it.
   and an intermediate WS-3 duplicate component).
 - **Rule:** for parallel work, keep per-workstream file ownership disjoint and
   re-read every changed file — never accept a worker's summary on trust.
+
+## 2026-08-18 — parallel sub-agent execution on the scene focus plan
+
+- **Pattern:** the plan's interface contract listed `sessions: number` AND
+  `sessions: SessionEntry[]` on the same interface — a duplicate key that
+  cannot compile. An agent escalated via IRC; the orchestrator resolved
+  (the list wins; count = `.length`). The ownership matrix also cited
+  `lib/layout.ts` when the module is `components/scene/layout.ts`.
+- **Rule:** before locking interface contracts in a plan, verify every field
+  name and file path against the actual code (grep the type/file). A contract
+  with two definitions of one field is a defect that costs an escalation
+  cycle. Contracts must contain a single definition per field.
+- **Pattern:** data shape drifted mid-session (user commits landed: snapshot
+  split into per-range `/data/7d.json` + lazy `30d/90d/1y/all.json` slices;
+  `snapshot.sessions` became the 7d window only). The orchestrator's earlier
+  reads were stale; both Wave-1 agents independently caught it and adapted.
+- **Rule:** after interruptions, laptop restarts, or user commits, re-verify
+  the data/schema layer before accepting agent work — the Data Reality Check
+  gate applies to schema drift, not just first-time reads.
+- **Pattern:** three agents edited disjoint files in parallel (Wave 0) and
+  two more after (Wave 1) with zero merge conflicts; the only friction was
+  the two contract bugs above.
+- **Rule:** disjoint file ownership + locked verbatim contracts + per-agent
+  targeted test files + "fix only your files, report the rest" = safe
+  parallel implementation. Whole-project typecheck/lint belong to the
+  integration pass, not to individual agents mid-wave.

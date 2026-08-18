@@ -4,12 +4,14 @@ import { emptySnapshot, normalizeSnapshot } from '../lib/data'
 import {
   aggregateReposByRepo,
   buildKrabLayout,
+  COUCH_SPOTLIGHT_SEAT,
   repoTooltipBody,
+  resolveFocus,
   SEAT_CAPACITY,
   SEAT_POSITIONS,
   SEAT_Y,
+  sessionRow,
   sessionScale,
-  tooltipBody,
 } from '../components/scene/layout'
 import type { SessionEntry } from '../lib/types'
 
@@ -32,38 +34,51 @@ function s(over: Partial<SessionEntry> & Pick<SessionEntry, 'harness' | 'repo' |
   }
 }
 
-// ---- render rule: per-session top-N --------------------------------------
+// ---- repo mode at every range --------------------------------------------
 
-test('<= capacity -> all sessions as items, ordered by assistantMessages desc then startTs desc', () => {
+test('buildKrabLayout returns repos mode for every range (7d included)', () => {
   const sessions = [
-    s({ harness: 'omp', repo: 'dev-portfolio', sessionId: 'a', assistantMessages: 5, startTs: '2026-08-17T10:00:00Z' }),
-    s({ harness: 'pi', repo: 'blog', sessionId: 'b', assistantMessages: 20, startTs: '2026-08-17T09:00:00Z' }),
-    s({ harness: 'codex', repo: 'blog', sessionId: 'c', assistantMessages: 20, startTs: '2026-08-17T11:00:00Z' }),
+    s({ harness: 'omp', repo: 'alpha', sessionId: 'a1', assistantMessages: 5 }),
+    s({ harness: 'claude', repo: 'alpha', sessionId: 'a2', assistantMessages: 3 }),
+    s({ harness: 'pi', repo: 'beta', sessionId: 'b1', assistantMessages: 20 }),
   ]
-  const layout = buildKrabLayout({ sessions, range: '7d', snapshotDate: '2026-08-17' })
-  assert.equal(layout.mode, 'sessions')
-  if (layout.mode !== 'sessions') return
-  assert.equal(layout.items.length, 3)
-  // msgs tie (20) -> startTs desc; msgs 5 last
-  assert.deepEqual(layout.items.map((i) => i.key), ['codex:c', 'pi:b', 'omp:a'])
-  assert.deepEqual(layout.items.map((i) => i.seatIndex), [0, 1, 2])
-  assert.equal(layout.items[0].tooltipTitle, 'blog · codex')
-  assert.equal(layout.overflow, 0)
+  for (const range of ['7d', '30d', '90d', '1y', 'all'] as const) {
+    const layout = buildKrabLayout({ sessions, range, snapshotDate: '2026-08-17' })
+    assert.equal(layout.mode, 'repos', `expected repos mode at ${range}`)
+    if (layout.mode !== 'repos') return
+    assert.deepEqual(layout.items.map((i) => i.key), ['beta', 'alpha']) // msgs desc
+    assert.equal(layout.overflow, 0)
+  }
 })
 
-test('> capacity -> top-N by assistantMessages, overflow = total - capacity', () => {
+test('buildKrabLayout at 7d aggregates sessions into repo items (no per-session krabs)', () => {
+  const sessions = [
+    s({ harness: 'omp', repo: 'dev-portfolio', sessionId: 'a', assistantMessages: 5 }),
+    s({ harness: 'pi', repo: 'dev-portfolio', sessionId: 'b', assistantMessages: 2 }),
+    s({ harness: 'codex', repo: 'blog', sessionId: 'c', assistantMessages: 20 }),
+  ]
+  const layout = buildKrabLayout({ sessions, range: '7d', snapshotDate: '2026-08-17' })
+  assert.equal(layout.mode, 'repos')
+  if (layout.mode !== 'repos') return
+  assert.deepEqual(layout.items.map((i) => i.key), ['blog', 'dev-portfolio'])
+  assert.deepEqual(layout.items.map((i) => i.seatIndex), [0, 1])
+  assert.equal(layout.items[1].tooltipTitle, 'dev-portfolio · omp') // dominant harness
+})
+
+test('repo mode respects capacity and reports overflow at 7d', () => {
   const sessions: SessionEntry[] = []
-  for (let i = 0; i < 17; i++) {
-    sessions.push(s({ harness: 'omp', repo: 'dev-portfolio', sessionId: `s${i}`, assistantMessages: i }))
+  for (let i = 0; i < 18; i++) {
+    sessions.push(
+      s({ harness: 'omp', repo: `repo-${String(i).padStart(2, '0')}`, sessionId: `s${i}`, assistantMessages: i }),
+    )
   }
   const layout = buildKrabLayout({ sessions, range: '7d', snapshotDate: '2026-08-17' })
-  assert.equal(layout.mode, 'sessions')
-  if (layout.mode !== 'sessions') return
+  assert.equal(layout.mode, 'repos')
+  if (layout.mode !== 'repos') return
   assert.equal(layout.items.length, SEAT_CAPACITY)
-  assert.equal(layout.overflow, 17 - SEAT_CAPACITY)
-  assert.equal(layout.items[0].key, 'omp:s16') // biggest first
-  assert.equal(layout.items[SEAT_CAPACITY - 1].key, 'omp:s1') // smallest seated
-  assert.equal(layout.items.some((i) => i.key === 'omp:s0'), false) // smallest overflows
+  assert.equal(layout.overflow, 2)
+  assert.equal(layout.items[0].key, 'repo-17') // biggest first
+  assert.equal(layout.items.some((i) => i.key === 'repo-00'), false) // smallest overflows
 })
 
 test('capacity can be overridden for smaller scenes', () => {
@@ -73,11 +88,11 @@ test('capacity can be overridden for smaller scenes', () => {
     s({ harness: 'pi', repo: 'c', sessionId: 'c1', assistantMessages: 1 }),
   ]
   const layout = buildKrabLayout({ sessions, range: '7d', snapshotDate: '2026-08-17', capacity: 2 })
-  assert.equal(layout.mode, 'sessions')
-  if (layout.mode !== 'sessions') return
+  assert.equal(layout.mode, 'repos')
+  if (layout.mode !== 'repos') return
   assert.equal(layout.items.length, 2)
   assert.equal(layout.overflow, 1)
-  assert.deepEqual(layout.items.map((i) => i.key), ['omp:a1', 'claude:b1'])
+  assert.deepEqual(layout.items.map((i) => i.key), ['a', 'b'])
 })
 
 // ---- empty window --------------------------------------------------------
@@ -101,15 +116,18 @@ test('7d window includes snapshotDate-6 and excludes snapshotDate-7', () => {
     s({ harness: 'claude', repo: 'r', sessionId: 'out', day: '2026-08-10', startTs: '2026-08-10T10:00:00Z', assistantMessages: 9 }),
   ]
   const layout = buildKrabLayout({ sessions, range: '7d', snapshotDate: '2026-08-17' })
-  assert.equal(layout.mode, 'sessions')
-  if (layout.mode !== 'sessions') return
-  assert.deepEqual(layout.items.map((i) => i.key), ['omp:in']) // out-of-window ignored even if bigger
+  assert.equal(layout.mode, 'repos')
+  if (layout.mode !== 'repos') return
+  assert.equal(layout.items.length, 1)
+  assert.equal(layout.items[0].repo, 'r')
+  // out-of-window session ignored even if bigger
+  assert.match(layout.items[0].tooltipBody, /1 sessions · 1 days · 1 assistant msgs/)
 })
 
 test('30d window is wider than the 7d window', () => {
   const sessions = [s({ harness: 'pi', repo: 'r', sessionId: 'old', day: '2026-07-20', startTs: '2026-07-20T00:00:00Z' })]
   const layout = buildKrabLayout({ sessions, range: '30d', snapshotDate: '2026-08-17' })
-  assert.equal(layout.mode, 'repos') // >7d aggregates by repo
+  assert.equal(layout.mode, 'repos')
   if (layout.mode !== 'repos') return
   assert.equal(layout.items.length, 1)
   assert.equal(layout.items[0].repo, 'r')
@@ -121,7 +139,7 @@ test("'all' grain includes every session regardless of day", () => {
     s({ harness: 'pi', repo: 'r', sessionId: 'ancient', day: '2025-01-01', assistantMessages: 9 }),
   ]
   const layout = buildKrabLayout({ sessions, range: 'all', snapshotDate: '2026-08-17' })
-  assert.equal(layout.mode, 'repos') // >7d aggregates by repo
+  assert.equal(layout.mode, 'repos')
   if (layout.mode !== 'repos') return
   assert.equal(layout.items.length, 1) // both sessions collapse into repo 'r'
   assert.equal(layout.items[0].key, 'r')
@@ -140,49 +158,37 @@ test('sessionScale(0) is ~0.55 and scale is monotonic non-decreasing', () => {
   assert.ok(sessionScale(0) < sessionScale(1))
 })
 
-// ---- tooltip body --------------------------------------------------------
+// ---- session rows (focus panel) ------------------------------------------
 
-test('tooltipBody contains day, msgs, LOC (+A/−R), PRs, branch, summary', () => {
-  const session = s({
-    harness: 'omp',
-    repo: 'dev-portfolio',
-    sessionId: 'a',
-    day: '2026-08-17',
-    assistantMessages: 42,
-    locDelta: { added: 120, removed: 40, net: 80 },
-    prRefs: [15, 16],
-    branch: 'main',
-    summary: 'Harvested deterministically.',
-  })
-  const lines = tooltipBody(session).split('\n')
-  assert.equal(lines.length, 4)
-  assert.equal(lines[0], '2026-08-17 · 42 assistant msgs · +120/−40 LOC')
-  assert.equal(lines[1], 'PRs #15 #16')
-  assert.equal(lines[2], 'branch main')
-  assert.equal(lines[3], 'Harvested deterministically.')
+test('sessionRow contains day, msgs, LOC, PR refs and title (title wins over summary)', () => {
+  const row = sessionRow(
+    s({
+      harness: 'omp',
+      repo: 'dev-portfolio',
+      sessionId: 'a',
+      day: '2026-08-17',
+      assistantMessages: 42,
+      locDelta: { added: 120, removed: 40, net: 80 },
+      prRefs: [15, 16],
+      title: 'Ship pivot',
+      summary: 'Ignored summary',
+    }),
+  )
+  assert.equal(row, '2026-08-17 · 42 msgs · +120/−40 LOC · #15 · #16 · Ship pivot')
 })
 
-test('tooltipBody omits PR/branch/summary lines when absent', () => {
-  const session = s({
-    harness: 'pi',
-    repo: 'blog',
-    sessionId: 'b',
-    day: '2026-08-16',
-    assistantMessages: 7,
-    locDelta: { added: 3, removed: 1, net: 2 },
-  })
-  const lines = tooltipBody(session).split('\n')
-  assert.equal(lines.length, 1)
-  assert.equal(lines[0], '2026-08-16 · 7 assistant msgs · +3/−1 LOC')
+test('sessionRow omits the LOC clause when the session has no commits', () => {
+  const row = sessionRow(s({ harness: 'pi', repo: 'r', sessionId: 'b', assistantMessages: 7, prRefs: [3] }))
+  assert.equal(row, '2026-08-17 · 7 msgs · #3')
 })
 
-test('tooltipBody with locDelta null says "no commit activity"', () => {
-  const session = s({ harness: 'codex', repo: 'r', sessionId: 'c', day: '2026-08-17', assistantMessages: 2 })
-  const body = tooltipBody(session)
-  assert.ok(body.includes('2026-08-17'))
-  assert.ok(body.includes('2 assistant msgs'))
-  assert.ok(body.includes('no commit activity that day'))
-  assert.equal(body.split('\n').length, 1)
+test('sessionRow falls back to summary when title is absent, and omits both when null', () => {
+  const withSummary = sessionRow(
+    s({ harness: 'codex', repo: 'r', sessionId: 'c', day: '2026-08-16', assistantMessages: 2, summary: 'Harvested.' }),
+  )
+  assert.equal(withSummary, '2026-08-16 · 2 msgs · Harvested.')
+  const bare = sessionRow(s({ harness: 'codex', repo: 'r', sessionId: 'd', assistantMessages: 0 }))
+  assert.equal(bare, '2026-08-17 · 0 msgs')
 })
 
 // ---- normalization -------------------------------------------------------
@@ -291,7 +297,11 @@ test('SEAT_POSITIONS has 16 slots matching the furniture formula', () => {
   assert.deepEqual(SEAT_POSITIONS[15], [2.5, SEAT_Y, 3.35]) // desk 1, wi 7
 })
 
-// ---- repo aggregation (>7d) ----------------------------------------------
+test('COUCH_SPOTLIGHT_SEAT is the couch 1 seat top facing into the room', () => {
+  assert.deepEqual(COUCH_SPOTLIGHT_SEAT, [-4.2, 0.54, 5.25])
+})
+
+// ---- repo aggregation (all ranges) ---------------------------------------
 
 test('buildKrabLayout at 30d aggregates by repo into mode repos', () => {
   const sessions = [
@@ -342,11 +352,27 @@ test('aggregateReposByRepo sums msgs, LOC, PR refs and distinct days', () => {
     s({ harness: 'pi', repo: 'r', sessionId: 'c', assistantMessages: 2, day: '2026-08-16', locDelta: { added: 7, removed: 3, net: 4 }, prRefs: [9] }),
   ]
   const [agg] = aggregateReposByRepo(sessions)
-  assert.equal(agg.sessions, 3)
+  assert.equal(agg.sessions.length, 3)
   assert.equal(agg.assistantMessages, 17)
   assert.equal(agg.locAdded, 107)
   assert.equal(agg.locRemoved, 23)
   assert.equal(agg.prRefs, 3)
+  assert.equal(agg.daysActive, 2)
+})
+
+test('aggregateReposByRepo retains the repo window sessions newest-first with tie-break', () => {
+  const sessions = [
+    s({ harness: 'omp', repo: 'r', sessionId: 'old', day: '2026-08-10', startTs: '2026-08-10T09:00:00Z', assistantMessages: 10 }),
+    s({ harness: 'claude', repo: 'r', sessionId: 'new', day: '2026-08-17', startTs: '2026-08-17T09:00:00Z', assistantMessages: 1 }),
+    s({ harness: 'pi', repo: 'r', sessionId: 'tie-b', startTs: '2026-08-16T12:00:00Z', assistantMessages: 3 }),
+    s({ harness: 'pi', repo: 'r', sessionId: 'tie-a', startTs: '2026-08-16T12:00:00Z', assistantMessages: 2 }),
+    s({ harness: 'codex', repo: 'other', sessionId: 'x', assistantMessages: 7 }),
+  ]
+  const [agg, other] = aggregateReposByRepo(sessions)
+  // exactly the repo's window sessions, newest-first; startTs tie broken by `${harness}:${sessionId}`
+  assert.deepEqual(agg.sessions, [sessions[1], sessions[3], sessions[2], sessions[0]])
+  assert.deepEqual(other.sessions, [sessions[4]])
+  assert.equal(agg.assistantMessages, 16) // sums unchanged by retention
   assert.equal(agg.daysActive, 2)
 })
 
@@ -394,4 +420,51 @@ test('empty window at 30d renders an empty layout', () => {
     snapshotDate: '2026-08-17',
   })
   assert.equal(layout.mode, 'empty')
+})
+
+// ---- focus resolution ----------------------------------------------------
+
+test('resolveFocus returns a desk target for a seated repo', () => {
+  const sessions = [
+    s({ harness: 'omp', repo: 'alpha', sessionId: 'a1', assistantMessages: 5 }),
+    s({ harness: 'claude', repo: 'beta', sessionId: 'b1', assistantMessages: 20 }),
+  ]
+  const layout = buildKrabLayout({ sessions, range: '7d', snapshotDate: '2026-08-17' })
+  assert.equal(layout.mode, 'repos')
+  if (layout.mode !== 'repos') return
+  const repos = aggregateReposByRepo(sessions)
+  const focus = resolveFocus(layout.items, repos, 'beta')
+  assert.ok(focus !== null && focus.kind === 'desk')
+  if (focus === null || focus.kind !== 'desk') return
+  assert.equal(focus.item.key, 'beta')
+  assert.equal(focus.item.seatIndex, 0)
+})
+
+test('resolveFocus returns a couch target for an overflow repo', () => {
+  const sessions: SessionEntry[] = []
+  for (let i = 0; i < 18; i++) {
+    sessions.push(
+      s({ harness: 'omp', repo: `repo-${String(i).padStart(2, '0')}`, sessionId: `s${i}`, assistantMessages: i }),
+    )
+  }
+  const layout = buildKrabLayout({ sessions, range: 'all', snapshotDate: '2026-08-17' })
+  assert.equal(layout.mode, 'repos')
+  if (layout.mode !== 'repos') return
+  const repos = aggregateReposByRepo(sessions)
+  assert.equal(repos.length, 18)
+  assert.equal(layout.items.some((i) => i.repo === 'repo-00'), false) // overflowed, not on a desk
+  const focus = resolveFocus(layout.items, repos, 'repo-00')
+  assert.ok(focus !== null && focus.kind === 'couch')
+  if (focus === null || focus.kind !== 'couch') return
+  assert.equal(focus.repo.repo, 'repo-00')
+})
+
+test('resolveFocus returns null for no selection and unknown repos', () => {
+  const sessions = [s({ harness: 'omp', repo: 'alpha', sessionId: 'a1', assistantMessages: 5 })]
+  const layout = buildKrabLayout({ sessions, range: '7d', snapshotDate: '2026-08-17' })
+  assert.equal(layout.mode, 'repos')
+  if (layout.mode !== 'repos') return
+  const repos = aggregateReposByRepo(sessions)
+  assert.equal(resolveFocus(layout.items, repos, null), null)
+  assert.equal(resolveFocus(layout.items, repos, 'ghost'), null)
 })

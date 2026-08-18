@@ -5,7 +5,7 @@ import { Floor, Walls, Windows, SupportBeams, Mezzanine } from './Room'
 import { HotDesks, DeskChairs, LoungeArea, BackWallCabinets, MezzanineOffice, Kitchen } from './Furniture'
 import { PendantLights, Ductwork, Whiteboard, WarehousePlants } from './Decor'
 import { Daylight } from './Daylight'
-import { KrabGeneration } from '../../krabs/generator'
+import { AmbientCouchKrabs } from '../../krabs/AmbientCouchKrabs'
 
 export function WarehouseEnvironment({ hour = 10 }: { hour?: number }) {
 
@@ -35,7 +35,7 @@ export function WarehouseEnvironment({ hour = 10 }: { hour?: number }) {
       <WarehousePlants />
 
       {/* Krabs */}
-      <KrabGeneration count={15} seed={77} />
+      <AmbientCouchKrabs />
 
       {/* Post-processing -- GodRays removed (caused WebGL errors and washed out shadows) */}
       <EffectComposer>

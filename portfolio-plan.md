@@ -9,9 +9,14 @@ Single-page dev portfolio for a data engineer / analytics engineer. Full-viewpor
 1. **3D scene** — full viewport, the warehouse environment from `3d-scene-test` (Cozy Office dropped for v1). Time-of-day auto-tracks the visitor's local time; no manual slider
 2. **Nav bar** — floating glass pill, top edge. Name (monospace) + links (Blog, About, GitHub)
 3. **Stat card** — single glass card, top-left below nav. Cycles through four metric faces on a 4s interval. Has a persistent time range toggle row (7d, 30d, 90d, 1y, all) that filters all faces
-4. **Scene labels** — hover-gated glass pills anchored to the krabs: at 7d one pill per session (repo · harness, day, msgs, LOC, PRs, branch, summary); above 7d the scene aggregates by repo and pills show per-repo stats. Invisible at rest so the krabs stay visible
-5. **Repo carousel** — glass card row, right edge below the nav, visible for ranges above 7d. One swipeable/scrollable card per repo (Embla auto-scroll, pauses on hover): repo name, harness dots, sessions/days/msgs, LOC and PR refs
-6. **Blog carousel** — floating glass card row, bottom edge. Auto-scrolls. Each card shows date + title, links to full MDX post
+4. **Krab tooltips + selection focus** — krabs are data anchors: the hot-desk
+   row seats the top-16 repos by magnitude for the active range; a selected
+   repo outside the top-16 renders on the lounge couch spotlight. Hovering a
+   krab (or a stat-card list row) shows a glass tooltip; clicking a repo in
+   the card's expanded repo list flies the camera to its krab and shows a
+   session panel above it. The camera is explorable — pan/zoom/rotate via
+   drei `CameraControls` (no new deps)
+5. **Blog carousel** — floating glass card row, bottom edge. Auto-scrolls. Each card shows date + title, links to full MDX post
 
 All overlays use the same glass treatment: `rgba(0,0,0,0.3)` background, `1px solid rgba(255,255,255,0.1)` border, `border-radius: 10px`.
 
@@ -28,6 +33,10 @@ Behavior:
 - Hover pauses the cycle
 - Click advances to next face manually
 - Dot indicators (top-right, beside time pills) show current position
+- The PRs face expands into the repo list ("more details"): magnitude-ordered
+  for the active range at every range. Hovering a row highlights that repo's
+  krab; clicking flies the camera to it and pins the session panel (click
+  again to deselect). The face cycle pauses while the list is open
 - Time range toggle is persistent across all faces — selecting "90d" updates every metric to its 90-day window
 
 > `cost` and `sessions` are also captured in the snapshot (from loc-dock's model) and are available for future faces or tooltips, even though v1 ships four faces.
@@ -179,7 +188,14 @@ Existing scene is a React Three Fiber v8 app on Vite (React 18). Porting it into
 - Time-of-day: auto-tracks visitor local time on all viewports (no manual slider)
 
 ## Decided
-
+- **Scene exploration:** camera is user-explorable — pan/zoom/rotate via drei
+  `CameraControls` (camera-controls ships inside drei; no new deps);
+  selection-driven focus flies to the krab, deselect returns home.
+- **Krab ownership:** desk row = top-16 repos by magnitude for the active
+  range; lounge couch = overflow spotlight (`COUCH_SPOTLIGHT_SEAT`); ambient
+  krabs = 2 idle on the second couch (no wandering, no clipping).
+- **Control surface:** the stat card's PRs face hosts the repo list (all
+  ranges); RepoCarousel removed as superseded.
 - **3D scene:** ship the warehouse environment only; Cozy Office dropped for v1.
 - **Time-of-day:** auto-tracks the visitor's local time (no manual slider).
 - **Blog routing:** `/blog/[slug]` as separate pages.

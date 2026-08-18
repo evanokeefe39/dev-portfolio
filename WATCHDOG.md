@@ -26,8 +26,9 @@ the main executor's daily noise.
   cycle to the render panel for draw calls.
 - Still to watch: real-GPU fps re-check after the dpr/composer cuts; if still
   < 30fps, next levers are session-krab body instancing (16 krabs x ~20 voxels
-  = ~320 meshes), shadow map 1024, pendant pointLights, and the ambient-krab
-  cut (15 walkers = ~420 meshes, owned by another plan).
+  = ~320 meshes), shadow map 1024, and pendant pointLights. The ambient-krab
+  cut landed 2026-08-18: 15 random walkers (~420 meshes) replaced by 2 idle
+  krabs on lounge couch 2 (`AmbientCouchKrabs`); `generator.tsx` deleted.
 - `EffectComposer` lives per-environment; god rays were already removed due to
   WebGL errors (SunRays.tsx deleted 2026-08-18 — do not re-add).
 
@@ -63,6 +64,25 @@ the main executor's daily noise.
 - Krab labels are hover-gated on purpose; always-visible `<Html>` pills regress
   the scene (krabs invisible behind them). The invisible hitbox must stay tall
   enough to cover the pill region or hover flickers on/off.
-- `buildKrabLayout` renders per-session only at 7d; 30d/90d/1y/all aggregate by
-  repo (`mode: 'repos'`). Both modes are covered in tests/layout.test.ts — keep
-  it that way; the derivation is pure and unit-tested.
+- `buildKrabLayout` aggregates by repo at EVERY range (`mode: 'repos'`) — the
+  per-session 7d mode was removed 2026-08-18. Top-16 repos by magnitude fill
+  the desk seats; overflow repos render on the couch spotlight when selected.
+  The derivation is pure and unit-tested (tests/layout.test.ts) — keep it so.
+
+## 3D scene — camera and selection (2026-08-18)
+
+- Camera: drei `<CameraControls>` (camera-controls ships inside drei — never
+  add it as a direct dependency). Keep zoom within 15-90, the room pan
+  boundary (ROOM_BOUNDARY in Scene.tsx), and the polar clamps 0.4-1.35; do NOT
+  re-add the `onCreated` lookAt.
+- Selection: state lives in `lib/selection-store.ts` (selectedRepo +
+  hoveredRepo, mirrors range-store). A range change MUST clear selection —
+  Scene owns the `useEffect(() => clearSelection(), [range])`; reject code
+  that clears selection from StatCard (double-clearing is a symptom of drift).
+- RepoCarousel is GONE (2026-08-18). The stat card's PRs face repo list (all
+  ranges) is the single repo control surface; reject PRs that resurrect a
+  second repo list.
+- Data: `snapshot.sessions` is the 7d window only; longer ranges load lazily
+  via `ensureRangeSessions` (`/data/{range}.json`). NEVER derive a non-7d repo
+  list from `snapshot.sessions` — it silently shows last week's repos
+  (caught in review; both Scene and StatCard use the rangeSessions slice).

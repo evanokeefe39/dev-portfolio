@@ -172,7 +172,8 @@ export default function StatCard() {
                   {formatInt(r.sessions.length)} sessions · {formatInt(r.assistantMessages)} msgs
                 </span>
                 <span className="font-mono text-[11px] text-white/60">
-                  +{formatInt(r.locAdded)}/−{formatInt(r.locRemoved)} LOC
+                  <span className="text-emerald-400">+{formatInt(r.locAdded)}</span>/<span className="text-rose-400">−{formatInt(r.locRemoved)}</span>{' '}
+                  LOC
                   {r.prRefs > 0 ? ` · ${formatInt(r.prRefs)} PR refs` : ''}
                 </span>
               </button>

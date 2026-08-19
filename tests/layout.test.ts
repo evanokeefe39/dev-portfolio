@@ -10,7 +10,7 @@ import {
   SEAT_CAPACITY,
   SEAT_POSITIONS,
   SEAT_Y,
-  sessionRow,
+  sessionRowParts,
   sessionScale,
 } from '../components/scene/layout'
 import type { SessionEntry } from '../lib/types'
@@ -158,10 +158,10 @@ test('sessionScale(0) is ~0.55 and scale is monotonic non-decreasing', () => {
   assert.ok(sessionScale(0) < sessionScale(1))
 })
 
-// ---- session rows (focus panel) ------------------------------------------
+// ---- session parts (focus panel) -----------------------------------------
 
-test('sessionRow contains day, msgs, LOC, PR refs and title (title wins over summary)', () => {
-  const row = sessionRow(
+test('sessionRowParts extracts day, msgs, loc, PR refs, branch and title (title wins over summary)', () => {
+  const parts = sessionRowParts(
     s({
       harness: 'omp',
       repo: 'dev-portfolio',
@@ -170,25 +170,36 @@ test('sessionRow contains day, msgs, LOC, PR refs and title (title wins over sum
       assistantMessages: 42,
       locDelta: { added: 120, removed: 40, net: 80 },
       prRefs: [15, 16],
+      branch: 'feat/krab-tooltip-hover-polish',
       title: 'Ship pivot',
       summary: 'Ignored summary',
     }),
   )
-  assert.equal(row, '2026-08-17 · 42 msgs · +120/−40 LOC · #15 · #16 · Ship pivot')
+  assert.deepEqual(parts, {
+    day: '2026-08-17',
+    msgs: 42,
+    loc: { added: 120, removed: 40 },
+    prRefs: [15, 16],
+    branch: 'feat/krab-tooltip-hover-polish',
+    title: 'Ship pivot',
+  })
 })
 
-test('sessionRow omits the LOC clause when the session has no commits', () => {
-  const row = sessionRow(s({ harness: 'pi', repo: 'r', sessionId: 'b', assistantMessages: 7, prRefs: [3] }))
-  assert.equal(row, '2026-08-17 · 7 msgs · #3')
+test('sessionRowParts loc is null when the session has no commits', () => {
+  const parts = sessionRowParts(s({ harness: 'pi', repo: 'r', sessionId: 'b', assistantMessages: 7, prRefs: [3] }))
+  assert.equal(parts.loc, null)
 })
 
-test('sessionRow falls back to summary when title is absent, and omits both when null', () => {
-  const withSummary = sessionRow(
-    s({ harness: 'codex', repo: 'r', sessionId: 'c', day: '2026-08-16', assistantMessages: 2, summary: 'Harvested.' }),
+test('sessionRowParts falls back to summary when title is absent, and keeps branch passthrough', () => {
+  const withSummary = sessionRowParts(
+    s({ harness: 'codex', repo: 'r', sessionId: 'c', day: '2026-08-16', assistantMessages: 2, summary: 'Harvested.', branch: 'main' }),
   )
-  assert.equal(withSummary, '2026-08-16 · 2 msgs · Harvested.')
-  const bare = sessionRow(s({ harness: 'codex', repo: 'r', sessionId: 'd', assistantMessages: 0 }))
-  assert.equal(bare, '2026-08-17 · 0 msgs')
+  assert.equal(withSummary.title, 'Harvested.')
+  assert.equal(withSummary.branch, 'main')
+  assert.equal(withSummary.loc, null)
+  const bare = sessionRowParts(s({ harness: 'codex', repo: 'r', sessionId: 'd', assistantMessages: 0 }))
+  assert.equal(bare.title, null)
+  assert.equal(bare.branch, null)
 })
 
 // ---- normalization -------------------------------------------------------
@@ -395,21 +406,22 @@ test('aggregateReposByRepo orders repos by magnitude then name', () => {
   assert.deepEqual(repos, ['mid', 'alpha', 'zebra'])
 })
 
-test('repoTooltipBody contains sessions, days, msgs, LOC, PRs and harnesses', () => {
+test('repoTooltipBody contains sessions, days, msgs, LOC and PRs, and no harness counts', () => {
   const [agg] = aggregateReposByRepo([
     s({ harness: 'claude', repo: 'r', sessionId: 'a', assistantMessages: 10, locDelta: { added: 5, removed: 2, net: 3 }, prRefs: [1] }),
     s({ harness: 'pi', repo: 'r', sessionId: 'b', assistantMessages: 4 }),
   ])
   const body = repoTooltipBody(agg)
   assert.match(body, /2 sessions · 1 days · 14 assistant msgs/)
-  assert.match(body, /\+5\/−2 LOC · 1 PR refs/)
-  assert.match(body, /claude 1 · pi 1/)
+  assert.match(body, /\+5 −2 LOC · 1 PR refs/)
+  assert.doesNotMatch(body, /claude \d+/)
+  assert.doesNotMatch(body, /pi \d+/)
 })
 
 test('repoTooltipBody omits the PR refs suffix when none', () => {
   const [agg] = aggregateReposByRepo([s({ harness: 'omp', repo: 'r', sessionId: 'a', assistantMessages: 1 })])
   const body = repoTooltipBody(agg)
-  assert.match(body, /\+0\/−0 LOC/)
+  assert.match(body, /\+0 −0 LOC/)
   assert.doesNotMatch(body, /PR refs/)
 })
 

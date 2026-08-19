@@ -10,6 +10,7 @@ import {
   SEAT_CAPACITY,
   SEAT_POSITIONS,
   SEAT_Y,
+  LOC_WEIGHT,
   sessionRowParts,
   sessionScale,
 } from '../components/scene/layout'
@@ -156,6 +157,29 @@ test('sessionScale(0) is ~0.55 and scale is monotonic non-decreasing', () => {
   }
   assert.equal(sessionScale(100000), 1.1) // capped
   assert.ok(sessionScale(0) < sessionScale(1))
+})
+
+test('sessionScale grows with LOC delta at constant messages (feedback #10)', () => {
+  // LOC alone (no messages) must move the scale.
+  assert.ok(sessionScale(0, 10, 0) > sessionScale(0, 0, 0), 'LOC added raises scale')
+  assert.ok(sessionScale(0, 0, 10) > sessionScale(0, 0, 0), 'LOC removed raises scale')
+  // More LOC -> more scale, messages held constant.
+  const msgs = 100
+  assert.ok(sessionScale(msgs, 100, 0) > sessionScale(msgs, 50, 0), 'not monotonic in added LOC')
+  assert.ok(sessionScale(msgs, 0, 100) > sessionScale(msgs, 0, 50), 'not monotonic in removed LOC')
+  // And it stays monotonic in messages with LOC held constant.
+  assert.ok(sessionScale(100, 50, 50) > sessionScale(50, 50, 50), 'not monotonic in msgs')
+  // Cap still holds with LOC.
+  assert.equal(sessionScale(0, 100000, 0), 1.1)
+  assert.equal(sessionScale(50000, 50000, 50000), 1.1)
+})
+
+test('LOC_WEIGHT amplifies LOC so it visibly matters', () => {
+  assert.equal(LOC_WEIGHT, 10, 'tuning constant: LOC should roughly 10x msgs in magnitude')
+  // 1 LOC point moves scale ~10x what 1 message does (log-domain, same base).
+  const msgPush = sessionScale(1, 0, 0) - sessionScale(0, 0, 0)
+  const locPush = sessionScale(0, 1, 0) - sessionScale(0, 0, 0)
+  assert.ok(locPush >= msgPush, 'LOC should move scale at least as much as a message does')
 })
 
 // ---- session parts (focus panel) -----------------------------------------

@@ -95,6 +95,25 @@ export const SHELLS: ShellTrait[] = [
   { name: 'globe',     shell: GlobeShell },
 ]
 
+/**
+ * Subdued shell subset for the data krabs (owner decision 2026-08-18). The
+ * loud shells — treasure, skull, disco, volcano, ice, aquarium, ufo, boombox —
+ * stay in `SHELLS` for ambient/other uses but are never drawn by a repo's data
+ * krab. Ambient krabs (which use the full `generateTraits`) still see the full
+ * pool; this constrains only the per-repo data krabs.
+ */
+export const DATA_KRAB_SHELLS: ShellTrait[] = [
+  { name: 'spiral',    shell: SpiralShell },
+  { name: 'spiked',    shell: SpikyShell },
+  { name: 'coral',     shell: CoralShell },
+  { name: 'crystal',   shell: CrystalShell },
+  { name: 'mushroom',  shell: MushroomShell },
+  { name: 'bonsai',    shell: BonsaiShell },
+  { name: 'beehive',   shell: BeehiveShell },
+  { name: 'cactus',    shell: CactusShell },
+  { name: 'globe',     shell: GlobeShell },
+]
+
 export const BUILDS: BuildTrait[] = [
   { name: 'stocky',   bodyWidth: 1.3, bodyDepth: 1.1, clawScale: 1.4, legLen: 0.8, eyeStalk: 0.6 },
   { name: 'lanky',    bodyWidth: 0.8, bodyDepth: 1.2, clawScale: 0.8, legLen: 1.4, eyeStalk: 1.6 },
@@ -138,6 +157,20 @@ export function mulberry32(seed: number) {
 
 export function pickTrait<T>(pool: T[], rng: () => number): T {
   return pool[Math.floor(rng() * pool.length)]
+}
+
+/**
+ * Deterministic string → 32-bit seed (FNV-1a hash). Used to seed a repo's krab
+ * traits from its name so the same repo renders the same krab on every load
+ * and across ranges. No dependencies; stable across engines.
+ */
+export function hashString(s: string): number {
+  let h = 0x811c9dc5
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i)
+    h = Math.imul(h, 0x01000193)
+  }
+  return h >>> 0
 }
 
 /* ── Generate traits from seed ── */

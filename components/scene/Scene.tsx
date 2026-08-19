@@ -331,7 +331,7 @@ export default function Scene() {
             <SessionKrab
               harness={focus.repo.harness}
               position={[0, 0, 0]}
-              scale={sessionScale(focus.repo.assistantMessages)}
+              scale={sessionScale(focus.repo.assistantMessages, focus.repo.locAdded, focus.repo.locRemoved)}
               title={`${focus.repo.repo} · ${focus.repo.harness}`}
               body={repoTooltipBody(focus.repo)}
               focused

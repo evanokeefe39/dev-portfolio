@@ -75,6 +75,11 @@ the main executor's daily noise.
   add it as a direct dependency). Keep zoom within 15-90, the room pan
   boundary (ROOM_BOUNDARY in Scene.tsx), and the polar clamps 0.4-1.35; do NOT
   re-add the `onCreated` lookAt.
+- Camera modifiers: plain drag pans, Ctrl/Alt+drag rotates, Shift+drag zooms
+  — MOUSE_BUTTONS_* are module-level constants in Scene.tsx swapped on the
+  live instance from key state; NEVER pass an inline literal (R3F re-applies
+  a prop only when its reference changes). Shift maps left to ZOOM, not
+  DOLLY: dolly only moves the ortho camera along its view axis (invisible).
 - Selection: state lives in `lib/selection-store.ts` (selectedRepo +
   hoveredRepo, mirrors range-store). A range change MUST clear selection —
   Scene owns the `useEffect(() => clearSelection(), [range])`; reject code

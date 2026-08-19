@@ -1,6 +1,6 @@
 'use client'
 
-import React, { memo, useRef, useState } from 'react'
+import React, { memo, useMemo, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Html, useCursor } from '@react-three/drei'
 import type * as THREE from 'three'
@@ -8,6 +8,7 @@ import { HARNESS_COLORS } from '@/lib/harness'
 import type { Harness, SessionEntry } from '@/lib/types'
 import { BranchIcon, RepoIcon } from './icons'
 import { sessionRowParts } from './layout'
+import { DATA_KRAB_SHELLS, generateTraits, hashString } from './krabs/traits'
 import { Voxel } from './Voxel'
 
 /**
@@ -157,6 +158,17 @@ export const SessionKrab = memo(function SessionKrab({
   const { repo, harness: titleHarness } = splitTitle(title)
   const loc = parseLocLine(lines[1])
 
+  // Deterministic per-repo character: the repo name seeds the PRNG so the same
+  // repo always renders the same krab (feedback #9). The shell comes from the
+  // subdued DATA_KRAB_SHELLS pool (owner 2026-08-18); the build's proportions
+  // shape the body/claws/legs/eyes (feedback #9 claw size). Palette stays
+  // harness-driven. `seed % len` indexes the pool directly — it does not
+  // perturb the other trait picks, keeping traits fully deterministic.
+  const seed = useMemo(() => hashString(repo), [repo])
+  const traits = useMemo(() => generateTraits(seed), [seed])
+  const shell = DATA_KRAB_SHELLS[seed % DATA_KRAB_SHELLS.length].shell
+  const build = traits.build
+
   // Pointer cursor while hovered — R3F v9 dropped the per-object `cursor` prop,
   // so drive it from the same hover state via drei's useCursor (unmount-safe).
   useCursor(hovered)
@@ -168,37 +180,33 @@ export const SessionKrab = memo(function SessionKrab({
   })
   return (
     <group position={position} scale={[scale, scale, scale]}>
-      {/* body */}
-      <Voxel position={[0, 0.22, 0]} size={[0.4, 0.18, 0.3]} color={palette.body} />
+      {/* body — width/depth scaled by the seeded build trait */}
+      <Voxel position={[0, 0.22, 0]} size={[0.4 * build.bodyWidth, 0.18, 0.3 * build.bodyDepth]} color={palette.body} />
+      <Voxel position={[0, 0.28, 0]} size={[0.36 * build.bodyWidth, 0.12, 0.26 * build.bodyDepth]} color={palette.body} />
       {/* eye stalks */}
-      <Voxel position={[-0.12, 0.36, -0.12]} size={[0.04, 0.12, 0.04]} color={palette.body} />
-      <Voxel position={[0.12, 0.36, -0.12]} size={[0.04, 0.12, 0.04]} color={palette.body} />
+      <Voxel position={[-0.12 * build.bodyWidth, 0.33 + 0.06 * build.eyeStalk, -0.12 * build.bodyDepth]} size={[0.04, 0.1 * build.eyeStalk, 0.04]} color={palette.body} />
+      <Voxel position={[0.12 * build.bodyWidth, 0.33 + 0.06 * build.eyeStalk, -0.12 * build.bodyDepth]} size={[0.04, 0.1 * build.eyeStalk, 0.04]} color={palette.body} />
       {/* eyes */}
-      <Voxel position={[-0.12, 0.44, -0.12]} size={[0.06, 0.06, 0.06]} color={EYE_COLOR} />
-      <Voxel position={[0.12, 0.44, -0.12]} size={[0.06, 0.06, 0.06]} color={EYE_COLOR} />
-      <Voxel position={[-0.13, 0.46, -0.14]} size={[0.02, 0.02, 0.02]} color={GLINT_COLOR} />
-      <Voxel position={[0.11, 0.46, -0.14]} size={[0.02, 0.02, 0.02]} color={GLINT_COLOR} />
-      {/* shell stack (dark base, light top) */}
-      <Voxel position={[0, 0.38, 0.02]} size={[0.3, 0.14, 0.26]} color={palette.dark} />
-      <Voxel position={[0, 0.48, 0.02]} size={[0.24, 0.12, 0.2]} color={palette.body} />
-      <Voxel position={[0, 0.56, 0.02]} size={[0.16, 0.08, 0.14]} color={palette.body} />
-      {/* shell spots — per-harness shell accent */}
-      <Voxel position={[0.08, 0.44, -0.1]} size={[0.05, 0.05, 0.02]} color={palette.dark} />
-      <Voxel position={[-0.06, 0.52, -0.06]} size={[0.04, 0.04, 0.02]} color={palette.dark} />
-      {/* legs (3 pairs) */}
-      {[-0.06, 0.02, 0.1].map((zo, i) => (
+      <Voxel position={[-0.12 * build.bodyWidth, 0.36 + 0.1 * build.eyeStalk, -0.12 * build.bodyDepth]} size={[0.06, 0.06, 0.06]} color={EYE_COLOR} />
+      <Voxel position={[0.12 * build.bodyWidth, 0.36 + 0.1 * build.eyeStalk, -0.12 * build.bodyDepth]} size={[0.06, 0.06, 0.06]} color={EYE_COLOR} />
+      <Voxel position={[-0.13 * build.bodyWidth, 0.38 + 0.1 * build.eyeStalk, -0.14 * build.bodyDepth]} size={[0.02, 0.02, 0.02]} color={GLINT_COLOR} />
+      <Voxel position={[0.11 * build.bodyWidth, 0.38 + 0.1 * build.eyeStalk, -0.14 * build.bodyDepth]} size={[0.02, 0.02, 0.02]} color={GLINT_COLOR} />
+      {/* shell — deterministic per-repo from the subdued pool (replaces the fixed stack) */}
+      {shell}
+      {/* legs (3 pairs) — length scaled by the seeded build trait */}
+      {[-0.06 * build.bodyDepth, 0, 0.06 * build.bodyDepth].map((zo, i) => (
         <React.Fragment key={`cl${i}`}>
-          <Voxel position={[-0.24, 0.15, zo]} size={[0.1, 0.04, 0.04]} color={palette.dark} />
-          <Voxel position={[0.24, 0.15, zo]} size={[0.1, 0.04, 0.04]} color={palette.dark} />
+          <Voxel position={[-0.24 * build.bodyWidth, 0.18, zo]} size={[0.1 * build.legLen, 0.04, 0.04]} color={palette.dark} />
+          <Voxel position={[0.24 * build.bodyWidth, 0.18, zo]} size={[0.1 * build.legLen, 0.04, 0.04]} color={palette.dark} />
         </React.Fragment>
       ))}
-      {/* claws */}
-      <Voxel position={[-0.24, 0.24, -0.14]} size={[0.1, 0.06, 0.06]} color={palette.body} />
-      <Voxel position={[-0.32, 0.26, -0.14]} size={[0.06, 0.03, 0.07]} color={palette.dark} />
-      <Voxel position={[-0.32, 0.22, -0.14]} size={[0.06, 0.03, 0.07]} color={palette.dark} />
-      <Voxel position={[0.24, 0.24, -0.14]} size={[0.1, 0.06, 0.06]} color={palette.body} />
-      <Voxel position={[0.32, 0.26, -0.14]} size={[0.06, 0.03, 0.07]} color={palette.dark} />
-      <Voxel position={[0.32, 0.22, -0.14]} size={[0.06, 0.03, 0.07]} color={palette.dark} />
+      {/* claws — scale driven by the seeded clawScale trait (feedback #9) */}
+      <Voxel position={[-0.24 * build.bodyWidth, 0.24, -0.14 * build.bodyDepth]} size={[0.1 * build.clawScale, 0.06 * build.clawScale, 0.06 * build.clawScale]} color={palette.body} />
+      <Voxel position={[-0.32 * build.bodyWidth, 0.26 * build.clawScale, -0.14 * build.bodyDepth]} size={[0.06 * build.clawScale, 0.03 * build.clawScale, 0.07 * build.clawScale]} color={palette.dark} />
+      <Voxel position={[-0.32 * build.bodyWidth, 0.22 * build.clawScale, -0.14 * build.bodyDepth]} size={[0.06 * build.clawScale, 0.03 * build.clawScale, 0.07 * build.clawScale]} color={palette.dark} />
+      <Voxel position={[0.24 * build.bodyWidth, 0.24, -0.14 * build.bodyDepth]} size={[0.1 * build.clawScale, 0.06 * build.clawScale, 0.06 * build.clawScale]} color={palette.body} />
+      <Voxel position={[0.32 * build.bodyWidth, 0.26 * build.clawScale, -0.14 * build.bodyDepth]} size={[0.06 * build.clawScale, 0.03 * build.clawScale, 0.07 * build.clawScale]} color={palette.dark} />
+      <Voxel position={[0.32 * build.bodyWidth, 0.22 * build.clawScale, -0.14 * build.bodyDepth]} size={[0.06 * build.clawScale, 0.03 * build.clawScale, 0.07 * build.clawScale]} color={palette.dark} />
       {/* selection highlight ring — horizontal, pulsing, around the krab base */}
       {(focused || highlighted) && (
         <mesh position={[0, 0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>

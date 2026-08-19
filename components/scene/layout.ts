@@ -85,11 +85,18 @@ export function filterWindow(
 }
 
 /**
- * Session magnitude -> krab scale. Monotonic non-decreasing in `msgs`:
- * ~0.55 at 0 messages, capping at 1.1 once `msgs` >= 9999.
+ * Krab magnitude -> scale. Monotonic non-decreasing in BOTH assistant messages
+ * and LOC delta (feedback #10): magnitude = msgs + LOC_WEIGHT * (added+removed).
+ * `LOC_WEIGHT` (~10) makes LOC visibly move the scale — raw LOC is in the tens-
+ * to-hundreds and would barely shift a log-domain messages-only scale. Result
+ * maps to ~0.55..1.1, capping at 1.1.
  */
-export function sessionScale(msgs: number): number {
-  return 0.55 + 0.55 * Math.min(Math.log10(1 + Math.max(0, msgs)) / 4, 1)
+export const LOC_WEIGHT = 10
+
+export function sessionScale(msgs: number, locAdded = 0, locRemoved = 0): number {
+  const magnitude =
+    Math.max(0, msgs) + LOC_WEIGHT * (Math.max(0, locAdded) + Math.max(0, locRemoved))
+  return 0.55 + 0.55 * Math.min(Math.log10(1 + magnitude) / 4, 1)
 }
 
 /**
@@ -261,7 +268,7 @@ export function buildKrabLayout(args: BuildKrabLayoutArgs): KrabLayout {
     tooltipTitle: `${r.repo} · ${r.harness}`,
     tooltipBody: repoTooltipBody(r),
     seatIndex: i,
-    scale: sessionScale(r.assistantMessages),
+    scale: sessionScale(r.assistantMessages, r.locAdded, r.locRemoved),
   }))
   return { mode: 'repos', items, overflow }
 }

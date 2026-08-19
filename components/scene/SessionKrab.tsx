@@ -235,10 +235,21 @@ export const SessionKrab = memo(function SessionKrab({
       return
     }
 
+    // While a repo is selected (focused), its krab stays at its home seat and
+    // never wanders — recall-to-seat means "hold at the anchor under focus",
+    // not "come home then leave again". Roaming only resumes once focus clears.
     const active: KrabLeg | null = r.recall
       ? { target: home, dwell: 0, path: routeTo(r.target ?? home, home) ?? [] }
-      : itinerary[r.legIndex % itinerary.length]
-    const wp = active?.path ?? []
+      : focused
+        ? null
+        : itinerary[r.legIndex % itinerary.length]
+    if (active === null) {
+      // Focus held and not walking home: idle at the anchor.
+      moveRef.current.position.set(0, bobOffset(r.walk.time), 0)
+      r.walk.time = (r.walk.time + Math.min(delta, MAX_DT)) % 1000
+      return
+    }
+    const wp = active.path
     const ax = position[0]
     const ay = position[1]
     const az = position[2]

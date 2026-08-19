@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { MAX_DT, stepKrab } from '../components/scene/krabs/walk'
+import { MAX_DT, pathLengthsFor, stepKrab } from '../components/scene/krabs/walk'
 import type { KrabStepState } from '../components/scene/krabs/walk'
 
 // ---- helpers -------------------------------------------------------------
@@ -110,4 +110,39 @@ test('reaching the segment end wraps pathIndex, resets progress, and starts the 
   assert.equal(rest.z, 0)
   assert.equal(s.progress, 0)
   assert.ok(s.pausing < fast.pause)
+})
+
+// ---- vertical (stair) segments -------------------------------------------
+
+test('elevation interpolates as the krab walks a 3D stair segment', () => {
+  // A single rising segment from floor (y=0) to the mezzanine (y=2.5), at
+  // [x, z, y] ordering: displacement (Δx=2, Δz=0, Δy=2.5) → length √10.25.
+  const stair: [number, number, number][] = [[0, 0, 0], [2, 0, 2.5]]
+  const len = pathLengthsFor(stair)
+  assert.equal(len[0], Math.hypot(2, 0, 2.5))
+  const s = state()
+  stepKrab(s, stair, len, { ...PARAMS, pause: 0 }, 0.016)
+  // Advancing along the segment raises y monotonically toward 2.5.
+  let prevY = 0
+  let prevX = 0
+  for (let i = 0; i < 100; i++) {
+    const p = stepKrab(s, stair, len, { ...PARAMS, pause: 0 }, 0.016)
+    assert.ok(p.y >= prevY - 1e-9, 'elevation must be monotonic non-decreasing up the stairs')
+    assert.ok(p.x >= prevX - 1e-9, 'krab advances along x while climbing')
+    prevY = p.y
+    prevX = p.x
+  }
+  assert.ok(prevY > 0, 'krab actually climbed')
+  assert.ok(prevY <= 2.5 + 1e-9, 'y capped at the top of the stairs')
+})
+
+test('2D paths keep y at 0 (backwards-compatible)', () => {
+  const s = state({ progress: 0.5 })
+  const pose = stepKrab(s, PATH, PATH_LENGTHS, PARAMS, 0.016)
+  assert.equal(pose.y, 0)
+})
+
+test('pathLengthsFor includes vertical rise in 3D segments', () => {
+  assert.deepEqual(pathLengthsFor([[0, 0, 0], [3, 4, 12]]), [13, 13]) // 3-4-12 pythagorean triple
+  assert.deepEqual(pathLengthsFor([[0, 0], [3, 4]]), [5, 5]) // 2D: no elevation added
 })

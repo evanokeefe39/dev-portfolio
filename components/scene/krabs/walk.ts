@@ -41,8 +41,15 @@ export interface KrabStepState {
   activity: number
 }
 
+/**
+ * A waypoint in the walk path. `[x, z]` is the classic 2D floor point
+ * (elevation 0); `[x, z, y]` adds an elevation for stair/mezzanine segments.
+ */
+export type KrabWaypoint = [number, number] | [number, number, number]
+
 export interface KrabPose {
   x: number
+  y: number
   z: number
   rotationY: number
   legSwings: number[] /* length 6 */
@@ -61,7 +68,7 @@ const ACTIVITY_EASE = 8
 
 export function stepKrab(
   state: KrabStepState,
-  path: [number, number][],
+  path: KrabWaypoint[],
   pathLengths: number[],
   params: KrabStepParams,
   rawDt: number,
@@ -91,12 +98,14 @@ export function stepKrab(
     }
   }
 
-  // Pose: identical waypoint lerp + angle to the original frame loop.
+  // Pose: waypoint lerp + angle. Elevation (y) is interpolated for stair
+  // segments; 2D waypoints sit at y=0. The path holds [x, z, y?].
   const cur = path[state.pathIndex]
   const next = path[(state.pathIndex + 1) % path.length]
   const t = state.progress
   const x = cur[0] + (next[0] - cur[0]) * t
   const z = cur[1] + (next[1] - cur[1]) * t
+  const y = elevation(cur) + (elevation(next) - elevation(cur)) * t
   const rotationY = Math.atan2(next[0] - cur[0], next[1] - cur[1]) + Math.PI / 2
 
   const legSwings: number[] = []
@@ -105,5 +114,23 @@ export function stepKrab(
   }
   const clawSnap = Math.sin(state.time * params.snapRate) * 0.25 * state.activity
 
-  return { x, z, rotationY, legSwings, clawSnap }
+  return { x, y, z, rotationY, legSwings, clawSnap }
+}
+
+/** Elevation of a waypoint: `[x, z, y?]` → `y` (default 0 on the floor). */
+function elevation(w: KrabWaypoint): number {
+  return w.length === 3 ? w[2] : 0
+}
+
+/**
+ * Per-segment Euclidean length of a closed waypoint loop, in 3D (stairs count
+ * their vertical rise). Uses the same indexing convention as `stepKrab`:
+ * waypoint[0]=x, waypoint[1]=z, waypoint[2?]=y.
+ */
+export function pathLengthsFor(path: KrabWaypoint[]): number[] {
+  return path.map((_, i) => {
+    const cur = path[i]
+    const next = path[(i + 1) % path.length]
+    return Math.hypot(next[0] - cur[0], next[1] - cur[1], elevation(next) - elevation(cur))
+  })
 }

@@ -2,14 +2,14 @@ import React, { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { Voxel } from '../Voxel'
-import { stepKrab, MAX_DT, type KrabStepState } from './walk'
+import { stepKrab, MAX_DT, pathLengthsFor, type KrabStepState, type KrabWaypoint } from './walk'
 
 // Idle mode: no path-following, no horizontal movement — only a slow vertical
 // bob (±0.02) plus the leg wiggle/claw snap derived at full activity.
 const IDLE_BOB_RATE = 2 // rad/s — period ≈ 3.1 s, deliberately slow
 const IDLE_BOB_AMPLITUDE = 0.02
 export interface KrabConfig {
-  path: [number, number][]
+  path: KrabWaypoint[]
   speed: number
   pause: number
   scale: number
@@ -47,13 +47,7 @@ export function KrazyKrab({ path, speed, pause, scale, legRate, snapRate,
 
   const state = useRef<KrabStepState>({ pathIndex: 0, progress: 0, pausing: 0, time: 0, activity: 1 })
 
-  const pathLengths = useMemo(() => {
-    return path.map((_, i) => {
-      const next = path[(i + 1) % path.length]
-      const cur = path[i]
-      return Math.sqrt((next[0] - cur[0]) ** 2 + (next[1] - cur[1]) ** 2)
-    })
-  }, [path])
+  const pathLengths = useMemo(() => pathLengthsFor(path), [path])
 
   useFrame((_, delta) => {
     if (idle) {
@@ -84,7 +78,7 @@ export function KrazyKrab({ path, speed, pause, scale, legRate, snapRate,
     const pose = stepKrab(state.current, path, pathLengths, { speed, pause, legRate, snapRate }, delta)
 
     if (groupRef.current) {
-      groupRef.current.position.set(pose.x, 0, pose.z)
+      groupRef.current.position.set(pose.x, pose.y, pose.z)
       groupRef.current.rotation.y = pose.rotationY
     }
 
